@@ -1,0 +1,23 @@
+{
+  "name": "desafio-final-renpass.uol",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gracicomc/Renpass.uol-projeto-final.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gracicomc/Renpass.uol-projeto-final/issues"
+  },
+  "homepage": "https://github.com/gracicomc/Renpass.uol-projeto-final#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
