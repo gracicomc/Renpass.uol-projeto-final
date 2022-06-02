@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const people = require('./people.router');
+const people = require('./person.router');
 const car = require('./car.router');
 
 module.exports = (server) => {
