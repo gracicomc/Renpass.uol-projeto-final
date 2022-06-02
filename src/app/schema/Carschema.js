@@ -34,7 +34,12 @@ const CarSchema = new mongoose.Schema({
 				_id: false
 			}
 		}
-	]
+	],
+
+	passengersQtd: {
+		type: Number,
+		required: true
+	}
 	
 },
 {versionKey: false}
