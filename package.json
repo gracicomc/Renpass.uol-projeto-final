@@ -19,6 +19,7 @@
   "homepage": "https://github.com/gracicomc/Renpass.uol-projeto-final#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "joi": "^17.6.0",
     "mongoose": "^6.3.5"
   },
   "devDependencies": {
