@@ -13,8 +13,8 @@ class PersonRepository {
 		return PersonSchema.findById(payload);
 	}
 
-	updatePerson(payload) {
-		return PersonSchema.findByIdAndUpdate(payload);
+	patchPerson(id, payload) {
+		return PersonSchema.findByIdAndUpdate(id, payload);
 	}
 
 	deletePerson(payload) {
