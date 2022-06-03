@@ -23,15 +23,15 @@ class CarController {
 	async getById(req, res) {
 		try {
 			const result = await CarService.getById(req.params.id);
-			return res.status(204).json(result);
+			return res.status(201).json(result);
 		} catch (error) {
 			return res.status(error).json({description: error.description, name: error.message});
 		}
 	}
 
-	async updateCar(req, res) {
+	async patchCar(req, res) {
 		try {
-			const result = await CarService.updateCar(req.params.id, req.body);
+			const result = await CarService.patchCar(req.params.id, req.body);
 			return res.status(200).json(result);
 		} catch (error) {
 			return res.status(error).json({description: error.description, name: error.message});

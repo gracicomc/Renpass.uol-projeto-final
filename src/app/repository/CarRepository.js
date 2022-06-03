@@ -14,7 +14,7 @@ class CarRepository {
 		return CarSchema.findById(payload);
 	}
 
-	async updateCar(id, payload) {
+	async patchCar(id, payload) {
 		return CarSchema.findByIdAndUpdate(id, payload);
 	}
 

@@ -22,8 +22,8 @@ class CarService {
 	}
 
 	//Update some car by ID
-	async updateCar(payload) {
-		const result = await CarRepository.updateCar(payload);
+	async patchCar(id, payload) {
+		const result = await CarRepository.patchCar(id, payload);
 		return result;
 	}
 
