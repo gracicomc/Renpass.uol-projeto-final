@@ -10,6 +10,24 @@ class PersonController {
 			return res.status(400).json(error);
 		}
 	}
+
+	async list(req, res) {
+		try {
+			const result = await PersonService.list(req.query);
+			return res.status(200).json(result);
+		} catch (error) {
+			return res.status(400).json({description: error.description, name: error.message});
+		}
+	}
+
+	async updatePerson(req, res) {
+		try {
+			const result = await PersonService.updatePerson(req.params.id, req.body);
+			return res.status(200).json(result);
+		} catch (error) {
+			return res.status(400).json({description: error.description, name: error.message});
+		}
+	}
 }
 
 module.exports = new PersonController ();

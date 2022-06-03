@@ -7,7 +7,7 @@ class CarController {
 			const result = await CarService.create(req.body);
 			return res.status(201).json(result);
 		} catch (error) {
-			return res.status(400).json(error.message);
+			return res.status(400).json({description: error.description, name: error.message});
 		}
 	}
 

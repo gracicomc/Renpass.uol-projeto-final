@@ -7,6 +7,18 @@ class PersonService {
 
 		return result;
 	}
+
+	async list(payload) {
+		const result = await PersonRepository.list(payload);
+
+		return result;
+	}
+
+	async updatePerson(payload) {
+		const result = await PersonRepository.updatePerson(payload);
+		
+		return result;
+	}
 } 
 
 module.exports = new PersonService();
