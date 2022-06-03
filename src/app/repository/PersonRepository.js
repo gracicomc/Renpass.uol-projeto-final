@@ -9,8 +9,16 @@ class PersonRepository {
 		return PersonSchema.find(payload);
 	}
 
+	getById(payload) {
+		return PersonSchema.findById(payload);
+	}
+
 	updatePerson(payload) {
 		return PersonSchema.findByIdAndUpdate(payload);
+	}
+
+	deletePerson(payload) {
+		return PersonSchema.findByIdAndDelete(payload);
 	}
 }
 

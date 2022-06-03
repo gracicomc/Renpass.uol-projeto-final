@@ -14,9 +14,21 @@ class PersonService {
 		return result;
 	}
 
+	async getById(payload) {
+		const result = await PersonRepository.getById(payload);
+
+		return result;
+	}
+
 	async updatePerson(payload) {
 		const result = await PersonRepository.updatePerson(payload);
 		
+		return result;
+	}
+
+	async deletePerson(payload) {
+		const result = await PersonRepository.deletePerson(payload);
+
 		return result;
 	}
 } 
