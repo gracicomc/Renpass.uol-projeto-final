@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const _ = require('underscore');
 
 const CarSchema = new mongoose.Schema({
 
@@ -31,7 +32,7 @@ const CarSchema = new mongoose.Schema({
 		{
 			description: {
 				type: String,
-				_id: false
+				required: true,
 			}
 		}
 	],
@@ -44,6 +45,11 @@ const CarSchema = new mongoose.Schema({
 },
 {versionKey: false}
 );
+
+CarSchema.pre('save', function (next) {
+	this.acessories = _.uniq(this.acessories);
+	next();
+});
 
 const Car = mongoose.model('Car', CarSchema);
 module.exports = Car; 

@@ -20,6 +20,10 @@ class PersonRepository {
 	deletePerson(payload) {
 		return PersonSchema.findByIdAndDelete(payload);
 	}
+
+	authenticate(email) {
+		return PersonSchema.findOne({ email });
+	}
 }
 
 module.exports = new PersonRepository();
