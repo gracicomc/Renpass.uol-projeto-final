@@ -7,17 +7,21 @@ class AuthService {
 	async authenticate(email, password) {
 		const person = await PersonRepository.authenticate(email);
 
-		if (!person) throw new Error('person not found');
+		if (!person) throw new Error('Email not found');
 
-		if (!await bcrypt.compare(password, person.password))
-			throw new Error('invalid password');
+		if (!(await bcrypt.compare(password, person.password))) {
+
+			throw new Error('Invalid password');
+		}
+		
+		person.password = undefined;
 
 		const token = jwt.sign({ id: person.id}, 
 			authConfig.secret, {
 				expiresIn: 86400,
 			});
-		const result = await PersonRepository.authenticate(email, password);
-		return {result, token}; 
+		// const result = await PersonRepository.authenticate(email);
+		return {person, token}; 
 	}
 }
 
