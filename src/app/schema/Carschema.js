@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// const _ = require('underscore');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const CarSchema = new mongoose.Schema({
 
@@ -47,10 +47,7 @@ const CarSchema = new mongoose.Schema({
 {versionKey: false}
 );
 
-// CarSchema.pre('save', function (next) {
-// 	this.acessories = _.uniq(this.acessories);
-// 	next();
-// });
+CarSchema.plugin(mongoosePaginate);
 
 const Car = mongoose.model('Car', CarSchema);
 module.exports = Car; 
