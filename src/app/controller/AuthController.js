@@ -9,7 +9,7 @@ class AuthController {
 
 			return res.status(201).json(result);
 		} catch (error) {
-			return res.status(400).json({description: error.description, name: error.message});
+			return res.status(400).json({description: error.description, Error: error.message});
 		}
 	}
 }
