@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const PersonRepository = require('../repository/PersonRepository');
 const jwt = require('jsonwebtoken');
-const authConfig = require('../../config/auth.json');
+const authConfig = require('../config/auth.json');
 
 class AuthService {
 	async authenticate(email, password) {
