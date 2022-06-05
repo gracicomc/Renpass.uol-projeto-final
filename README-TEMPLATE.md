@@ -1,136 +1,126 @@
-<h1>Final Chalenge - Repass.UOL</h1> 
+<h1 align="center">Final Chalenge 💥 - Repass.UOL 🚙</h1> 
 
-## Project description
-<p align="justify"> API for renting luxury and semi-luxury cars </p>
-
+<h2 align="center"> API for renting luxury and semi-luxury cars </h2>
+</br>
 <p align="center">
- 
+ <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"/>
+ <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"/>
+ <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/>
+ <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge"/>
 </p>
 
-> Status do Projeto: :warning: developing
+> Status: ⏳ Developing
 
-### Tópicos 
+<h1 align> 🔍 Some informations about the project: </h1>
 
-:small_blue_diamond: [Descrição do projeto](#descrição-do-projeto)
-
-:small_blue_diamond: [Funcionalidades](#funcionalidades)
-
-:small_blue_diamond: [Deploy da Aplicação](#deploy-da-aplicação-dash)
-
-:small_blue_diamond: [Pré-requisitos](#pré-requisitos)
-
-:small_blue_diamond: [Como rodar a aplicação](#como-rodar-a-aplicação-arrow_forward)
-
-... 
-
-Insira os tópicos do README em links para facilitar a navegação do leitor
-
-## Descrição do projeto 
-
-<p align="justify">
-  Descrição breve do projeto compondo um paragrafo ou dois. 
-</p>
-
-## Funcionalidades
-
-:heavy_check_mark: Funcionalidade 1  
-
-:heavy_check_mark: Funcionalidade 2  
-
-:heavy_check_mark: Funcionalidade 3  
-
-:heavy_check_mark: Funcionalidade 4  
-
-## Layout ou Deploy da Aplicação :dash:
-
-> Link do deploy da aplicação. Exemplo com netlify: https://certificates-for-everyone-womakerscode.netlify.app/
-
-... 
-
-Se ainda não houver deploy, insira capturas de tela da aplicação ou gifs
-
-## Pré-requisitos
-
-:warning: [Node](https://nodejs.org/en/download/)
-
-...
-
-Liste todas as dependencias e libs que o usuário deve ter instalado na máquina antes de rodar a aplicação 
-
-## Como rodar a aplicação :arrow_forward:
-
-No terminal, clone o projeto: 
-
+### Node version:
 ```
-git clone https://github.com/React-Bootcamp-WoMarkersCode/certificate-generator
+14.18.0
+```
+### NPM version:
+```
+6.14.15
+```
+### Libs:
+```
+"@joi/date": "^2.1.0",
+"eslint": "^8.16.0",
+"nodemon": "^2.0.16"
+"dotenv": "^16.0.1",
+"joi": "^17.6.0",
+"mongoose": "^6.3.4",
+"mongoose-paginate-v2": "^1.6.3",
+```
+### Frameworks:
+```
+"express": "^4.18.1"
 ```
 
-... 
+<h1 align=> 🖌️ API authors: </h1>
 
-Coloque um passo a passo para rodar a sua aplicação. **Dica: clone o próprio projeto e verfique se o passo a passo funciona**
+* **Graciela Beatriz** - [Link do perfil](https://github.com/gracicomc)
 
-## Como rodar os testes
+<h1> 👣 Steps to run the code: </h1>
 
-Coloque um passo a passo para executar os testes
+### 1️⃣ - First install dependencies
 
+    npm install
+
+### 2️⃣ - Run server
+
+    npm run dev
+
+### 3️⃣ - (opitional) Insert values into the database
+
+    You can use the demos.md file to insert values on postman 
+
+<h1 align> 📁 Car Endpoints: </h1>
+
+## Create a Car
+
+### Request
+
+`POST`
+
+    http://localhost:3000/api/v1/car/ 
+    
+    
 ```
-$ npm test, rspec, etc 
-```
+//req body example
+{
+    "model": "S10 2.8",
+    "type": "Sedan",
+    "brand": "GM",
+    "color": "branco",
+    "year": "2000",
+    "accessories": [
+        {
+            "description": "Ar-condicionado"
+        }
 
-## Casos de Uso
+    ],
+    "passengersQtd": 5
+}
+``` 
+    
+### Response
 
-Explique com mais detalhes como a sua aplicação poderia ser utilizada. O uso de **gifs** aqui seria bem interessante. 
+`Status: 201 Created`
 
-Exemplo: Caso a sua aplicação tenha alguma funcionalidade de login apresente neste tópico os dados necessários para acessá-la.
+ ```
+ {
+    "_id": "629cb11c1ebb5c9b5112b4d6",
+    "model": "S10 2.8",
+    "type": "Sedan",
+    "brand": "GM",
+    "color": "branco",
+    "year": "2000",
+    "accessories": [
+        {
+            "description": "Ar-condicionado"
+        }
 
-## JSON :floppy_disk:
+    ],
+    "passengersQtd": 5
+}
+ ```
+    
+    
+`Status: 400 Bad Request`
+ ```
+ {
+"message": "Bad Request",
+"details": [
+    {
+      "message": "error message",
+    }
+  ]
+ ```
 
-### Usuários: 
 
-|name|email|password|token|avatar|
-| -------- |-------- |-------- |-------- |-------- |
-|Lais Lima|laislima98@hotmail.com|lais123|true|https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS9-U_HbQAipum9lWln3APcBIwng7T46hdBA42EJv8Hf6Z4fDT3&usqp=CAU|
-
-... 
-
-Se quiser, coloque uma amostra do banco de dados 
-
-## Iniciando/Configurando banco de dados
-
-Se for necessário configurar algo antes de iniciar o banco de dados insira os comandos a serem executados 
-
-## Linguagens, dependencias e libs utilizadas :books:
-
-- [React](https://pt-br.reactjs.org/docs/create-a-new-react-app.html)
-- [React PDF](https://react-pdf.org/)
-
-...
-
-Liste as tecnologias utilizadas no projeto que **não** forem reconhecidas pelo Github 
-
-## Resolvendo Problemas :exclamation:
-
-Em [issues]() foram abertos alguns problemas gerados durante o desenvolvimento desse projeto e como foram resolvidos. 
-
-## Tarefas em aberto
-
-Se for o caso, liste tarefas/funcionalidades que ainda precisam ser implementadas na sua aplicação
-
-:memo: Tarefa 1 
-
-:memo: Tarefa 2 
-
-:memo: Tarefa 3 
-
-## Desenvolvedores/Contribuintes :octocat:
-
-Liste o time responsável pelo desenvolvimento do projeto
-
-| [<img src="https://avatars2.githubusercontent.com/u/46378210?s=400&u=071f7791bb03f8e102d835bdb9c2f0d3d24e8a34&v=4" width=115><br><sub>Diana Regina</sub>](https://github.com/Diana-ops) |  [<img src="https://avatars2.githubusercontent.com/u/46378210?s=400&u=071f7791bb03f8e102d835bdb9c2f0d3d24e8a34&v=4" width=115><br><sub>Diana Regina</sub>](https://github.com/Diana-ops) |  [<img src="https://avatars2.githubusercontent.com/u/46378210?s=400&u=071f7791bb03f8e102d835bdb9c2f0d3d24e8a34&v=4" width=115><br><sub>Diana Regina</sub>](https://github.com/Diana-ops) |
-| :---: | :---: | :---: 
-
-## Licença 
+## Licence
 
 The [MIT License]() (MIT)
 
-Copyright :copyright: Ano - Titulo do Projeto
+Copyright :copyright: 2022 - Renpass.UOL
+
