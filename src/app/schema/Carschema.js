@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const _ = require('underscore');
+// const _ = require('underscore');
 
 const CarSchema = new mongoose.Schema({
 
@@ -28,11 +28,12 @@ const CarSchema = new mongoose.Schema({
 		required: true,
 	},
 
-	acessories: [
+	accessories: [
 		{
 			description: {
 				type: String,
 				required: true,
+				_id: false,
 			}
 		}
 	],
@@ -46,10 +47,10 @@ const CarSchema = new mongoose.Schema({
 {versionKey: false}
 );
 
-CarSchema.pre('save', function (next) {
-	this.acessories = _.uniq(this.acessories);
-	next();
-});
+// CarSchema.pre('save', function (next) {
+// 	this.acessories = _.uniq(this.acessories);
+// 	next();
+// });
 
 const Car = mongoose.model('Car', CarSchema);
 module.exports = Car; 
