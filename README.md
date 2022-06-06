@@ -24,12 +24,16 @@
 ### Libs:
 ```
 "@joi/date": "^2.1.0",
-"eslint": "^8.16.0",
-"nodemon": "^2.0.16"
+"bcrypt": "^5.0.1",
 "dotenv": "^16.0.1",
+"express": "^4.18.1",
 "joi": "^17.6.0",
-"mongoose": "^6.3.4",
+"jsonwebtoken": "^8.5.1",
+"moment": "^2.29.3",
+"mongoose": "^6.3.5",
 "mongoose-paginate-v2": "^1.6.3",
+"mongoose-unique-validator": "^3.1.0",
+"supertest": "^6.2.3"
 ```
 ### Frameworks:
 ```
@@ -38,7 +42,7 @@
 
 <h1 align=> 🖌️ API authors: </h1>
 
-* **Graciela Beatriz** - [Profile Link](https://github.com/gracicomc)
+* 👩🏾‍💻 **Graciela Beatriz** - [Profile Link](https://github.com/gracicomc)
 
 <h1> 👣 Steps to run the code: </h1>
 
@@ -122,7 +126,7 @@
 </details>
 
 <details>
-<summary>List cars</summary>
+<summary>List Cars</summary>
 <br>
 
 ### Request
@@ -174,7 +178,7 @@
 </details>
 
 <details>
-<summary>List a car by ID</summary>
+<summary>List a Car by ID</summary>
 <br>
 
 ### Request
@@ -217,7 +221,7 @@
 </details>
 
 <details>
-<summary>Update a car by ID</summary>
+<summary>Update a Car by ID</summary>
 <br>
 
 ### Request
@@ -265,7 +269,7 @@
 </details>
 
 <details>
-<summary>Delete a car by ID</summary>
+<summary>Delete a Car by ID</summary>
 <br>
 
 ### Request
@@ -383,7 +387,7 @@
 </details>
 
 <details>
-<summary>List a person by ID</summary>
+<summary>List a Person by ID</summary>
 <br>
 
 ### Request
@@ -417,7 +421,7 @@
 </details>
 
 <details>
-<summary>Update a person by ID</summary>
+<summary>Update a Person by ID</summary>
 <br>
 
 ### Request
@@ -456,7 +460,7 @@
 </details>
 
 <details>
-<summary>Delete a person by ID</summary>
+<summary>Delete a Person by ID</summary>
 <br>
 
 ### Request
