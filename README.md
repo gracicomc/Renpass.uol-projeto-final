@@ -8,6 +8,12 @@
  <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/>
  <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge"/>
 </p>
+</br>
+<p align="center">
+<img src="hhttps://img.shields.io/github/license/{gracicomc}/{Renpass.uol-projeto-final}.svg"/>
+
+<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=YELLOW&style=for-the-badge"/>
+</p>
 
 > Status: ⏳ Developing
 
