@@ -70,18 +70,20 @@
 ```
 //req body example
 {
-    "model": "S10 2.8",
-    "type": "Sedan",
-    "brand": "GM",
-    "color": "branco",
-    "year": "2000",
-    "accessories": [
-        {
-            "description": "Ar-condicionado"
-        }
-
-    ],
-    "passengersQtd": 5
+  "model": "S10 2.8",
+  "type": "sedan",
+  "brand": "GM",
+  "color": "branco",
+  "year": "2021",
+  "accessories": [
+    {
+      "description": "Ar-condicionado"
+    },
+    {
+      "description": "Dir. Hidráulica"
+    }
+  ],
+  "passengersQtd": 5
 }
 ``` 
     
@@ -90,35 +92,393 @@
 `Status: 201 Created`
 
  ```
- {
-    "_id": "629cb11c1ebb5c9b5112b4d6",
-    "model": "S10 2.8",
-    "type": "Sedan",
-    "brand": "GM",
-    "color": "branco",
-    "year": "2000",
-    "accessories": [
-        {
-            "description": "Ar-condicionado"
-        }
-
-    ],
-    "passengersQtd": 5
+    {
+        "model": "S10 2.8",
+        "type": "sedan",
+        "brand": "GM",
+        "color": "branco",
+        "year": "2021",
+        "accessories": [
+            {
+                "description": "Ar-condicionado"
+            },
+            {
+                "description": "Dir. Hidráulica"
+            }
+        ],
+        "passengersQtd": 5,
+        "_id": "629d4cd99a78c414e7cab6f1"
 }
+
  ```
     
     
 `Status: 400 Bad Request`
  ```
- {
-"message": "Bad Request",
-"details": [
-    {
-      "message": "error message",
-    }
-  ]
+{
+    "Error": "error message"
+}
  ```
 </details>
+
+<details>
+<summary>List cars</summary>
+<br>
+
+### Request
+
+`GET`
+
+    http://localhost:3000/api/v1/car/
+    
+### Response
+
+`Status: 200 OK`
+
+ ```
+ {
+    "vehicles": [
+        {
+            "model": "S10 2.8",
+            "type": "sedan",
+            "brand": "GM",
+            "color": "branco",
+            "year": "2021",
+            "accessories": [
+                {
+                    "description": "Ar-condicionado"
+                },
+                {
+                    "description": "Dir. Hidráulica"
+                }
+            ],
+        "passengersQtd": 5,
+        "_id": "629d4cd99a78c414e7cab6f1"
+        }
+    ],
+    "total": 1,
+    "offset": 1,
+    "limit": 100,
+    "offsets": 1
+}
+
+ ```
+    
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>List a car by ID</summary>
+<br>
+
+### Request
+
+`GET`
+
+    http://localhost:3000/api/v1/car/:id
+    
+### Response
+
+`Status: 200 OK`
+
+ ```
+    {
+        "model": "S10 2.8",
+        "type": "sedan",
+        "brand": "GM",
+        "color": "branco",
+        "year": "2021",
+        "accessories": [
+            {
+                "description": "Ar-condicionado"
+            },
+            {
+                "description": "Dir. Hidráulica"
+            }
+        ],
+        "passengersQtd": 5,
+        "_id": "629d4cd99a78c414e7cab6f1"
+}
+
+ ```
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>Update a car by ID</summary>
+<br>
+
+### Request
+
+`PATCH`
+
+    http://localhost:3000/api/v1/car/:id
+
+ ```
+{
+     "color": "verde"
+}
+ ```
+    
+### Response
+
+`Status: 200 OK`
+```
+
+    {
+        "model": "S10 2.8",
+        "type": "sedan",
+        "brand": "GM",
+        "color": "verde",
+        "year": "2021",
+        "accessories": [
+            {
+                "description": "Ar-condicionado"
+            },
+            {
+                "description": "Dir. Hidráulica"
+            }
+        ],
+        "passengersQtd": 5,
+        "_id": "629d4cd99a78c414e7cab6f1"
+}
+```
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>Delete a car by ID</summary>
+<br>
+
+### Request
+
+`DELETE`
+
+    http://localhost:3000/api/v1/car/:id
+    
+### Response
+
+`Status: 204 No Content`
+
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<h1 align> 📁 Person Endpoints: </h1>
+
+<details open>
+<summary>Create Person</summary>
+<br>
+
+### Request
+
+`POST`
+
+    http://localhost:3000/api/v1/person/ 
+    
+    
+```
+//req body example
+{
+  "name": "João Lopes",
+  "cpf": "131.147.860-49",
+  "birthDay": "03/03/1998",
+  "email": "joazinho@email.com",
+  "password": "123456",
+  "canDrive": "yes"
+}
+
+``` 
+    
+### Response
+
+`Status: 201 Created`
+
+ ```
+{
+    "name": "João Lopes",
+    "cpf": "131.147.860-49",
+    "birthDay": "03/03/1998",
+    "email": "joazinho@email.com",
+    "password": "$2b$10$YNHg1.71HVvbfpcfPwoBOuT6A460yM83kKgDOI6EiC2FBVD5QtTJG",
+    "canDrive": "yes",
+    "_id": "629d51cc9a78c414e7cab6f5"
+}
+
+ ```
+     
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>List Person</summary>
+<br>
+
+### Request
+
+`GET`
+
+    http://localhost:3000/api/v1/person/
+    
+### Response
+
+`Status: 200 OK`
+
+ ```
+{
+    "people": [
+        {
+            "_id": "629d51cc9a78c414e7cab6f5",
+            "name": "João Lopes",
+            "cpf": "131.147.860-49",
+            "birthDay": "03/03/1998",
+            "email": "joazinho@email.com",
+            "password": "$2b$10$YNHg1.71HVvbfpcfPwoBOuT6A460yM83kKgDOI6EiC2FBVD5QtTJG",
+            "canDrive": "yes"
+        }
+    ],
+    "total": 1,
+    "offset": 1,
+    "limit": 100,
+    "offsets": 1
+}
+
+ ```
+    
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>List a person by ID</summary>
+<br>
+
+### Request
+
+`GET`
+
+    http://localhost:3000/api/v1/person/:id
+    
+### Response
+
+`Status: 200 OK`
+
+ ```
+{
+    "name": "João Lopes",
+    "cpf": "131.147.860-49",
+    "birthDay": "03/03/1998",
+    "email": "joazinho@email.com",
+    "password": "$2b$10$YNHg1.71HVvbfpcfPwoBOuT6A460yM83kKgDOI6EiC2FBVD5QtTJG",
+    "canDrive": "yes",
+    "_id": "629d51cc9a78c414e7cab6f5"
+}
+ ```
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>Update a person by ID</summary>
+<br>
+
+### Request
+
+`PATCH`
+
+    http://localhost:3000/api/v1/person/:id
+
+ ```
+{
+     "name": "João Lopes Gomes"
+}
+ ```
+    
+### Response
+
+`Status: 200 OK`
+```
+{
+    "name": "João Lopes Gomes",
+    "cpf": "131.147.860-49",
+    "birthDay": "03/03/1998",
+    "email": "joazinho@email.com",
+    "password": "$2b$10$YNHg1.71HVvbfpcfPwoBOuT6A460yM83kKgDOI6EiC2FBVD5QtTJG",
+    "canDrive": "yes",
+    "_id": "629d51cc9a78c414e7cab6f5"
+}
+```
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>Delete a person by ID</summary>
+<br>
+
+### Request
+
+`DELETE`
+
+    http://localhost:3000/api/v1/person/:id
+    
+### Response
+
+`Status: 204 No Content`
+
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+
 
 
 
