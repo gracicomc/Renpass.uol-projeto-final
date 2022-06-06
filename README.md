@@ -42,7 +42,7 @@
 
 <h1 align=> 🖌️ API authors: </h1>
 
-* 👩🏾‍💻 **Graciela Beatriz** - [Profile Link](https://github.com/gracicomc)
+### 👩🏾‍💻Graciela Beatriz - [Profile Link](https://github.com/gracicomc)
 
 <h1> 👣 Steps to run the code: </h1>
 
