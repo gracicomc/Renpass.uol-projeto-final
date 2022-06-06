@@ -21,7 +21,7 @@ class AuthService {
 				expiresIn: 86400,
 			});
 		// const result = await PersonRepository.authenticate(email);
-		return {person, token}; 
+		return {email: person.email, canDrive: person.canDrive, token}; 
 	}
 }
 
