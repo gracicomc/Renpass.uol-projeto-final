@@ -1,10 +1,14 @@
+const moment = require('moment');
 const PersonRepository = require('../repository/PersonRepository');
 
 class PersonService {
 
 	async create(payload) {
-		const result = await PersonRepository.create(payload);
+		moment.suppressDeprecationWarnings = true;
+		const validAge = moment().diff(payload.birthDay, 'years');
+		if(validAge < 18) { throw {message: 'Age must be over 18'};}
 
+		const result = await PersonRepository.create(payload);
 		return result;
 	}
 

@@ -6,18 +6,19 @@ const validCPF = require('../../utils/validCPF');
 module.exports = async (req, res, next) => {
 	try {
 		const schemaPerson = Joi.object({
+			
 			name: Joi.string().min(3).max(30).required().trim(),
 			cpf: Joi.string().required().regex(cpf).message('Invalid character'),
-			birthDay: Joi.date().required().format('DD/MM/YYYY').min('01/01/2004'),
+			birthDay: Joi.date().required().format('DD/MM/YYYY'),
 			email: Joi.string().min(10).required().email().lowercase().trim(),
 			password: Joi.string().min(6).required(),
 			canDrive: Joi.string().required().valid('yes', 'no')
-            
 		});
 
 		const { error } = await schemaPerson.validate(req.body, { abortEarl: true });
 
 		if (error) throw error;
+
 
 		if(!validCPF(req.body.cpf)) throw {message: 'Invalid CPF'};
 

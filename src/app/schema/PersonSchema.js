@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const mongoosePaginate = require('mongoose-paginate-v2');
+var uniqueValidator = require('mongoose-unique-validator');
 
 const PersonSchema = new mongoose.Schema(
 	{
@@ -39,6 +40,8 @@ const PersonSchema = new mongoose.Schema(
 	}
 );
 
+
+
 PersonSchema.pre('save', async function(next) {
 	const hash = await bcrypt.hash(this.password, 10);
 	this.password = hash;
@@ -47,6 +50,8 @@ PersonSchema.pre('save', async function(next) {
 });
 
 PersonSchema.plugin(mongoosePaginate);
+
+PersonSchema.plugin(uniqueValidator, { message: 'Error, expected {PATH} to be unique.' });
 
 const Person = mongoose.model('Person', PersonSchema);
 
