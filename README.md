@@ -10,12 +10,8 @@
 </p>
 </br>
 <p align="center">
-<img src="hhttps://img.shields.io/github/license/{gracicomc}/{Renpass.uol-projeto-final}.svg"/>
-
-<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=YELLOW&style=for-the-badge"/>
+<img src="http://img.shields.io/static/v1?label=STATUS&message=%20DEVELOPING&color=&style=for-the-badge"/>
 </p>
-
-> Status: ⏳ Developing
 
 <h1 align> 🔍 Some informations about the project: </h1>
 
