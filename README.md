@@ -485,9 +485,47 @@
  ```
 </details>
 
+<h1 align> 📁 Authenticate Endpoints: </h1>
 
+<details open>
+<summary>Auth</summary>
+<br>
 
+### Request
 
+`POST`
+
+    http://localhost:3000/api/v1/authenticate/ 
+    
+    
+```
+//req body example
+    {
+        "email": "joazinho@email.com",
+        "password": "123456"
+    }
+``` 
+### Response
+
+`Status: 201 Created`
+
+ ```
+{
+    "email": "joazinho@email.com",
+    "canDrive": "yes",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ1MWNjOWE3OGM0MTRlN2NhYjZmNSIsImlhdCI6MTY1NDQ4ODc2NCwiZXhwIjoxNjU0NTc1MTY0fQ.7OM35NEznykrb4KwYpDhTJAY7fPhXCXaMV5xKH3g3cs"
+}
+
+ ```
+    
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
 
 
 ## Licence
