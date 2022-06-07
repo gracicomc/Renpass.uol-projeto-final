@@ -1,6 +1,6 @@
 const express = require('express');
 const router = require('./routes');
-
+const morgan = require('morgan');
 require('./infra/database/mongo');
 
 class App { 
@@ -12,6 +12,7 @@ class App {
 	}
 	middlewares() {
 		this.server.use(express.json());
+		this.server.use(morgan('dev'));
 
 	}
 	routes() {
