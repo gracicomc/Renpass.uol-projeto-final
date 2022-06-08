@@ -504,7 +504,7 @@ perPage: 5
 
 <h1 align> 📁 Authenticate Endpoints: </h1>
 
-<details open>
+<details>
 <summary>Auth</summary>
 <br>
 
