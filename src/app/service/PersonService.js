@@ -2,7 +2,6 @@ const moment = require('moment');
 const PersonRepository = require('../repository/PersonRepository');
 const InvalidAge = require('../utils/Errors/personErrors/InvalidAge');
 const NotFoundId = require('../utils/Errors/personErrors/NotFoundId');
-const NotUniqueCpf = require('../utils/Errors/personErrors/NotUniqueCpf');
 
 class PersonService {
 
@@ -12,9 +11,6 @@ class PersonService {
 		// const age = moment().diff(ageFormated, 'years');
 		const validAge = moment().diff(payload.birthDay, 'years');
 		if(validAge < 18)  throw new InvalidAge(payload.age);
-
-		const cpf = payload.cpf; 
-		if(!cpf) throw new NotUniqueCpf(payload.cpf);
 
 		const result = await PersonRepository.create(payload);
 		return result;

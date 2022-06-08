@@ -7,10 +7,12 @@ class CarRepository {
 	}
 
 	async list(payload) {
+		const {page, perPage} = payload;
+
 		const paginate = {
 			totalDocs: 'total',
 			docs: 'vehicles',
-			page: 'offset',
+			// page: 'offset',
 			totalPages: 'offsets',
 			nextPage: false,
 			prevPage: false,
@@ -20,8 +22,9 @@ class CarRepository {
 			hasNextPage: false
 		};
 		const options = {
+			page: parseInt(page, 10) || 5,
+			limit: parseInt(perPage, 10) || 10,
 			offset: 1,
-			limit:100,
 			customLabels: paginate 
 		};
 		return CarSchema.paginate(payload, options, {});
