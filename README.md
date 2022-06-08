@@ -34,6 +34,7 @@
 "moment": "^2.29.3",
 "mongoose": "^6.3.5",
 "mongoose-paginate-v2": "^1.6.3",
+"morgan": "^1.10.0",
 "mongoose-unique-validator": "^3.1.0",
 "supertest": "^6.2.3"
 ```
@@ -137,6 +138,14 @@
 `GET`
 
     http://localhost:3000/api/v1/car/
+
+`You can customize the pagination using query parameters`
+
+```
+example:
+page: 2
+perPage: 5
+``` 
     
 ### Response
 
@@ -354,6 +363,14 @@
 `GET`
 
     http://localhost:3000/api/v1/person/
+
+`You can customize the pagination using query parameters`
+
+```
+example:
+page: 2
+perPage: 5
+``` 
     
 ### Response
 
