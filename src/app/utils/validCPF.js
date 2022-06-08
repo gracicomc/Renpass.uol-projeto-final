@@ -4,10 +4,11 @@ function validCPF(cpf) {
 	let rest;
 	sum = 0;
 
-	cpf = cpf.replace(/[^\d]+/g,'');	
+	cpf = cpf.replace(/[^\d]+/g,'');
+	if (typeof cpf !== 'string') return false;	
 	if(cpf == '') return false;
 
-	if (cpf.length != 11 || 
+	if (cpf.length !== 11 || 
 		cpf == '00000000000' || 
 		cpf == '11111111111' || 
 		cpf == '22222222222' || 
@@ -33,7 +34,7 @@ function validCPF(cpf) {
 	rest = (sum * 10) % 11;
 
 	if (rest === 10 || rest === 11) rest = 0;
-	if (rest != parseInt(cpf.substring(10, 11))) return false;
+	if (rest !== parseInt(cpf.substring(10, 11))) return false;
 	return true;
 }   
 

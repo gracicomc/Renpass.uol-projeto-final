@@ -1,14 +1,20 @@
 const moment = require('moment');
 const PersonRepository = require('../repository/PersonRepository');
-const InvalidAge = require('../utils/Errors/InvalidAge');
-// const NotFoundId = require('../utils/Errors/NotFoundId');
+const InvalidAge = require('../utils/Errors/personErrors/InvalidAge');
+const NotFoundId = require('../utils/Errors/personErrors/NotFoundId');
+const NotUniqueCpf = require('../utils/Errors/personErrors/NotUniqueCpf');
 
 class PersonService {
 
 	async create(payload) {
 		moment.suppressDeprecationWarnings = true;
+		// const ageFormated = moment(payload.birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+		// const age = moment().diff(ageFormated, 'years');
 		const validAge = moment().diff(payload.birthDay, 'years');
 		if(validAge < 18)  throw new InvalidAge(payload.age);
+
+		const cpf = payload.cpf; 
+		if(!cpf) throw new NotUniqueCpf(payload.cpf);
 
 		const result = await PersonRepository.create(payload);
 		return result;
@@ -22,19 +28,21 @@ class PersonService {
 
 	async getById(payload) {
 		const result = await PersonRepository.getById(payload);
-		// if(!result) throw new NotFoundId(payload);
+		if(!result) throw new NotFoundId(payload);
 
 		return result;
 	}
 
 	async patchPerson(id, payload) {
 		const result = await PersonRepository.patchPerson(id, payload);
+		if(!result) throw new NotFoundId(id);
 		
 		return result;
 	}
 
 	async deletePerson(payload) {
 		const result = await PersonRepository.deletePerson(payload);
+		if(!result) throw new NotFoundId;
 
 		return result;
 	}
