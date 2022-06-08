@@ -305,7 +305,7 @@ perPage: 5
 
 <h1 align> 📁 Person Endpoints: </h1>
 
-<details open>
+<details>
 <summary>Create Person</summary>
 <br>
 
