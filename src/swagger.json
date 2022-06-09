@@ -1,0 +1,115 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Renpass.UOL",
+        "description": "API for renting luxury and semi-luxury cars",
+        "contact": {
+            "email": "graciparentte@gmail.com"
+        },
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/api/v1/",
+            "description": "API server"
+        }
+    ],
+    "paths": {
+        "/car/": {
+            "post": {
+                "summary": "Create a car",
+                "tags": ["Cars"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref":"#/components/schemas/CarsSchema"
+                            },
+                            "examples": {
+                                "car": {
+                                    "value": {
+                                        
+                                        "model": "S10 3.0",
+                                        "type": "sedan",
+                                        "brand": "GM",
+                                        "color": "azul",
+                                        "year": "2022",
+                                        "accessories": [
+                                            {
+                                                "description": "Ar-condicionado"
+                                            },
+                                            {
+                                                "description": "Dir. Hidráulica"
+                                            },
+                                            {
+                                                "description": "Câmbio Automático"
+                                            },
+                                            {
+                                                "description": "Teto Solar"
+                                            }
+                                            ],
+                                        "passengersQtd": 5            
+                                    }
+                                }
+                            }
+                        }
+                    }                  
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/CarsSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CarsSchema": {
+                "type": "object",
+                "properties": {
+                    "model": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "type": "string"
+                    },
+                    "year": {
+                        "type": "number"
+                    },
+                    "accessories": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "description": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "passengersQtd": {
+                        "type": "number"
+                    },
+                    "_id": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
