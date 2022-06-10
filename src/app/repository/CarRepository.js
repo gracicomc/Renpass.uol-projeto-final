@@ -12,7 +12,7 @@ class CarRepository {
 		const paginate = {
 			totalDocs: 'total',
 			docs: 'vehicles',
-			// page: 'offset',
+			page: 'offset',
 			totalPages: 'offsets',
 			nextPage: false,
 			prevPage: false,
@@ -36,6 +36,10 @@ class CarRepository {
 
 	async patchCar(id, payload) {
 		return CarSchema.findByIdAndUpdate(id, payload);
+	}
+
+	async patchAccessories(_id, accessoriesId, payload) {
+		return CarSchema.findByIdAndUpdate(_id, payload);
 	}
 
 	async deleteCar(payload) {

@@ -5,8 +5,8 @@ class PersonRepository {
 		return PersonSchema.create(payload);
 	}
 
-	list(req, payload) {
-		const {page, perPage} = req.query;
+	list(payload) {
+		const {page, perPage} = payload;
 
 		const paginate = {
 			totalDocs: 'total',
@@ -21,8 +21,8 @@ class PersonRepository {
 			hasNextPage: false
 		};
 		const options = {
-			page: parseInt(page, 10),
-			limit: parseInt(perPage, 10),
+			page: parseInt(page, 10) || 5,
+			limit: parseInt(perPage, 10) || 10,
 			offset: 1,
 			customLabels: paginate 
 		};

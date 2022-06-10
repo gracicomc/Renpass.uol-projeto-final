@@ -30,6 +30,12 @@ class CarService {
 		return result;
 	}
 
+	async patchAccessories(id, payload) {
+		const result = await CarRepository.patchAccessories(id, payload);
+		if(!result) throw new NotFoundId(id);
+		return result;
+	}
+
 	// Delete car by ID
 	async deleteCar(payload) {
 		const result = await CarRepository.deleteCar(payload);
