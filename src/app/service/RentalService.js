@@ -17,6 +17,12 @@ class RentalService {
 		if(!result) throw new NotFoundId(payload);
 		return result;
 	}
+
+	async patchRental(id, payload) {
+		const result = RentalRepository.patchRental(id, payload);
+		if(!result) throw new NotFoundId(id);
+		return result;
+	}
 }
 
 module.exports = new RentalService();

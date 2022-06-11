@@ -32,6 +32,10 @@ class RentalRepository {
 	getById(payload) {
 		return RentalSchema.findById(payload);
 	}
+
+	patchRental(id, payload) {
+		return RentalSchema.findByIdAndUpdate(id, payload);
+	}
 	
 }
 
