@@ -36,6 +36,10 @@ class RentalRepository {
 	patchRental(id, payload) {
 		return RentalSchema.findByIdAndUpdate(id, payload);
 	}
+
+	deleteRental(payload) {
+		return RentalSchema.findByIdAndDelete(payload);
+	}
 	
 }
 

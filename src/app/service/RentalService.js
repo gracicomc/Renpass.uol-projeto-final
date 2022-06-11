@@ -23,6 +23,12 @@ class RentalService {
 		if(!result) throw new NotFoundId(id);
 		return result;
 	}
+
+	async deleteRental(id) {
+		const result = RentalRepository.deleteRental(id);
+		if(!result) throw new NotFoundId(id);
+		return result;
+	}
 }
 
 module.exports = new RentalService();
