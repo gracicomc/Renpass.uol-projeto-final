@@ -19,6 +19,15 @@ class RentalController {
 			return res.status(400).json({statusCode: error.statusCode, description: error.description, error: error.message });
 		}
 	}
+
+	async getById(req, res) {
+		try {
+			const result = await RentalService.getById(req.params.id);
+			return res.status(200).json(result);
+		} catch (error) {
+			return res.status(400).json({statusCode: error.statusCode, description: error.description, error: error.message });
+		}
+	}
 }
 
 module.exports = new RentalController();
