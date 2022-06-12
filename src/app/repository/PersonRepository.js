@@ -6,7 +6,7 @@ class PersonRepository {
 	}
 
 	list(payload) {
-		const {page, perPage} = payload;
+		const { page, perPage } = payload;
 
 		const paginate = {
 			totalDocs: 'total',
@@ -18,13 +18,13 @@ class PersonRepository {
 			pagingCounter: false,
 			meta: false,
 			hasPrevPage: false,
-			hasNextPage: false
+			hasNextPage: false,
 		};
 		const options = {
 			page: parseInt(page, 10) || 5,
 			limit: parseInt(perPage, 10) || 10,
 			offset: 1,
-			customLabels: paginate 
+			customLabels: paginate,
 		};
 		return PersonSchema.paginate(payload, options, {});
 	}

@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
-const PersonRepository = require('../repository/PersonRepository');
 const jwt = require('jsonwebtoken');
+const PersonRepository = require('../repository/PersonRepository');
 const authConfig = require('../config/auth.json');
 
 class AuthService {
@@ -10,18 +10,20 @@ class AuthService {
 		if (!person) throw new Error('Email not found');
 
 		if (!(await bcrypt.compare(password, person.password))) {
-
 			throw new Error('Invalid password');
 		}
-		
+
 		person.password = undefined;
 
-		const token = jwt.sign({ id: person.id}, 
-			authConfig.secret, {
+		const token = jwt.sign(
+			{ id: person.id },
+			authConfig.secret,
+			{
 				expiresIn: 86400,
-			});
+			},
+		);
 
-		return {email: person.email, canDrive: person.canDrive, token}; 
+		return { email: person.email, canDrive: person.canDrive, token };
 	}
 }
 

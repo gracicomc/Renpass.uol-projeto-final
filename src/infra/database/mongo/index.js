@@ -6,9 +6,9 @@ class Database {
 		this.connect();
 	}
 
-	connect(){
+	connect() {
 		return mongoose.connect(
-			`mongodb://${config.database.host}/${config.database.collection}`
+			`mongodb://${config.database.host}/${config.database.collection}`,
 		);
 	}
 }

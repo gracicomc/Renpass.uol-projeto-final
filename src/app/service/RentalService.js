@@ -14,19 +14,19 @@ class RentalService {
 
 	async getById(payload) {
 		const result = RentalRepository.getById(payload);
-		if(!result) throw new NotFoundId(payload);
+		if (!result) throw new NotFoundId(payload);
 		return result;
 	}
 
 	async patchRental(id, payload) {
 		const result = RentalRepository.patchRental(id, payload);
-		if(!result) throw new NotFoundId(id);
+		if (!result) throw new NotFoundId(id);
 		return result;
 	}
 
 	async deleteRental(id) {
 		const result = RentalRepository.deleteRental(id);
-		if(!result) throw new NotFoundId(id);
+		if (!result) throw new NotFoundId(id);
 		return result;
 	}
 }

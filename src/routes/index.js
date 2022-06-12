@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const people = require('./person.router');
 const car = require('./car.router');
-const authenticate = require('./auth.router'); 
+const authenticate = require('./auth.router');
 const rental = require('./rental.route');
 const apiDocs = require('./api-docs.router');
 
