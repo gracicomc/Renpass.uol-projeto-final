@@ -1,9 +1,23 @@
+const axios = require('axios').default;
 const RentalRepository = require('../repository/RentalRepository');
 const NotFoundId = require('../utils/Errors/personErrors/NotFoundId');
 
 class RentalService {
 	async create(payload) {
-		const result = RentalRepository.create(payload);
+
+		for (let index = 0; index < payload.address.length; index ++){
+
+			const { cep, logradouro, complemento, bairro, localidade, uf } = ( await axios
+				.get(`https://viacep.com.br/ws/${payload.address[index].zipCode}/json`)).data ;
+			payload.address[index].zipCode = cep;
+			payload.address[index].street = logradouro;
+			payload.address[index].complement = complemento;
+			payload.address[index].district = bairro;
+			payload.address[index].city = localidade;
+			payload.address[index].state = uf;
+		}
+
+		const result = await RentalRepository.create(payload);
 		return result;
 	}
 
