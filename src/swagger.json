@@ -10,7 +10,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3000/api/v1/",
+            "url": "http://localhost:3000/api/v1",
             "description": "API server"
         }
     ],
@@ -18,12 +18,13 @@
         "/car/": {
             "post": {
                 "summary": "Create a car",
+                "description": "Create a car",
                 "tags": ["Cars"],
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref":"#/components/schemas/CarsSchema"
+                                "$ref":"#/components/schemas/CarSchema"
                             },
                             "examples": {
                                 "car": {
@@ -60,15 +61,329 @@
                         "description": "Bad request"
                     },
                     "201": {
-                        "description": "OK",
+                        "description": "Created",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
-                                    "$ref": "#/components/schemas/CarsSchema"
+                                    "$ref": "#/components/schemas/CarSchema"
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all cars",
+                "description": "List all cars",
+                "tags": ["Cars"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CarSchema"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/car/{id}": {
+            "get": {
+                "summary": "Get a car by id",
+                "description": "Get a car by id",
+                "tags": ["Cars"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Car id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CarSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Update a car by id",
+                "description": "Update a car by id",
+                "tags": ["Cars"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Car id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref":"#/components/schemas/CarSchema"
+                            },
+                            "examples": {
+                                "car": {
+                                    "value": {
+                                        
+                                        "model": "S10 3.0",
+                                        "type": "sedan",
+                                        "brand": "GM",
+                                        "color": "vermelho",
+                                        "year": "2020",
+                                        "accessories": [
+                                            {
+                                                "description": "Quatro Portas"
+                                            },
+                                            {
+                                                "description": "Dir. Hidráulica"
+                                            },
+                                            {
+                                                "description": "Câmbio Manual"
+                                            }
+                                            ],
+                                        "passengersQtd": 4            
+                                    }
+                                }
+                            }
+                        }
+                    }                  
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CarSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a car by id",
+                "description": "Delete a car by id",
+                "tags": ["Cars"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Car id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/person/": {
+            "post": {
+                "summary": "Create a person",
+                "description": "Create a person",
+                "tags": ["Person"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref":"#/components/schemas/PersonSchema"
+                            },
+                            "examples": {
+                                "car": {
+                                    "value": {
+                                        "name": "João",
+                                        "cpf": "504.527.140-79",
+                                        "birthDay": "20/08/1998",
+                                        "email": "joao@email.com",
+                                        "password": "123456",
+                                        "canDrive": "yes"    
+                                    }
+                                }
+                            }
+                        }
+                    }                  
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/PersonSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all people",
+                "description": "List all people",
+                "tags": ["Person"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PersonSchema"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }   
+        },
+        "/person/{id}": {
+            "get": {
+                "summary": "Get a person by id",
+                "description": "Get a person by id",
+                "tags": ["Person"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Person id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PersonSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Update a person by id",
+                "description": "Update a person by id",
+                "tags": ["Person"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Person id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref":"#/components/schemas/PersonSchema"
+                            },
+                            "examples": {
+                                "car": {
+                                    "value": {
+                                        "name": "João Gomes",
+                                        "cpf": "504.527.140-79",
+                                        "birthDay": "20/08/1998",
+                                        "email": "joao.gomes@email.com",
+                                        "password": "654321",
+                                        "canDrive": "yes"    
+                                    }
+                                }
+                            }
+                        }
+                    }                  
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PersonSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a person by id",
+                "description": "Delete a person by id",
+                "tags": ["Person"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Person id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Not found"
                     }
                 }
             }
@@ -76,7 +391,7 @@
     },
     "components": {
         "schemas": {
-            "CarsSchema": {
+            "CarSchema": {
                 "type": "object",
                 "properties": {
                     "model": {
@@ -109,7 +424,34 @@
                         "type": "string"
                     }
                 }
+            },
+            "PersonSchema":{
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "cpf": {
+                        "type": "string"
+
+                    },
+                   "birthDay": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "canDrive": {
+                        "type": "string"
+                    },
+                    "_id": {
+                        "type": "string"
+                    }
+                    }
+                }
             }
         }
     }
-}
