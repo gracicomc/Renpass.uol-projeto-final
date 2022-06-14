@@ -30,8 +30,11 @@ class CarService {
 		return result;
 	}
 
-	async patchAccessories(accessoriesId, update) {
-		const result = await CarRepository.patchAccessories(accessoriesId, update);
+	async patchAccessories(id, accessoriesId, payload) {
+		const result = await CarRepository.patchAccessories(
+			id,
+			accessoriesId, 
+			payload);
 		// if(!result) throw new NotFoundId(id);
 		return result;
 	}
