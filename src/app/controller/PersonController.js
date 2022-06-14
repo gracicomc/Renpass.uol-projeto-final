@@ -9,7 +9,7 @@ class PersonController {
 			return res.status(400).json({
 				statusCode: error.statusCode,
 				description: error.description,
-				error: error.message
+				error: error.message,
 			});
 		}
 	}
@@ -22,7 +22,7 @@ class PersonController {
 			return res.status(400).json({
 				statusCode: error.statusCode,
 				description: error.description,
-				error: error.message 
+				error: error.message,
 			});
 		}
 	}
@@ -35,7 +35,7 @@ class PersonController {
 			return res.status(400).json({
 				statusCode: error.statusCode,
 				description: error.description,
-				error: error.message
+				error: error.message,
 			});
 		}
 	}
@@ -46,9 +46,9 @@ class PersonController {
 			return res.status(200).json(result);
 		} catch (error) {
 			return res.status(400).json({
-				statusCode: error.statusCode, 
-				description: error.description, 
-				error: error.message
+				statusCode: error.statusCode,
+				description: error.description,
+				error: error.message,
 			});
 		}
 	}
@@ -59,9 +59,9 @@ class PersonController {
 			return res.status(204).json(result);
 		} catch (error) {
 			return res.status(400).json({
-				statusCode: error.statusCode, 
-				description: error.description, 
-				error: error.message 
+				statusCode: error.statusCode,
+				description: error.description,
+				error: error.message,
 			});
 		}
 	}

@@ -5,7 +5,7 @@ const authenticate = require('./auth.router');
 const rental = require('./rental.route');
 const apiDocs = require('./api-docs.router');
 
-module.exports = (server) => {
+module.exports = (server ) => {
 	server.use((req, res, next) => {
 		people(server, new Router());
 		car(server, new Router());

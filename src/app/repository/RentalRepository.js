@@ -29,8 +29,8 @@ class RentalRepository {
 		return RentalSchema.paginate(payload, options, {});
 	}
 
-	getById(payload) {
-		return RentalSchema.findById(payload);
+	getById(id) {
+		return RentalSchema.findById(id);
 	}
 
 	patchRental(id, payload) {

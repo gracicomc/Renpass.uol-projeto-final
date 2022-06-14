@@ -4,11 +4,11 @@ const NotFoundId = require('../utils/Errors/personErrors/NotFoundId');
 
 class RentalService {
 	async create(payload) {
-
 		for (let index = 0; index < payload.address.length; index ++) {
-
-			const { cep, logradouro, complemento, bairro, localidade, uf } = ( await axios
-				.get(`https://viacep.com.br/ws/${payload.address[index].zipCode}/json`)).data ;
+			const {
+				cep, logradouro, complemento, bairro, localidade, uf,
+			} = (await axios
+				.get(`https://viacep.com.br/ws/${payload.address[index].zipCode}/json`)).data;
 			payload.address[index].zipCode = cep;
 			payload.address[index].street = logradouro;
 			payload.address[index].complement = complemento;
@@ -26,13 +26,25 @@ class RentalService {
 		return result;
 	}
 
-	async getById(payload) {
-		const result = RentalRepository.getById(payload);
-		if (!result) throw new NotFoundId(payload);
+	async getById(id) {
+		const result = RentalRepository.getById(id);
+		if(id === null) throw new NotFoundId(id);
 		return result;
 	}
 
 	async patchRental(id, payload) {
+		for (let index = 0; index < payload.address.length; index ++) {
+			const {
+				cep, logradouro, complemento, bairro, localidade, uf,
+			} = (await axios
+				.get(`https://viacep.com.br/ws/${payload.address[index].zipCode}/json`)).data;
+			payload.address[index].zipCode = cep;
+			payload.address[index].street = logradouro;
+			payload.address[index].complement = complemento;
+			payload.address[index].district = bairro;
+			payload.address[index].city = localidade;
+			payload.address[index].state = uf;
+		}
 		const result = RentalRepository.patchRental(id, payload);
 		if (!result) throw new NotFoundId(id);
 		return result;
