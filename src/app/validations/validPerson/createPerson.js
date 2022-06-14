@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
 		const schemaPerson = Joi.object({
 
 			name: Joi.string().min(3).max(30).required().trim(),
-			cpf: Joi.string().required().regex(cpf).message('Invalid character'),
+			cpf: Joi.string().required().regex(cpf).message('Invalid character in CPF field. Try something like: 000.000.000-00'),
 			birthDay: Joi.date().required().format('DD/MM/YYYY'),
 			email: Joi.string().min(10).required()
 				.email()
