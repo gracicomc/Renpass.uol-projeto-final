@@ -8,13 +8,13 @@ module.exports = async (req, res, next) => {
 		const schemaRental = Joi.object({
 			name: Joi.string().min(3).max(50).required()
 				.trim(),
-			cnpj: Joi.string().required().regex(cnpj).message('Invalid character'),
+			cnpj: Joi.string().required().regex(cnpj).message('Invalid character in CNPJ field. Try something like: 00.000.000/0000-00'),
 			activities: Joi.string().required().max(100).trim(),
 			address: Joi.array().items(Joi.object({
 				zipCode: Joi.string().required().trim(),
 				street: Joi.string().max(100).trim(),
 				complement: Joi.string().max(100).trim(),
-				number: Joi.number().required().min(1).max().trim(),
+				number: Joi.string().required().trim(),
 				district: Joi.string().max(100).trim(),
 				city: Joi.string().max(100).trim(),
 				state: Joi.string().max(3).trim(),

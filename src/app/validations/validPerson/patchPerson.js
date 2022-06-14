@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
 	try {
 		const schemaPerson = Joi.object({
 			name: Joi.string().min(3).max(30).trim(),
-			cpf: Joi.string().regex(cpf).message('Invalid character'),
+			cpf: Joi.string().regex(cpf).message('Invalid character in CPF field. Try something like: 000.000.000-00'),
 			birthDay: Joi.date().format('DD/MM/YYYY').min('01/01/2004'),
 			email: Joi.string().min(10).email().lowercase()
 				.trim(),
@@ -20,9 +20,10 @@ module.exports = async (req, res, next) => {
 
 		if (error) throw error;
 
-		if (!validCPF(req.body.cpf)) throw {
-			message: 'Invalid CPF'
-		};
+		if (!validCPF(req.body.cpf)) {
+			throw {
+				message: 'Invalid CPF'
+			};}
 
 		return next();
 	} catch (error) {
