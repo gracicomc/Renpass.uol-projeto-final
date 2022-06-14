@@ -14,8 +14,9 @@ module.exports = async (req, res, next) => {
 						.string()
 						.min(1)
 						.required()
-						.trim() })),
-			passengersQtd: Joi.number().min(1),
+						.trim()
+				})),
+			passengersQtd: Joi.number().min(1)
 		});
 		const { error } = schemaCar.validate(req.body, { abortEarly: false });
 
@@ -24,7 +25,7 @@ module.exports = async (req, res, next) => {
 		return next();
 	} catch (error) {
 		return res.status(400).json({
-			Error: error.message
+			Error: error.message,
 		});
 	}
 };

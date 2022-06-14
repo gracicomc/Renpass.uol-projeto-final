@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
 						.string()
 						.min(1)
 						.required()
-						.trim() 
+						.trim(),
 				})),
 			passengersQtd: Joi.number().required().min(1),
 		});
@@ -25,7 +25,7 @@ module.exports = async (req, res, next) => {
 		return next();
 	} catch (error) {
 		return res.status(400).json({
-			Error: error.message
+			Error: error.message,
 		});
 	}
 };
