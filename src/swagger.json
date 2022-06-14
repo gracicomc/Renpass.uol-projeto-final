@@ -387,6 +387,187 @@
                     }
                 }
             }
+        },
+        "/rental/": {
+            "post": {
+                "summary": "Create a rental",
+                "description": "Create a rental",
+                "tags": ["Rental"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref":"#/components/schemas/RentalSchema"
+                            },
+                            "examples": {
+                                "car": {
+                                    "value": {  
+                                            "name": "Localiza Rent a Car",
+                                            "cnpj": "08.366.064/0001-12",
+                                            "activities": "Aluguel de Carros E Gestão de Frotas",
+                                            "address": [
+                                                {
+                                                    "zipCode": "68459-020",
+                                                    "number": "200",
+                                                    "isFilial": true
+                                                }
+                                            ]  
+                                    }
+                                }
+                            }
+                        }
+                    }                  
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/RentalSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all Rentals",
+                "description": "List all Rentals",
+                "tags": ["Rental"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RentalSchema"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rental/{id}": {
+            "get": {
+                "summary": "Get a Rental by id",
+                "description": "Get a Rental by id",
+                "tags": ["Rental"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Rental id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RentalSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Update a Rental by id",
+                "description": "Update a Rental by id",
+                "tags": ["Rental"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Rental id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref":"#/components/schemas/RentalSchema"
+                            },
+                            "examples": {
+                                "car": {
+                                    "value": {
+                                        "name": "Localiza",
+                                        "cnpj": "08.366.064/0001-12",
+                                        "activities": "Aluguel de Carros E Gestão de Frotas",
+                                        "address": [
+                                            {
+                                                "zipCode": "68459-020",
+                                                "number": "230",
+                                                "isFilial": true
+                                            }
+                                        ]            
+                                    }
+                                }
+                            }
+                        }
+                    }                  
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RentalSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a Rental by id",
+                "description": "Delete a Rental by id",
+                "tags": ["Rental"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Rental id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -451,7 +632,50 @@
                         "type": "string"
                     }
                     }
+            },
+            "RentalSchema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "cnpj": {
+                        "type": "string"
+                    },
+                    "activities": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "zipCode": {
+                                    "type": "string"
+                                },
+                                "street": {
+                                    "type": "string"
+                                },
+                                "number": {
+                                    "type": "number"
+                                },
+                                "city": {
+                                    "type": "string"
+                                },
+                                "district": {
+                                    "type": "string"
+                                },
+                                "state": {
+                                    "type": "string"
+                                },
+                                "isFillial": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+}
