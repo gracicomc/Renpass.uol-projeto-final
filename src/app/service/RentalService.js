@@ -4,11 +4,11 @@ const NotFoundId = require('../utils/Errors/personErrors/NotFoundId');
 
 class RentalService {
 	async create(payload) {
-		for (let index = 0; index < payload.address.length; index++) {
-			const {
-				cep, logradouro, complemento, bairro, localidade, uf,
-			} = (await axios
-				.get(`https://viacep.com.br/ws/${payload.address[index].zipCode}/json`)).data;
+
+		for (let index = 0; index < payload.address.length; index ++) {
+
+			const { cep, logradouro, complemento, bairro, localidade, uf } = ( await axios
+				.get(`https://viacep.com.br/ws/${payload.address[index].zipCode}/json`)).data ;
 			payload.address[index].zipCode = cep;
 			payload.address[index].street = logradouro;
 			payload.address[index].complement = complemento;
