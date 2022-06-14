@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
 			})),
 		});
 
-		const { error } = await schemaRental.validate(req.body, { abortEarl: true });
+		const { error } = await schemaRental.validate(req.body, { abortEarly: true });
 
 		if (error) throw error;
 
