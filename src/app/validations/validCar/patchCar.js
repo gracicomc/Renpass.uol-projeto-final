@@ -9,7 +9,12 @@ module.exports = async (req, res, next) => {
 			color: Joi.string().min(2).trim(),
 			year: Joi.number().min(1950).max(2022),
 			accessories: Joi.array().min(1).unique()
-				.items({ description: Joi.string().min(1).trim() }),
+				.items(Joi.object({
+					description: Joi
+						.string()
+						.min(1)
+						.required()
+						.trim() })),
 			passengersQtd: Joi.number().min(1),
 		});
 		const { error } = schemaCar.validate(req.body, { abortEarly: false });
@@ -18,6 +23,8 @@ module.exports = async (req, res, next) => {
 
 		return next();
 	} catch (error) {
-		return res.status(400).json({ Error: error.message });
+		return res.status(400).json({
+			Error: error.message
+		});
 	}
 };

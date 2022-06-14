@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint src/**/*.js --fix",
+    "format": "prettier-eslint server/**/*.{js,json} --write",
     "test": "jest",
-    "lint": "npx eslint .",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js --ignore __tests__"
   },
@@ -40,7 +41,9 @@
     "eslint": "^8.17.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-promise": "^6.0.0",
     "jest": "^28.1.0",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "prettier-eslint-cli": "^6.0.1"
   }
 }

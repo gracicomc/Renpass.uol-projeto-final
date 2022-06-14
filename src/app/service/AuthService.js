@@ -23,7 +23,10 @@ class AuthService {
 			},
 		);
 
-		return { email: person.email, canDrive: person.canDrive, token };
+		return {
+			email: person.email,
+			canDrive: person.canDrive, 
+			token };
 	}
 }
 

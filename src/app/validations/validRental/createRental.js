@@ -10,18 +10,16 @@ module.exports = async (req, res, next) => {
 				.trim(),
 			cnpj: Joi.string().required().regex(cnpj).message('Invalid character'),
 			activities: Joi.string().required().max(100).trim(),
-			address: Joi.array().items({
-				zipCode: Joi.string().required().min(8).max(8)
-					.trim(),
+			address: Joi.array().items(Joi.object({
+				zipCode: Joi.string().required().trim(),
 				street: Joi.string().max(100).trim(),
 				complement: Joi.string().max(100).trim(),
-				number: Joi.number().required().min(1).max()
-					.trim(),
+				number: Joi.number().required().min(1).max().trim(),
 				district: Joi.string().max(100).trim(),
 				city: Joi.string().max(100).trim(),
 				state: Joi.string().max(3).trim(),
 				isFilial: Joi.boolean().required(),
-			}),
+			})),
 		});
 
 		const { error } = await schemaRental.validate(req.body, { abortEarl: true });
@@ -32,6 +30,10 @@ module.exports = async (req, res, next) => {
 
 		return next();
 	} catch (error) {
-		return res.status(400).json({ statusCode: error.statusCode, description: error.description, error: error.message });
+		return res.status(400).json({
+			statusCode: error.statusCode,
+			description: error.description,
+			error: error.message,
+		});
 	}
 };

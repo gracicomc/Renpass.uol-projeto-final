@@ -37,18 +37,15 @@ class CarRepository {
 		return CarSchema.findByIdAndUpdate(id, payload);
 	}
 
-	async patchAccessories(id, accessoriesId, payload) {
-		const result = await CarSchema.findOneAndUpdate(
-			{ _id: id, 'accessories._id': accessoriesId },
+	async patchAccessories(accessoriesId, update) {
+		return CarSchema.findOneAndUpdate(
+			{ 'accessories._id': accessoriesId },
 			{
 				$set: {
-					'accessories.$.description': payload.description,
+					'accessories.$.description': update.description,
 				},
 			},
-			{ new: true },
 		);
-
-		return result;
 	}
 
 	async deleteCar(payload) {

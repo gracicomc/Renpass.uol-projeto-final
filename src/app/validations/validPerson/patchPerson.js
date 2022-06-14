@@ -20,10 +20,14 @@ module.exports = async (req, res, next) => {
 
 		if (error) throw error;
 
-		if (!validCPF(req.body.cpf)) throw { message: 'Invalid CPF' };
+		if (!validCPF(req.body.cpf)) throw {
+			message: 'Invalid CPF'
+		};
 
 		return next();
 	} catch (error) {
-		return res.status(400).json({ Error: error.message });
+		return res.status(400).json({
+			Error: error.message
+		});
 	}
 };
