@@ -5,7 +5,7 @@ function validCPF(cpf) {
 
 	cpf = cpf.replace(/[^\d]+/g, '');
 	if (cpf == '') return false;
-	if (cpf.length != 11) return false;
+	if (cpf.length !== 11) return false;
 
 	if (
 		cpf == '00000000000'
