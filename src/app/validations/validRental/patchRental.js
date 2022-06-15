@@ -12,12 +12,7 @@ module.exports = async (req, res, next) => {
 			activities: Joi.string().max(100).trim(),
 			address: Joi.array().items(Joi.object({
 				zipCode: Joi.string().trim(),
-				street: Joi.string().max(100).trim(),
-				complement: Joi.string().max(100).trim(),
 				number: Joi.string().trim(),
-				district: Joi.string().max(100).trim(),
-				city: Joi.string().max(100).trim(),
-				state: Joi.string().max(3).trim(),
 				isFilial: Joi.boolean(),
 			})),
 		});
