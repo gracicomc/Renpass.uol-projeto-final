@@ -16,6 +16,46 @@
         }
     ],
     "paths": {
+        "/authenticate/": {
+            "post": {
+                "summary": "Authenticate user",
+                "description": "Authenticate user",
+                "tags": ["Authentication"],
+                "requestBody": { 
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PersonSchema"
+                            },
+                            "examples": {
+                                "person": {
+                                    "value": {
+                                        "email": "joao@email.com",
+                                        "password": "123456"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/PersonSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/car/": {
             "post": {
                 "summary": "Create a car",
@@ -343,7 +383,7 @@
                                 "$ref":"#/components/schemas/PersonSchema"
                             },
                             "examples": {
-                                "car": {
+                                "person": {
                                     "value": {
                                         "name": "João",
                                         "cpf": "504.527.140-79",
