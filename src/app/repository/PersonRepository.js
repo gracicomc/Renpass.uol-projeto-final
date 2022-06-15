@@ -26,6 +26,7 @@ class PersonRepository {
 			offset: 1,
 			customLabels: paginate,
 		};
+
 		return PersonSchema.paginate(payload, options, {});
 	}
 

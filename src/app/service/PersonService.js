@@ -12,6 +12,7 @@ class PersonService {
 		if (validAge < 18) throw new InvalidAge(payload.age);
 
 		const result = await PersonRepository.create(payload);
+		// result.password = undefined;
 		return result;
 	}
 
