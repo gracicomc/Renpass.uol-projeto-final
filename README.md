@@ -83,6 +83,10 @@
 
     For use all endpoints its necessary to create a person and then authenticate it on Authenticate POST endpoint. Use the generated token in Headers and add "Bearer" before paste the token.
 
+### 📋 Swagger Documentation
+
+    You can access the Swagger Doc by using the route http://localhost:3000/api/v1/api-docs/ before initialize the server
+
 <h1 align> 📁 Car Endpoints: </h1>
 
 <details open>

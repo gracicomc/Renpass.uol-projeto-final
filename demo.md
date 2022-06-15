@@ -118,5 +118,49 @@
     }
 ```
 
+## Rental
+```
+    {
+        "name": "Localiza",
+        "cnpj": "40.764.224/0001-94",
+        "activities": "Rent cars",
+        "address": [
+            {
+                "zipCode": "96200-200",
+                "number": 1234,
+                "isFilial": false,
+            }
+        ]
+    }
+```
+```
+    {
+        "name": "Carros Mania",
+        "cnpj": "24.018.613/0001-14",
+        "activities": "Alugo carros",
+        "address": [
+            {
+                "zipCode": "26040-040",
+                "number": 234,
+                "isFilial": true,
+            }
+        ]
+    }
+```
+```
+    {
+        "name": "Renpass",
+        "cnpj": "25.067.769/0001-58",
+        "activities": "Aluga carros",
+        "address": [
+            {
+                "zipCode": "26115-420",
+                "number": 893,
+                "isFilial": true,
+            }
+        ]
+    }
+```
+
 
 
