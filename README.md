@@ -62,6 +62,10 @@
 
     You can use the demos.md file to insert values on postman 
 
+### 4️⃣ - Bearer Authentication
+
+    For use all endpoints its necessary to create a person and then authenticate it on Authenticate POST endpoint. Use the generated token in Headers and add "Bearer" before paste the token.
+
 <h1 align> 📁 Car Endpoints: </h1>
 
 <details open>
@@ -109,9 +113,11 @@
         "accessories": [
             {
                 "description": "Ar-condicionado"
+                 "_id": "629d4cd99a78c414e7cab6d1"
             },
             {
                 "description": "Dir. Hidráulica"
+                "_id": "629d4cd99a78c443e7cab6d1"
             }
         ],
         "passengersQtd": 5,
@@ -163,9 +169,11 @@ perPage: 5
             "accessories": [
                 {
                     "description": "Ar-condicionado"
+                    "_id": "629d4cd99a78c414e7cab6d1"
                 },
                 {
                     "description": "Dir. Hidráulica"
+                    "_id": "629d4cd99a78c443e7cab6d1"
                 }
             ],
         "passengersQtd": 5,
@@ -213,9 +221,11 @@ perPage: 5
         "accessories": [
             {
                 "description": "Ar-condicionado"
+                 "_id": "629d4cd99a78c414e7cab6d1"
             },
             {
                 "description": "Dir. Hidráulica"
+                "_id": "629d4cd99a78c443e7cab6d1"
             }
         ],
         "passengersQtd": 5,
@@ -262,9 +272,57 @@ perPage: 5
         "accessories": [
             {
                 "description": "Ar-condicionado"
+                 "_id": "629d4cd99a78c414e7cab6d1"
             },
             {
                 "description": "Dir. Hidráulica"
+                "_id": "629d4cd99a78c443e7cab6d1"
+            }
+        ],
+        "passengersQtd": 5,
+        "_id": "629d4cd99a78c414e7cab6f1"
+}
+```
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+### Request
+
+`PATCH`
+
+    http://localhost:3000/api/v1/car/:id/accessories/:accessoriesId
+
+ ```
+{
+     "description": "Câmbio Automático"
+}
+ ```
+    
+### Response
+
+`Status: 200 OK`
+```
+
+    {
+        "model": "S10 2.8",
+        "type": "sedan",
+        "brand": "GM",
+        "color": "verde",
+        "year": "2021",
+        "accessories": [
+            {
+                "description": "Câmbio Automático"
+                 "_id": "629d4cd99a78c414e7cab6d1"
+            },
+            {
+                "description": "Dir. Hidráulica"
+                 "_id": "629d4d99a78c414e7cab6f1"
             }
         ],
         "passengersQtd": 5,
@@ -534,7 +592,249 @@ perPage: 5
 }
 
  ```
+#### ❗ That's the token you must copy and paste in Headers of requisition
     
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<h1 align> 📁 Rental Endpoints: </h1>
+
+<details>
+<summary>Create Rental</summary>
+<br>
+
+### Request
+
+`POST`
+
+    http://localhost:3000/api/v1/rental/ 
+    
+    
+```
+//req body example
+{
+    "name": "Localiza Rent a Car",
+    "cnpj": "50.261.481/0001-67",
+    "activities": "Aluguel de Carros",
+    "address": [
+        {
+            "zipCode": "96200-200",
+            "number": "200",
+            "isFilial": true
+        }
+    ]
+}
+``` 
+    
+### Response
+
+`Status: 201 Created`
+
+ ```
+{
+    "_id": "62a91925d10cc4c0f9b70971",
+    "name": "Localiza aí",
+    "cnpj": "40.764.224/0001-94",
+    "activities": "teste",
+    "address": [
+        {
+            "zipCode": "96200-200",
+            "street": "Rua General Canabarro",
+            "number": 1234,
+            "city": "Rio Grande",
+            "district": "Centro",
+            "state": "RS",
+            "complement": "",
+            "isFilial": false,
+            "_id": "62a91b272af92ef23d601157"
+        }
+    ]
+}
+ ```
+    
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary> List Rentals </summary>
+<br>
+
+### Request
+
+`GET`
+
+    http://localhost:3000/api/v1/rental/
+
+`You can customize the pagination using query parameters`
+
+```
+example:
+page: 2
+perPage: 5
+``` 
+    
+### Response
+
+`Status: 200 OK`
+
+ ```
+{
+    "rentals": [
+        {
+            "_id": "62a91925d10cc4c0f9b70971",
+            "name": "Localiza aí",
+            "cnpj": "40.764.224/0001-94",
+            "activities": "teste",
+            "address": [
+                {
+                    "zipCode": "96200-200",
+                    "street": "Rua General Canabarro",
+                    "number": 1234,
+                    "city": "Rio Grande",
+                    "district": "Centro",
+                    "state": "RS",
+                    "complement": "",
+                    "isFilial": false,
+                    "_id": "62a91b272af92ef23d601157"
+                }
+            ]
+        }
+    ],
+    "total": 2,
+    "offset": 1,
+    "limit": 10,
+    "offsets": 1
+}
+ ```
+    
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>List a Rental by ID</summary>
+<br>
+
+### Request
+
+`GET`
+
+    http://localhost:3000/api/v1/rental/:id
+    
+### Response
+
+`Status: 200 OK`
+
+ ```
+        {
+            "_id": "62a91925d10cc4c0f9b70971",
+            "name": "Localiza aí",
+            "cnpj": "40.764.224/0001-94",
+            "activities": "teste",
+            "address": [
+                {
+                    "zipCode": "96200-200",
+                    "street": "Rua General Canabarro",
+                    "number": 1234,
+                    "city": "Rio Grande",
+                    "district": "Centro",
+                    "state": "RS",
+                    "complement": "",
+                    "isFilial": false,
+                    "_id": "62a91b272af92ef23d601157"
+                }
+            ]
+        }
+ ```
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>Update a Rental by ID</summary>
+<br>
+
+### Request
+
+`PATCH`
+
+    http://localhost:3000/api/v1/rental/:id
+
+ ```
+{
+     "name": "Localiza"
+}
+ ```
+    
+### Response
+
+`Status: 200 OK`
+```
+        {
+            "_id": "62a91925d10cc4c0f9b70971",
+            "name": "Localiza",
+            "cnpj": "40.764.224/0001-94",
+            "activities": "teste",
+            "address": [
+                {
+                    "zipCode": "96200-200",
+                    "street": "Rua General Canabarro",
+                    "number": 1234,
+                    "city": "Rio Grande",
+                    "district": "Centro",
+                    "state": "RS",
+                    "complement": "",
+                    "isFilial": false,
+                    "_id": "62a91b272af92ef23d601157"
+                }
+            ]
+        }
+```
+    
+`Status: 400 Bad Request`
+ ```
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>Delete a Rental by ID</summary>
+<br>
+
+### Request
+
+`DELETE`
+
+    http://localhost:3000/api/v1/rental/:id
+    
+### Response
+
+`Status: 204 No Content`
+
     
 `Status: 400 Bad Request`
  ```
