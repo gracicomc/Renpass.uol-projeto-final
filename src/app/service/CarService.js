@@ -1,5 +1,5 @@
 const CarRepository = require('../repository/CarRepository');
-const NotFoundId = require('../utils/Errors/carErrors/NotFoundId');
+const NotFoundId = require('../utils/Errors/NotFoundId');
 
 class CarService {
 	// Create Car

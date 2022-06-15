@@ -1,7 +1,7 @@
 const moment = require('moment');
 const PersonRepository = require('../repository/PersonRepository');
 const InvalidAge = require('../utils/Errors/personErrors/InvalidAge');
-const NotFoundId = require('../utils/Errors/personErrors/NotFoundId');
+const NotFoundId = require('../utils/Errors/NotFoundId');
 
 class PersonService {
 	async create(payload) {

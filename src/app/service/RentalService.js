@@ -1,6 +1,6 @@
 const axios = require('axios').default;
 const RentalRepository = require('../repository/RentalRepository');
-const NotFoundId = require('../utils/Errors/personErrors/NotFoundId');
+const NotFoundId = require('../utils/Errors/NotFoundId');
 
 class RentalService {
 	async create(payload) {
