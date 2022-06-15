@@ -4,7 +4,8 @@
         "title": "Renpass.UOL",
         "description": "API for renting luxury and semi-luxury cars",
         "contact": {
-            "email": "graciparentte@gmail.com"
+            "email": "graciparentte@gmail.com",
+            "url": "https://github.com/gracicomc/"
         },
         "version": "0.0.1"
     },
@@ -20,6 +21,7 @@
                 "summary": "Create a car",
                 "description": "Create a car",
                 "tags": ["Cars"],
+                "security": [{"bearerAuth": []}],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -77,6 +79,57 @@
                 "summary": "List all cars",
                 "description": "List all cars",
                 "tags": ["Cars"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "model",
+                        "in": "query",
+                        "description": "Search by model",
+                        "schema": {
+                            "type": "string"
+                        } 
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Search by type",
+                        "schema": {
+                            "type": "string"
+                        }       
+                    },
+                    {
+                        "name": "brand",
+                        "in": "query",
+                        "description": "Search by brand",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "color",
+                        "in": "query",
+                        "description": "Search by color",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "Search by year",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "activities",
+                        "in": "query",
+                        "description": "Search by activities",
+                        "schema": {
+                            "type": "array"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -99,6 +152,7 @@
                 "summary": "Get a car by id",
                 "description": "Get a car by id",
                 "tags": ["Cars"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -130,6 +184,7 @@
                 "summary": "Update a car by id",
                 "description": "Update a car by id",
                 "tags": ["Cars"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -194,6 +249,7 @@
                 "summary": "Delete a car by id",
                 "description": "Delete a car by id",
                 "tags": ["Cars"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -215,11 +271,71 @@
                 }
             }
         },
+        "/car/{id}/accessories/{accessoriesId}": {
+            "patch": {
+                "summary": "Update an accessory by id",
+                "description": "Update an accessory by id",
+                "tags": ["Cars"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Car id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "accessoriesId",
+                        "in": "path",
+                        "description": "ccessory id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref":"#/components/schemas/CarSchema"
+                            },
+                            "examples": {
+                                "car": {
+                                    "value": {
+                                        "description": "Quatro Portas"
+                                    }
+                                }
+                            }
+                        }
+                    }                  
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CarSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
         "/person/": {
             "post": {
                 "summary": "Create a person",
                 "description": "Create a person",
                 "tags": ["Person"],
+                "security": [{"bearerAuth": []}],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -262,6 +378,57 @@
                 "summary": "List all people",
                 "description": "List all people",
                 "tags": ["Person"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Search by name",
+                        "schema": {
+                            "type": "string"
+                        } 
+                    },
+                    {
+                        "name": "cpf",
+                        "in": "query",
+                        "description": "Search by cpf",
+                        "schema": {
+                            "type": "string"
+                        }       
+                    },
+                    {
+                        "name": "birthDay",
+                        "in": "query",
+                        "description": "Search by birthDay",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Search by email",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Search by password",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "activities",
+                        "in": "query",
+                        "description": "Search by activities",
+                        "schema": {
+                            "type": "array"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -284,6 +451,7 @@
                 "summary": "Get a person by id",
                 "description": "Get a person by id",
                 "tags": ["Person"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -315,6 +483,7 @@
                 "summary": "Update a person by id",
                 "description": "Update a person by id",
                 "tags": ["Person"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -367,6 +536,7 @@
                 "summary": "Delete a person by id",
                 "description": "Delete a person by id",
                 "tags": ["Person"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -393,6 +563,7 @@
                 "summary": "Create a rental",
                 "description": "Create a rental",
                 "tags": ["Rental"],
+                "security": [{"bearerAuth": []}],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -439,6 +610,44 @@
                 "summary": "List all Rentals",
                 "description": "List all Rentals",
                 "tags": ["Rental"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Search by name",
+                        "schema": {
+                            "type": "string"
+                        } 
+                    },
+                    {
+                        "name": "cnpj",
+                        "in": "query",
+                        "description": "Search by cnpj",
+                        "schema": {
+                            "type": "string"
+                        }       
+                    },
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "description": "Search by address",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "activities",
+                        "in": "query",
+                        "description": "Search by activities",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -461,6 +670,7 @@
                 "summary": "Get a Rental by id",
                 "description": "Get a Rental by id",
                 "tags": ["Rental"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -492,6 +702,7 @@
                 "summary": "Update a Rental by id",
                 "description": "Update a Rental by id",
                 "tags": ["Rental"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -548,6 +759,7 @@
                 "summary": "Delete a Rental by id",
                 "description": "Delete a Rental by id",
                 "tags": ["Rental"],
+                "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
                         "name": "id",
@@ -675,6 +887,13 @@
                         }
                     }
                 }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
             }
         }
     }
