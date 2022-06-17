@@ -1,3 +1,6 @@
+/* eslint-disable node/no-unsupported-features/es-syntax */
+/* eslint-disable no-shadow */
+const { query } = require('express');
 const CarSchema = require('../schema/CarSchema');
 
 class CarRepository {
@@ -6,12 +9,12 @@ class CarRepository {
   }
 
   async list(payload) {
-    const { page, perPage } = payload;
+    const { limit = 10, offset = 1, ...query } = payload;
 
     const paginate = {
       totalDocs: 'total',
       docs: 'vehicles',
-      page: 'offset',
+      offset: 'offset',
       totalPages: 'offsets',
       nextPage: false,
       prevPage: false,
@@ -21,12 +24,11 @@ class CarRepository {
       hasNextPage: false,
     };
     const options = {
-      page: parseInt(page, 10) || 5,
-      limit: parseInt(perPage, 10) || 10,
-      offset: 1,
+      offset: Number(offset),
+      limit: Number(limit),
       customLabels: paginate,
     };
-    return CarSchema.paginate(payload, options, {});
+    return CarSchema.paginate(query, options);
   }
 
   async getById(payload) {
@@ -34,7 +36,9 @@ class CarRepository {
   }
 
   async patchCar(id, payload) {
-    return CarSchema.findByIdAndUpdate(id, payload);
+    return CarSchema.findByIdAndUpdate(id, payload, {
+      returnOriginal: false,
+    });
   }
 
   async patchAccessories(id, accessoriesId, payload) {

@@ -1,8 +1,12 @@
 const ReserveSchema = require('../schema/ReserveSchema');
 
 class ReserveRepository {
-  async create(payload) {
-    return ReserveSchema.create(payload);
+  async create(id, rentalId, payload) {
+    return ReserveSchema.create({
+      _id: id,
+      id_rental: rentalId,
+      payload,
+    });
   }
 
   async list(payload) {
@@ -14,7 +18,9 @@ class ReserveRepository {
   }
 
   async patchReserve(id, payload) {
-    return ReserveSchema.findByIdAndUpdate(id, payload);
+    return ReserveSchema.findByIdAndUpdate(id, payload, {
+      returnOriginal: false,
+    });
   }
 
   async deleteReserve(id) {

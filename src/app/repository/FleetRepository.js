@@ -14,7 +14,9 @@ class FleetRepository {
   }
 
   async patchFleet(id, payload) {
-    return FleetSchema.findByIdAndUpdate(id, payload);
+    return FleetSchema.findByIdAndUpdate(id, payload, {
+      returnOriginal: false,
+    });
   }
 
   async deleteFleet(payload) {

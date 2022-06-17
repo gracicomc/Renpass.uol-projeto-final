@@ -35,7 +35,9 @@ class PersonRepository {
   }
 
   patchPerson(id, payload) {
-    return PersonSchema.findByIdAndUpdate(id, payload);
+    return PersonSchema.findByIdAndUpdate(id, payload, {
+      returnOriginal: false,
+    });
   }
 
   deletePerson(payload) {
