@@ -12,5 +12,13 @@ class FleetRepository {
   async getById(payload) {
     return FleetSchema.findById(payload);
   }
+
+  async patchFleet(id, payload) {
+    return FleetSchema.findByIdAndUpdate(id, payload);
+  }
+
+  async deleteFleet(payload) {
+    return FleetSchema.findByIdAndDelete(payload);
+  }
 }
 module.exports = new FleetRepository();

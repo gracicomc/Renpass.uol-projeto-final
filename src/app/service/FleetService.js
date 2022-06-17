@@ -18,5 +18,17 @@ class FleetService {
     if (!result) throw new Error();
     return result;
   }
+
+  async patchFleet(id, payload) {
+    const result = await FleetRepository.patchFleet(id, payload);
+    if (!result) throw new Error();
+    return result;
+  }
+
+  async deleteFleet(payload) {
+    const result = await FleetRepository.deleteFleet(payload);
+    if (!result) throw new Error();
+    return result;
+  }
 }
 module.exports = new FleetService();
