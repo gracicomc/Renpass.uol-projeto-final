@@ -306,7 +306,11 @@ perPage: 5
     "Error": "error message"
 }
  ```
+
 </details>
+
+<details>
+<summary>Update an Acessory by ID of description</summary>
 
 ### Request
 
