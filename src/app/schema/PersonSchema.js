@@ -51,7 +51,7 @@ PersonSchema.pre('save', async function (next) {
 PersonSchema.plugin(mongoosePaginate);
 
 PersonSchema.plugin(uniqueValidator, {
-  message: 'Error, expected {PATH} to be unique.',
+  message: 'this {PATH} already exist',
 });
 
 const Person = mongoose.model('Person', PersonSchema);
