@@ -52,6 +52,19 @@ class ReserveController {
       });
     }
   }
+
+  async deleteReserve(req, res) {
+    try {
+      const result = await ReserveService.deleteReserve(req.params.id);
+      return res.status(204).json(result);
+    } catch (error) {
+      return res.status(400).json({
+        statusCode: error.statusCode,
+        description: error.description,
+        error: error.message,
+      });
+    }
+  }
 }
 
 module.exports = new ReserveController();

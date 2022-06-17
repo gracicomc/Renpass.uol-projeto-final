@@ -16,5 +16,9 @@ class ReserveRepository {
   async patchReserve(id, payload) {
     return ReserveSchema.findByIdAndUpdate(id, payload);
   }
+
+  async deleteReserve(id) {
+    return ReserveSchema.findByIdAndDelete(id);
+  }
 }
 module.exports = new ReserveRepository();

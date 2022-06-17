@@ -24,6 +24,12 @@ class ReserveService {
     if (!result) throw new Error();
     return result;
   }
+
+  async deleteReserve(payload) {
+    const result = await ReserveRepository.deleteReserve(payload);
+    if (!result) throw new Error();
+    return result;
+  }
 }
 
 module.exports = new ReserveService();
