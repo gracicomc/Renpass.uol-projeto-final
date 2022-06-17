@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable linebreak-style */
 /*
  * For a detailed explanation regarding each configuration property, visit:
