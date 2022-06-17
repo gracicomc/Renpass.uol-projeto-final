@@ -1,5 +1,5 @@
-## Create Car
-```
+## 🚗 Create Car
+```json
 {
   "model": "S10 2.8",
   "type": "sedan",
@@ -18,7 +18,7 @@
 }
 ```
 
-```
+```json
 {
   "model": "Uno",
   "type": "sport",
@@ -40,7 +40,7 @@
 }
 ```
 
-```
+```json
 {
   "model": "Civic",
   "type": "sedan",
@@ -66,8 +66,8 @@
 }
 ```
 
-## Create Person
-```
+## 👩‍👩‍👧 Create Person
+```json
 {
   "name": "João Lopes",
   "cpf": "131.147.860-49",
@@ -77,7 +77,7 @@
   "canDrive": "yes"
 }
 ```
-```
+```json
 {
   "name": "Maria Silva",
   "cpf": "677.667.070-63",
@@ -87,7 +87,7 @@
   "canDrive": "yes"
 }
 ```
-```
+```json
 {
   "name": "Marcos Silva",
   "cpf": "738.539.450-74",
@@ -98,28 +98,28 @@
 }
 ```
 
-## Authenticate
-```
+## 🔐 Authenticate
+```json
     {
         "email": "joazinho@email.com",
         "password": "123456"
     }
 ```
-```
+```json
     {
         "email": "mariazinha@email.com",
         "password": "123456"
     }
 ```
-```
+```json
     {
         "email": "marquinhos@email.com",
         "password": "123456"
     }
 ```
 
-## Rental
-```
+## 🚦 Rental
+```json
     {
         "name": "Localiza",
         "cnpj": "40.764.224/0001-94",
@@ -133,7 +133,7 @@
         ]
     }
 ```
-```
+```json
     {
         "name": "Carros Mania",
         "cnpj": "24.018.613/0001-14",
@@ -147,7 +147,7 @@
         ]
     }
 ```
-```
+```json
     {
         "name": "Renpass",
         "cnpj": "25.067.769/0001-58",
