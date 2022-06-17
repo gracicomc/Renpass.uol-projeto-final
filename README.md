@@ -16,15 +16,15 @@
 <h1 align> 🔍 Some informations about the project: </h1>
 
 ### Node version:
-```
+```bash
 14.18.0
 ```
 ### NPM version:
-```
+```bash
 6.14.15
 ```
 ### Dependencies:
-```
+```bash
     "@joi/date": "^2.1.0",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
@@ -39,11 +39,10 @@
     "morgan": "^1.10.0",
     "supertest": "^6.2.3",
     "swagger-ui-express": "^4.4.0"
-
 ```
 
 ### devDependencies:
-```
+```bash
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
@@ -56,7 +55,7 @@
 ```
 
 ### Frameworks:
-```
+```bash
 "express": "^4.18.1"
 ```
 
@@ -100,7 +99,7 @@
     http://localhost:3000/api/v1/car/ 
     
     
-```
+```json
 //req body example
 {
   "model": "S10 2.8",
@@ -124,7 +123,7 @@
 
 `Status: 201 Created`
 
- ```
+ ```json
     {
         "model": "S10 2.8",
         "type": "sedan",
@@ -144,12 +143,11 @@
         "passengersQtd": 5,
         "_id": "629d4cd99a78c414e7cab6f1"
 }
-
  ```
     
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -168,7 +166,7 @@
 
 `You can customize the pagination using query parameters`
 
-```
+```json
 example:
 page: 2
 perPage: 5
@@ -178,7 +176,7 @@ perPage: 5
 
 `Status: 200 OK`
 
- ```
+ ```json
  {
     "vehicles": [
         {
@@ -206,12 +204,10 @@ perPage: 5
     "limit": 100,
     "offsets": 1
 }
-
  ```
-    
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -232,7 +228,7 @@ perPage: 5
 
 `Status: 200 OK`
 
- ```
+ ```json
     {
         "model": "S10 2.8",
         "type": "sedan",
@@ -252,11 +248,10 @@ perPage: 5
         "passengersQtd": 5,
         "_id": "629d4cd99a78c414e7cab6f1"
 }
-
  ```
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -273,7 +268,7 @@ perPage: 5
 
     http://localhost:3000/api/v1/car/:id
 
- ```
+ ```json
 {
      "color": "verde"
 }
@@ -282,7 +277,7 @@ perPage: 5
 ### Response
 
 `Status: 200 OK`
-```
+```json
 
     {
         "model": "S10 2.8",
@@ -306,7 +301,7 @@ perPage: 5
 ```
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -319,7 +314,7 @@ perPage: 5
 
     http://localhost:3000/api/v1/car/:id/accessories/:accessoriesId
 
- ```
+ ```json
 {
      "description": "Câmbio Automático"
 }
@@ -328,8 +323,7 @@ perPage: 5
 ### Response
 
 `Status: 200 OK`
-```
-
+```json
     {
         "model": "S10 2.8",
         "type": "sedan",
@@ -352,7 +346,7 @@ perPage: 5
 ```
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -375,7 +369,7 @@ perPage: 5
 
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -395,7 +389,7 @@ perPage: 5
     http://localhost:3000/api/v1/person/ 
     
     
-```
+```json
 //req body example
 {
   "name": "João Lopes",
@@ -412,7 +406,7 @@ perPage: 5
 
 `Status: 201 Created`
 
- ```
+ ```json
 {
     "name": "João Lopes",
     "cpf": "131.147.860-49",
@@ -426,7 +420,7 @@ perPage: 5
  ```
      
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -445,7 +439,7 @@ perPage: 5
 
 `You can customize the pagination using query parameters`
 
-```
+```json
 example:
 page: 2
 perPage: 5
@@ -455,7 +449,7 @@ perPage: 5
 
 `Status: 200 OK`
 
- ```
+ ```json
 {
     "people": [
         {
@@ -478,7 +472,7 @@ perPage: 5
     
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -499,7 +493,7 @@ perPage: 5
 
 `Status: 200 OK`
 
- ```
+ ```json
 {
     "name": "João Lopes",
     "cpf": "131.147.860-49",
@@ -512,7 +506,7 @@ perPage: 5
  ```
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -529,7 +523,7 @@ perPage: 5
 
     http://localhost:3000/api/v1/person/:id
 
- ```
+ ```json
 {
      "name": "João Lopes Gomes"
 }
@@ -538,7 +532,7 @@ perPage: 5
 ### Response
 
 `Status: 200 OK`
-```
+```json
 {
     "name": "João Lopes Gomes",
     "cpf": "131.147.860-49",
@@ -551,7 +545,7 @@ perPage: 5
 ```
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -574,7 +568,7 @@ perPage: 5
 
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -594,7 +588,7 @@ perPage: 5
     http://localhost:3000/api/v1/authenticate/ 
     
     
-```
+```json
 //req body example
     {
         "email": "joazinho@email.com",
@@ -605,7 +599,7 @@ perPage: 5
 
 `Status: 201 Created`
 
- ```
+ ```json
 {
     "email": "joazinho@email.com",
     "canDrive": "yes",
@@ -617,7 +611,7 @@ perPage: 5
     
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -637,7 +631,7 @@ perPage: 5
     http://localhost:3000/api/v1/rental/ 
     
     
-```
+```json
 //req body example
 {
     "name": "Localiza Rent a Car",
@@ -657,7 +651,7 @@ perPage: 5
 
 `Status: 201 Created`
 
- ```
+ ```json
 {
     "_id": "62a91925d10cc4c0f9b70971",
     "name": "Localiza aí",
@@ -681,7 +675,7 @@ perPage: 5
     
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -700,7 +694,7 @@ perPage: 5
 
 `You can customize the pagination using query parameters`
 
-```
+```json
 example:
 page: 2
 perPage: 5
@@ -710,7 +704,7 @@ perPage: 5
 
 `Status: 200 OK`
 
- ```
+ ```json
 {
     "rentals": [
         {
@@ -742,7 +736,7 @@ perPage: 5
     
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -763,7 +757,7 @@ perPage: 5
 
 `Status: 200 OK`
 
- ```
+ ```json
         {
             "_id": "62a91925d10cc4c0f9b70971",
             "name": "Localiza aí",
@@ -786,7 +780,7 @@ perPage: 5
  ```
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -803,7 +797,7 @@ perPage: 5
 
     http://localhost:3000/api/v1/rental/:id
 
- ```
+ ```json
 {
      "name": "Localiza"
 }
@@ -812,7 +806,7 @@ perPage: 5
 ### Response
 
 `Status: 200 OK`
-```
+```json
         {
             "_id": "62a91925d10cc4c0f9b70971",
             "name": "Localiza",
@@ -835,7 +829,7 @@ perPage: 5
 ```
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
@@ -858,7 +852,7 @@ perPage: 5
 
     
 `Status: 400 Bad Request`
- ```
+ ```json
 {
     "Error": "error message"
 }
