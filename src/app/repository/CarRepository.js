@@ -37,7 +37,7 @@ class CarRepository {
 
   async patchCar(id, payload) {
     return CarSchema.findByIdAndUpdate(id, payload, {
-      returnOriginal: false,
+      new: true,
     });
   }
 
@@ -52,7 +52,7 @@ class CarRepository {
           'accessories.$.description': payload.description,
         },
       },
-      { returnDocument: 'after' }
+      { new: true }
     );
     return result;
   }

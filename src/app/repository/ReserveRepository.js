@@ -19,7 +19,7 @@ class ReserveRepository {
 
   async patchReserve(id, payload) {
     return ReserveSchema.findByIdAndUpdate(id, payload, {
-      returnOriginal: false,
+      new: true,
     });
   }
 
