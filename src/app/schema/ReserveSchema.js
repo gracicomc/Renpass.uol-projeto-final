@@ -24,7 +24,6 @@ const ReserveSchema = new mongoose.Schema(
     id_rental: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Rental',
-      required: true,
     },
     final_value: {
       type: Number,
