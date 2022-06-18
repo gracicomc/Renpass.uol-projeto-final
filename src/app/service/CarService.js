@@ -36,14 +36,14 @@ class CarService {
       accessoriesId,
       payload
     );
-    // if(!result) throw new NotFoundId(id);
+    if (!result) throw new NotFoundId(id);
     return result;
   }
 
   // Delete car by ID
-  async deleteCar(payload) {
+  async deleteCar(id, payload) {
     const result = await CarRepository.deleteCar(payload);
-    if (!result) throw new NotFoundId();
+    if (!result) throw new NotFoundId(id);
     return result;
   }
 }
