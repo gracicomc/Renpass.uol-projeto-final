@@ -1,3 +1,4 @@
+/* eslint-disable node/no-unsupported-features/es-syntax */
 const PersonSchema = require('../schema/PersonSchema');
 
 class PersonRepository {
@@ -6,12 +7,12 @@ class PersonRepository {
   }
 
   list(payload) {
-    const { page, perPage } = payload;
+    const { limit = 10, offset = 1, ...query } = payload;
 
     const paginate = {
       totalDocs: 'total',
-      docs: 'people',
-      page: 'offset',
+      docs: 'users',
+      offset: 'offset',
       totalPages: 'offsets',
       nextPage: false,
       prevPage: false,
@@ -21,13 +22,12 @@ class PersonRepository {
       hasNextPage: false,
     };
     const options = {
-      page: parseInt(page, 10) || 5,
-      limit: parseInt(perPage, 10) || 10,
-      offset: 1,
+      offset: Number(offset),
+      limit: Number(limit),
       customLabels: paginate,
     };
 
-    return PersonSchema.paginate(payload, options, {});
+    return PersonSchema.paginate(query, options);
   }
 
   getById(payload) {

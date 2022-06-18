@@ -1,3 +1,4 @@
+/* eslint-disable node/no-unsupported-features/es-syntax */
 const RentalSchema = require('../schema/RentalSchema');
 
 class RentalRepository {
@@ -6,12 +7,12 @@ class RentalRepository {
   }
 
   list(payload) {
-    const { page, perPage } = payload;
+    const { limit = 10, offset = 1, ...query } = payload;
 
     const paginate = {
       totalDocs: 'total',
       docs: 'rentals',
-      page: 'offset',
+      offset: 'offset',
       totalPages: 'offsets',
       nextPage: false,
       prevPage: false,
@@ -21,16 +22,16 @@ class RentalRepository {
       hasNextPage: false,
     };
     const options = {
-      page: parseInt(page, 10) || 5,
-      limit: parseInt(perPage, 10) || 10,
-      offset: 1,
+      offset: Number(offset),
+      limit: Number(limit),
       customLabels: paginate,
     };
-    return RentalSchema.paginate(payload, options, {});
+
+    return RentalSchema.paginate(query, options);
   }
 
-  getById(id) {
-    return RentalSchema.findById(id);
+  getById(payload) {
+    return RentalSchema.findById(payload);
   }
 
   patchRental(id, payload) {
