@@ -1,13 +1,16 @@
 const RentalController = require('../app/controller/RentalController');
 const createRental = require('../app/validations/validRental/createRental');
 const patchRental = require('../app/validations/validRental/patchRental');
+const deleteRental = require('../app/validations/validRental/deleteRental');
+const getRental = require('../app/validations/validRental/getRental');
+const validId = require('../app/validations/validId');
 
 module.exports = (server, routes, prefix = '/api/v1/rental') => {
   routes.post('/', createRental, RentalController.create);
-  routes.get('/', RentalController.list);
-  routes.get('/:id', RentalController.getById);
-  routes.patch('/:id', patchRental, RentalController.patchRental);
-  routes.delete('/:id', RentalController.deleteRental);
+  routes.get('/', getRental, RentalController.list);
+  routes.get('/:id', validId, getRental, RentalController.getById);
+  routes.patch('/:id', validId, patchRental, RentalController.patchRental);
+  routes.delete('/:id', validId, deleteRental, RentalController.deleteRental);
 
   server.use(prefix, routes);
 };

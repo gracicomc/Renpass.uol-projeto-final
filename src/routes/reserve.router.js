@@ -1,6 +1,10 @@
 const ReserveController = require('../app/controller/ReserveController');
 
-module.exports = (server, routes, prefix = '/api/v1/reserve') => {
+module.exports = (
+  server,
+  routes,
+  prefix = '/api/v1/rental/rentalId/reserve'
+) => {
   routes.post('/', ReserveController.create);
   routes.get('/', ReserveController.list);
   routes.get('/:id', ReserveController.getById);
