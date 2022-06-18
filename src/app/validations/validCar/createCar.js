@@ -19,14 +19,19 @@ module.exports = async (req, res, next) => {
         ),
       passengersQtd: Joi.number().required().min(1),
     });
-    const { error } = schemaCar.validate(req.body, { abortEarly: false });
+    const { error } = schemaCar.validate(req.body, {
+      abortEarly: false,
+    });
 
     if (error) throw error;
 
     return next();
   } catch (error) {
     return res.status(400).json({
-      Error: error.message,
+      invalidFields: error.details.map((detail) => ({
+        field: detail.path.join('.'),
+        description: detail.message,
+      })),
     });
   }
 };

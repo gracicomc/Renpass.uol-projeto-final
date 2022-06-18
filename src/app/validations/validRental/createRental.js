@@ -1,6 +1,5 @@
 const Joi = require('joi').extend(require('@joi/date'));
 const { cnpj } = require('../../utils/regex');
-const validCNPJ = require('../../utils/validCNPJ');
 
 module.exports = async (req, res, next) => {
   try {
@@ -23,19 +22,18 @@ module.exports = async (req, res, next) => {
     });
 
     const { error } = await schemaRental.validate(req.body, {
-      abortEarly: true,
+      abortEarly: false,
     });
 
     if (error) throw error;
 
-    if (!validCNPJ(req.body.cnpj)) throw { message: 'Invalid CNPJ' };
-
     return next();
   } catch (error) {
     return res.status(400).json({
-      statusCode: error.statusCode,
-      description: error.description,
-      error: error.message,
+      invalidFields: error.details.map((detail) => ({
+        field: detail.path.join('.'),
+        description: detail.message,
+      })),
     });
   }
 };

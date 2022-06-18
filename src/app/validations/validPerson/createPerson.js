@@ -1,6 +1,5 @@
 const Joi = require('joi').extend(require('@joi/date'));
 const { cpf } = require('../../utils/regex');
-const validCPF = require('../../utils/validCPF');
 
 module.exports = async (req, res, next) => {
   try {
@@ -19,20 +18,18 @@ module.exports = async (req, res, next) => {
     });
 
     const { error } = await schemaPerson.validate(req.body, {
-      abortEarly: true,
+      abortEarly: false,
     });
 
     if (error) throw error;
 
-    if (!validCPF(req.body.cpf))
-      throw {
-        message: 'Invalid CPF',
-      };
-
     return next();
   } catch (error) {
     return res.status(400).json({
-      Error: error.message,
+      invalidFields: error.details.map((detail) => ({
+        field: detail.path.join('.'),
+        description: detail.message,
+      })),
     });
   }
 };

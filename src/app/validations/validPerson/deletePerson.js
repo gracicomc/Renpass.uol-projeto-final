@@ -24,7 +24,7 @@ module.exports = async (req, res, next) => {
 
     return next();
   } catch (error) {
-    return res.status(400).json({
+    return res.status(404).json({
       invalidFields: error.details.map((detail) => ({
         field: detail.path.join('.'),
         description: detail.message,
