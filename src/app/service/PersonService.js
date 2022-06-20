@@ -16,7 +16,7 @@ class PersonService {
 
     if (!validCPF(payload.cpf))
       throw {
-        message: 'Invalid CPF',
+        message: `This CPF doesn't exist. Try a valid CPF`,
       };
 
     const result = await PersonRepository.create(payload);
@@ -30,23 +30,31 @@ class PersonService {
     return result;
   }
 
-  async getById(payload) {
-    const result = await PersonRepository.getById(payload);
-    if (!result) throw new NotFoundId(payload);
-
-    return result;
-  }
-
-  async patchPerson(id, payload) {
-    const result = await PersonRepository.patchPerson(id, payload);
+  async getById(id, payload) {
+    const result = await PersonRepository.getById(id, payload);
     if (!result) throw new NotFoundId(id);
 
     return result;
   }
 
-  async deletePerson(payload) {
-    const result = await PersonRepository.deletePerson(payload);
-    if (!result) throw new NotFoundId();
+  async updateById(id, payload) {
+    const result = await PersonRepository.updateById(id, payload);
+
+    if (payload.cpf) {
+      if (!validCPF(payload.cpf))
+        throw {
+          message: `This CPF doesn't exist. Try a valid CPF`,
+        };
+    }
+
+    if (!result) throw new NotFoundId(id);
+
+    return result;
+  }
+
+  async deleteById(id, payload) {
+    const result = await PersonRepository.deleteById(payload);
+    if (!result) throw new NotFoundId(id);
 
     return result;
   }

@@ -41,9 +41,9 @@ class PersonController {
     }
   }
 
-  async patchPerson(req, res) {
+  async updateById(req, res) {
     try {
-      const result = await PersonService.patchPerson(req.params.id, req.body);
+      const result = await PersonService.updateById(req.params.id, req.body);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({
@@ -54,9 +54,9 @@ class PersonController {
     }
   }
 
-  async deletePerson(req, res) {
+  async deleteById(req, res) {
     try {
-      const result = await PersonService.deletePerson(req.params.id);
+      const result = await PersonService.deleteById(req.params.id);
       return res.status(204).json(result);
     } catch (error) {
       return res.status(400).json({
