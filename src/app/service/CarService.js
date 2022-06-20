@@ -24,8 +24,8 @@ class CarService {
   }
 
   // Update some car by ID
-  async patchCar(id, payload) {
-    const result = await CarRepository.patchCar(id, payload);
+  async updateById(id, payload) {
+    const result = await CarRepository.updateById(id, payload);
     if (!result) throw new NotFoundId(id);
     return result;
   }
@@ -41,8 +41,8 @@ class CarService {
   }
 
   // Delete car by ID
-  async deleteCar(id, payload) {
-    const result = await CarRepository.deleteCar(payload);
+  async deleteById(id, payload) {
+    const result = await CarRepository.deleteById(payload);
     if (!result) throw new NotFoundId(id);
     return result;
   }
