@@ -5,13 +5,6 @@ const ReserveRepository = require('../repository/ReserveRepository');
 
 class ReserveService {
   async create(rentalId, payload) {
-    payload.date_start = moment(payload.date_start, 'DD/MM/YYYY').format(
-      'YYYY-MM-DD'
-    );
-    payload.date_end = moment(payload.date_end, 'DD/MM/YYYY').format(
-      'YYYY-MM-DD'
-    );
-
     const rental = await RentalRepository.getById(rentalId);
     if (!rental) throw new Error(`This Rental ID doesn't exist`);
     payload.id_rental = rentalId;
