@@ -1,11 +1,11 @@
 const FleetController = require('../app/controller/FleetController');
 
-module.exports = (server, routes, prefix = '/api/v1/fleet') => {
-  routes.post('/', FleetController.create);
-  routes.get('/', FleetController.list);
-  routes.get('/:id', FleetController.getById);
-  routes.patch('/:id', FleetController.patchFleet);
-  routes.delete('/:id', FleetController.deleteFleet);
+module.exports = (server, routes, prefix = '/api/v1/rental') => {
+  routes.post('/:rentalId/fleet/', FleetController.create);
+  routes.get('/:rentalId/fleet/', FleetController.list);
+  routes.get('/:rentalId/fleet/:id', FleetController.getById);
+  routes.patch('/:rentalId/fleet/:id', FleetController.patchFleet);
+  routes.delete('/:rentalId/fleet/:id', FleetController.deleteFleet);
 
   server.use(prefix, routes);
 };

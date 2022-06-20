@@ -3,7 +3,8 @@ const FleetService = require('../service/FleetService');
 class FleetController {
   async create(req, res) {
     try {
-      const result = await FleetService.create(req.body);
+      const { rentalId } = req.params;
+      const result = await FleetService.create(rentalId, req.body);
       return res.status(201).json(result);
     } catch (error) {
       return res.status(400).json({

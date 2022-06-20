@@ -12,7 +12,6 @@ const FleetSchema = new mongoose.Schema(
     id_rental: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Rental',
-      required: true,
     },
     status: {
       type: String,

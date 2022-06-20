@@ -8,7 +8,7 @@ class Database {
 
   connect() {
     return mongoose.connect(
-      `mongodb://${config.database.host}/${config.database.collection}`
+      `mongodb+srv://admin:PufLqFdQ97I3Aryp@renpass.vebld.mongodb.net/?retryWrites=true&w=majority`
     );
   }
 }

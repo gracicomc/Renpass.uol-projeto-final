@@ -1,48 +1,10 @@
 /* eslint-disable node/no-unsupported-features/es-syntax */
 const RentalSchema = require('../schema/RentalSchema');
+const GenericRepository = require('./GenericRepository');
 
-class RentalRepository {
-  create(payload) {
-    return RentalSchema.create(payload);
-  }
-
-  list(payload) {
-    const { limit = 10, offset = 1, ...query } = payload;
-
-    const paginate = {
-      totalDocs: 'total',
-      docs: 'rentals',
-      offset: 'offset',
-      totalPages: 'offsets',
-      nextPage: false,
-      prevPage: false,
-      pagingCounter: false,
-      meta: false,
-      hasPrevPage: false,
-      hasNextPage: false,
-    };
-    const options = {
-      offset: Number(offset),
-      limit: Number(limit),
-      customLabels: paginate,
-    };
-
-    return RentalSchema.paginate(query, options);
-  }
-
-  getById(payload) {
-    return RentalSchema.findById(payload);
-  }
-
-  patchRental(id, payload) {
-    return RentalSchema.findByIdAndUpdate(id, payload, {
-      new: true,
-    });
-  }
-
-  deleteRental(payload) {
-    return RentalSchema.findByIdAndDelete(payload);
+class RentalRepository extends GenericRepository {
+  constructor() {
+    super(RentalSchema);
   }
 }
-
 module.exports = new RentalRepository();

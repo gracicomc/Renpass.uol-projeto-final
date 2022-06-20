@@ -8,11 +8,11 @@ const ReserveSchema = new mongoose.Schema(
       ref: 'Person',
       required: true,
     },
-    data_start: {
+    date_start: {
       type: String,
       required: true,
     },
-    data_end: {
+    date_end: {
       type: String,
       required: true,
     },
@@ -26,7 +26,7 @@ const ReserveSchema = new mongoose.Schema(
       ref: 'Rental',
     },
     final_value: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
