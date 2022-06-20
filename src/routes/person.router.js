@@ -9,8 +9,8 @@ module.exports = (server, routes, prefix = '/api/v1/person') => {
   routes.post('/', createPerson, PersonController.create);
   routes.get('/', getPerson, PersonController.list);
   routes.get('/:id', validId, getPerson, PersonController.getById);
-  routes.patch('/:id', validId, patchPerson, PersonController.patchPerson);
-  routes.delete('/:id', validId, deletePerson, PersonController.deletePerson);
+  routes.patch('/:id', validId, patchPerson, PersonController.updateById);
+  routes.delete('/:id', validId, deletePerson, PersonController.deleteById);
 
   server.use(prefix, routes);
 };
