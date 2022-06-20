@@ -4,6 +4,7 @@ class RentalController {
   async create(req, res) {
     try {
       const result = await RentalService.create(req.body);
+
       return res.status(201).json(result);
     } catch (error) {
       return res.status(400).json({
@@ -40,9 +41,9 @@ class RentalController {
     }
   }
 
-  async patchRental(req, res) {
+  async updateById(req, res) {
     try {
-      const result = await RentalService.patchRental(req.params.id, req.body);
+      const result = await RentalService.updateById(req.params.id, req.body);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({
@@ -53,9 +54,9 @@ class RentalController {
     }
   }
 
-  async deleteRental(req, res) {
+  async deleteById(req, res) {
     try {
-      const result = await RentalService.deleteRental(req.params.id);
+      const result = await RentalService.deleteById(req.params.id);
       return res.status(204).json(result);
     } catch (error) {
       return res.status(400).json({
