@@ -41,9 +41,9 @@ class CarController {
     }
   }
 
-  async patchCar(req, res) {
+  async updateById(req, res) {
     try {
-      const result = await CarService.patchCar(req.params.id, req.body);
+      const result = await CarService.updateById(req.params.id, req.body);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({
@@ -73,9 +73,9 @@ class CarController {
     }
   }
 
-  async deleteCar(req, res) {
+  async deleteById(req, res) {
     try {
-      const result = await CarService.deleteCar(req.params.id);
+      const result = await CarService.deleteById(req.params.id);
       return res.status(204).json(result);
     } catch (error) {
       return res.status(400).json({
