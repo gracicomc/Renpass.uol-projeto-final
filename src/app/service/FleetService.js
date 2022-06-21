@@ -1,12 +1,18 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
 const FleetRepository = require('../repository/FleetRepository');
 const RentalRepository = require('../repository/RentalRepository');
+const CarRepository = require('../repository/CarRepository');
 
 class FleetService {
   async create(rentalId, payload) {
     const rental = await RentalRepository.getById(rentalId);
     if (!rental) throw new Error(`This Rental ID doesn't exist`);
     payload.id_rental = rentalId;
+
+    const { id_car } = payload;
+    const car = await CarRepository.getById(id_car);
+    if (!car) throw new Error(`This Car Id doesn't exist`);
 
     const result = await FleetRepository.create(payload);
     if (!result) throw new Error();
