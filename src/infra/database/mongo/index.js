@@ -8,7 +8,7 @@ class Database {
 
   connect() {
     return mongoose.connect(
-      `mongodb+srv://deploy:KeXZptG4gKsgul7r@renpass.vebld.mongodb.net/?retryWrites=true&w=majority`
+      `mongodb+srv://admin:PDrk684TOHcAW7Wf@renpass.vebld.mongodb.net/?retryWrites=true&w=majority`
     );
   }
 }
