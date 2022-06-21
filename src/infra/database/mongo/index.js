@@ -8,8 +8,7 @@ class Database {
 
   connect() {
     return mongoose.connect(
-      process.env.MONGO_URL ||
-        `mongodb://${config.database.host}/${config.database.collection}`
+      `mongodb+srv://deploy:KeXZptG4gKsgul7r@renpass.vebld.mongodb.net/?retryWrites=true&w=majority`
     );
   }
 }
