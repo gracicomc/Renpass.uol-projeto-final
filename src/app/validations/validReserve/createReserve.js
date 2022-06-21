@@ -12,15 +12,15 @@ module.exports = async (req, res, next) => {
       date_end: Joi.date().required().format('DD/MM/YYYY'),
       id_car: Joi.string()
         .regex(id)
-        .message('Invalid character in id_user field')
+        .message('Invalid character in id_car field')
         .required(),
-      final_value: Joi.string()
-        .regex()
-        .message('Invalid character in final_value field, try only numbers')
-        .required(),
+      id_rental: Joi.string()
+        .regex(id)
+        .message('Invalid character in id_rental field'),
+      final_value: Joi.number().required().min(1),
     });
 
-    const { error } = await schemaReserve.validate(req.body, {
+    const { error } = await schemaReserve.validate(req.body, req.params, {
       abortEarly: false,
     });
 

@@ -11,8 +11,7 @@ module.exports = async (req, res, next) => {
         .required(),
       id_rental: Joi.string()
         .regex(id)
-        .message('Invalid character in id_rental field')
-        .required(),
+        .message('Invalid character in id_rental field'),
       status: Joi.string()
         .required()
         .valid('available', 'unavailable', 'rented'),
@@ -20,8 +19,7 @@ module.exports = async (req, res, next) => {
       plate: Joi.string()
         .required()
         .regex(plate)
-        .message(`This plate doest'n  exist`)
-        .unique(),
+        .message(`This plate doest'n exist`),
     });
 
     const { error } = await schemaFleet.validate(req.body, req.params, {
