@@ -1,7 +1,8 @@
 const FleetController = require('../app/controller/FleetController');
+const createFleet = require('../app/validations/validFleet/createFleet');
 
 module.exports = (server, routes, prefix = '/api/v1/rental') => {
-  routes.post('/:rentalId/fleet/', FleetController.create);
+  routes.post('/:rentalId/fleet/', createFleet, FleetController.create);
   routes.get('/:rentalId/fleet/', FleetController.list);
   routes.get('/:rentalId/fleet/:id', FleetController.getById);
   routes.patch('/:rentalId/fleet/:id', FleetController.patchFleet);
