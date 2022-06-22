@@ -43,7 +43,8 @@ class ReserveController {
 
   async updateById(req, res) {
     try {
-      const result = await ReserveService.updateById(req.params.id, req.body);
+      const { rentalId, id } = req.params;
+      const result = await ReserveService.updateById(rentalId, id, req.body);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({

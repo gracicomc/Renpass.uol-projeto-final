@@ -43,10 +43,11 @@ class FleetController {
 
   async updateById(req, res) {
     try {
-      const result = await FleetService.updateById(req.params.id, req.body);
+      const { id, rentalId } = req.params;
+      const result = await FleetService.updateById(rentalId, id, req.body);
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(400).json({
+      return res.status(error.statusCode || 404).json({
         statusCode: error.statusCode,
         description: error.description,
         error: error.message,

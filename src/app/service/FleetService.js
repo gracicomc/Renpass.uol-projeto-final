@@ -34,8 +34,20 @@ class FleetService {
   }
 
   async updateById(rentalId, id, payload) {
+    payload.id_rental = rentalId;
+    const rental = await RentalRepository.getById(rentalId);
+    if (!rental) throw new NotFoundId(rentalId);
+
+    if (payload.id_car) {
+      const { id_car } = payload;
+      const car = await CarRepository.getById(id_car);
+      if (!car) throw new NotFoundId(id_car);
+    }
+
     const result = await FleetRepository.updateById(id, payload);
-    if (!result) throw new Error();
+    console.log(id);
+    // if (!result) throw new NotFoundId(id);
+    console.log(result);
     return result;
   }
 
