@@ -56,9 +56,9 @@ class RentalService {
     return result;
   }
 
-  async deleteById(id, payload) {
+  async deleteById(payload) {
     const result = await RentalRepository.deleteById(payload);
-    if (!result) throw new NotFoundId(id);
+    if (!result) throw new NotFoundId(payload);
 
     return result;
   }

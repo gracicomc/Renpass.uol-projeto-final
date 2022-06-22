@@ -41,9 +41,9 @@ class CarService {
   }
 
   // Delete car by ID
-  async deleteById(id, payload) {
+  async deleteById(payload) {
     const result = await CarRepository.deleteById(payload);
-    if (!result) throw new NotFoundId(id);
+    if (!result) throw new NotFoundId(payload);
     return result;
   }
 }

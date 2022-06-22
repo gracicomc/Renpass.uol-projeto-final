@@ -52,9 +52,9 @@ class PersonService {
     return result;
   }
 
-  async deleteById(id, payload) {
+  async deleteById(payload) {
     const result = await PersonRepository.deleteById(payload);
-    if (!result) throw new NotFoundId(id);
+    if (!result) throw new NotFoundId(payload);
 
     return result;
   }

@@ -10,7 +10,7 @@ class GenericRepository {
   }
 
   async list(payload) {
-    const { limit = 10, page = 1, ...query } = payload;
+    const { limit = 10, page = 0, ...query } = payload;
 
     const paginate = {
       totalDocs: 'total',
