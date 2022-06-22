@@ -90,9 +90,53 @@
     the route http://localhost:3000/api/v1/api-docs/
     before initialize the server
 
-<h1 align> 📁 Car Endpoints: </h1>
+
+<h1 align> 📁 Authenticate Endpoints: </h1>
 
 <details open>
+<summary>Auth</summary>
+<br>
+
+### Request
+
+`POST`
+
+    http://localhost:3000/api/v1/authenticate/ 
+    
+    
+```json
+//req body example
+    {
+        "email": "joazinho@email.com",
+        "password": "123456"
+    }
+``` 
+### Response
+
+`Status: 201 Created`
+
+ ```json
+{
+    "email": "joazinho@email.com",
+    "canDrive": "yes",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ1MWNjOWE3OGM0MTRlN2NhYjZmNSIsImlhdCI6MTY1NDQ4ODc2NCwiZXhwIjoxNjU0NTc1MTY0fQ.7OM35NEznykrb4KwYpDhTJAY7fPhXCXaMV5xKH3g3cs"
+}
+
+ ```
+#### ❗ That's the token you must copy and paste in Headers of requisition
+    
+    
+`Status: 400 Bad Request`
+ ```json
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<h1 align> 📁 Car Endpoints: </h1>
+
+<details>
 <summary>Create Car</summary>
 <br>
 
@@ -583,49 +627,6 @@ perPage: 5
  ```
 </details>
 
-<h1 align> 📁 Authenticate Endpoints: </h1>
-
-<details>
-<summary>Auth</summary>
-<br>
-
-### Request
-
-`POST`
-
-    http://localhost:3000/api/v1/authenticate/ 
-    
-    
-```json
-//req body example
-    {
-        "email": "joazinho@email.com",
-        "password": "123456"
-    }
-``` 
-### Response
-
-`Status: 201 Created`
-
- ```json
-{
-    "email": "joazinho@email.com",
-    "canDrive": "yes",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWQ1MWNjOWE3OGM0MTRlN2NhYjZmNSIsImlhdCI6MTY1NDQ4ODc2NCwiZXhwIjoxNjU0NTc1MTY0fQ.7OM35NEznykrb4KwYpDhTJAY7fPhXCXaMV5xKH3g3cs"
-}
-
- ```
-#### ❗ That's the token you must copy and paste in Headers of requisition
-    
-    
-`Status: 400 Bad Request`
- ```json
-{
-    "Error": "error message"
-}
- ```
-</details>
-
 <h1 align> 📁 Rental Endpoints: </h1>
 
 <details>
@@ -853,6 +854,383 @@ perPage: 5
 `DELETE`
 
     http://localhost:3000/api/v1/rental/:id
+    
+### Response
+
+`Status: 204 No Content`
+
+    
+`Status: 400 Bad Request`
+ ```json
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<h1 align> 📁 Fleet Endpoints: </h1>
+
+<details>
+<summary>Create Fleet</summary>
+<br>
+
+### Request
+
+`POST`
+
+    localhost:3000/api/v1/rental/:rentalId/fleet/ 
+    
+    
+```json
+//req body example
+{
+    "id_car": "62b0ba0be023cf8d212ad608",
+    "status": "available",
+    "daily_value": 100,
+    "plate": "MVJ8782"
+}
+
+``` 
+    
+### Response
+
+`Status: 201 Created`
+
+ ```json
+{
+    "id_car": "62b0ba0be023cf8d212ad608",
+    "id_rental": "<rentalId>",
+    "status": "available",
+    "daily_value": 100,
+    "plate": "MVJ8782",
+    "_id": "62b294a58ed0d260a4ab1959"
+}
+
+ ```
+     
+`Status: 400 Bad Request`
+ ```json
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>List Fleet</summary>
+<br>
+
+### Request
+
+`GET`
+
+    localhost:3000/api/v1/rental/:rentalId/fleet/
+ 
+    
+### Response
+
+`Status: 200 OK`
+
+ ```json
+{
+    "docs": [
+        {
+            "id_car": "62b0ba0be023cf8d212ad608",
+            "id_rental": "<rentalId>",
+            "status": "available",
+            "daily_value": 100,
+            "plate": "MVJ8782",
+            "_id": "62b294a58ed0d260a4ab1959"
+        }
+    ],
+    "total": 1,
+    "offset": 1,
+    "limit": 100,
+    "offsets": 1
+}
+
+ ```
+    
+    
+`Status: 400 Bad Request`
+ ```json
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>List a Fleet by ID</summary>
+<br>
+
+### Request
+
+`GET`
+
+    localhost:3000/api/v1/rental/:rentalId/fleet/:id
+    
+### Response
+
+`Status: 200 OK`
+
+ ```json
+{
+    "id_car": "62b0ba0be023cf8d212ad608",
+    "id_rental": "62b1aef535fbee026c1b552d",
+    "status": "available",
+    "daily_value": 100,
+    "plate": "MVJ8782",
+    "_id": "62b294a58ed0d260a4ab1959"
+}
+ ```
+    
+`Status: 400 Bad Request`
+ ```json
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>Update a Fleet by ID</summary>
+<br>
+
+### Request
+
+`PATCH`
+
+    localhost:3000/api/v1/rental/:rentalId/fleet/:id
+
+ ```json
+{
+     "status": "unavailable"
+}
+ ```
+    
+### Response
+
+`Status: 200 OK`
+```json
+{
+    "id_car": "62b0ba0be023cf8d212ad608",
+    "id_rental": "<rentalId>",
+    "status": "unavailable",
+    "daily_value": 100,
+    "plate": "MVJ8782",
+    "_id": "62b294a58ed0d260a4ab1959"
+}
+```
+    
+`Status: 400 Bad Request`
+ ```json
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>Delete a Fleet by ID</summary>
+<br>
+
+### Request
+
+`DELETE`
+
+    localhost:3000/api/v1/rental/:rentalId/fleet/:id
+    
+### Response
+
+`Status: 204 No Content`
+
+    
+`Status: 400 Bad Request`
+ ```json
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<h1 align> 📁 Reserves Endpoints: </h1>
+
+<details>
+<summary>Create Reserve</summary>
+<br>
+
+### Request
+
+`POST`
+
+    localhost:3000/api/v1/rental/:rentalId/reserve/ 
+    
+    
+```json
+//req body example
+{
+    "id_user": "62b1d6e27b943caf405128d1",
+    "date_start": "10/11/2021",
+    "date_end": "12/11/2021",
+    "id_car": "62b0ba0be023cf8d212ad608"
+}
+
+``` 
+    
+### Response
+
+`Status: 201 Created`
+
+ ```json
+{
+    "id_user": "62b1d6e27b943caf405128d1",
+    "date_start": "10/11/2021",
+    "date_end": "12/11/2021",
+    "id_car": "62b0ba0be023cf8d212ad608",
+    "id_rental": "<rentalId>",
+    "final_value": "200",
+    "_id": "62b29ca6088a82cd83d47cc4"
+}
+
+ ```
+     
+`Status: 400 Bad Request`
+ ```json
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>List Reserve</summary>
+<br>
+
+### Request
+
+`GET`
+
+    localhost:3000/api/v1/rental/:rentalId/reserve/
+ 
+    
+### Response
+
+`Status: 200 OK`
+
+ ```json
+{
+    "docs": [
+        {
+            "id_user": "62b1d6e27b943caf405128d1",
+            "date_start": "10/11/2021",
+            "date_end": "12/11/2021",
+            "id_car": "62b0ba0be023cf8d212ad608",
+            "id_rental": "<rentalId>",
+            "final_value": "200",
+            "_id": "62b29ca6088a82cd83d47cc4"
+        }
+    ],
+    "total": 1,
+    "offset": 1,
+    "limit": 100,
+    "offsets": 1
+}
+
+ ```
+    
+    
+`Status: 400 Bad Request`
+ ```json
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>List a Reserve by ID</summary>
+<br>
+
+### Request
+
+`GET`
+
+    localhost:3000/api/v1/rental/:rentalId/reserve/:id
+    
+### Response
+
+`Status: 200 OK`
+
+ ```json
+    {
+        "id_user": "62b1d6e27b943caf405128d1",
+        "date_start": "10/11/2021",
+        "date_end": "12/11/2021",
+        "id_car": "62b0ba0be023cf8d212ad608",
+        "id_rental": "<rentalId>",
+        "final_value": "200",
+        "_id": "62b29ca6088a82cd83d47cc4"
+    }
+ ```
+    
+`Status: 400 Bad Request`
+ ```json
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>Update a Reserve by ID</summary>
+<br>
+
+### Request
+
+`PATCH`
+
+    localhost:3000/api/v1/rental/:rentalId/reserve/:id
+
+ ```json
+    {
+        "date_start": "13/11/2021",
+        "date_end": "15/11/2021",
+    }
+ ```
+    
+### Response
+
+`Status: 200 OK`
+```json
+{
+    "id_user": "62b1d6e27b943caf405128d1",
+    "date_start": "13/11/2021",
+    "date_end": "15/11/2021",
+    "id_car": "62b0ba0be023cf8d212ad608",
+    "id_rental": "<rentalId>",
+    "final_value": "200",
+    "_id": "62b29ca6088a82cd83d47cc4"
+}
+```
+    
+`Status: 400 Bad Request`
+ ```json
+{
+    "Error": "error message"
+}
+ ```
+</details>
+
+<details>
+<summary>Delete a Reserve by ID</summary>
+<br>
+
+### Request
+
+`DELETE`
+
+    localhost:3000/api/v1/rental/:rentalId/Reserve/:id
     
 ### Response
 
