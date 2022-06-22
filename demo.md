@@ -1,3 +1,22 @@
+## 🔐 Authenticate
+```json
+    {
+        "email": "joazinho@email.com",
+        "password": "123456"
+    }
+```
+```json
+    {
+        "email": "mariazinha@email.com",
+        "password": "123456"
+    }
+```
+```json
+    {
+        "email": "marquinhos@email.com",
+        "password": "123456"
+    }
+```
 ## 🚗 Create Car
 ```json
 {
@@ -98,27 +117,8 @@
 }
 ```
 
-## 🔐 Authenticate
-```json
-    {
-        "email": "joazinho@email.com",
-        "password": "123456"
-    }
-```
-```json
-    {
-        "email": "mariazinha@email.com",
-        "password": "123456"
-    }
-```
-```json
-    {
-        "email": "marquinhos@email.com",
-        "password": "123456"
-    }
-```
 
-## 🚦 Rental
+## 🚦 Create Rental
 ```json
     {
         "name": "Localiza",
@@ -160,6 +160,57 @@
             }
         ]
     }
+```
+
+## 🚘 Create Fleet
+```json
+{
+    "id_car": "62b0ba0be023cf8d212ad608",
+    "status": "available",
+    "daily_value": 100,
+    "plate": "MVJ8782"
+}
+```
+```json
+{
+    "id_car": "62b0ba3ee023cf8d212ad60b",
+    "status": "unavailable",
+    "daily_value": 100,
+    "plate": "JGS8875"
+}
+```
+```json
+{
+    "id_car": "62b0ba3ee023cf8d212ad60b",
+    "status": "rented",
+    "daily_value": 100,
+    "plate": "QTP5F71"
+}
+```
+## 📝 Create Reserve
+```json
+{
+    "id_user": "62b1d6e27b943caf405128d1",
+    "date_start": "04/01/2022",
+    "date_end": "08/01/2022",
+    "id_car": "62b0ba0be023cf8d212ad608"
+}
+```
+```json
+{
+    "id_user": "62b1d6e27b943caf405128d1",
+    "date_start": "10/04/2022",
+    "date_end": "12/04/2021",
+    "id_car": "62b0ba0be023cf8d212ad608"
+}
+```
+```json
+{
+    "id_user": "62b1d6e27b943caf405128d1",
+    "date_start": "07/02/2022",
+    "date_end": "10/02/2022",
+    "id_car": "62b0ba0be023cf8d212ad608"
+}
 ```
 
 
