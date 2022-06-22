@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
       id_rental: Joi.string()
         .regex(id)
         .message('Invalid character in id_rental field'),
-      final_value: Joi.number().required().min(1),
+      final_value: Joi.number().min(1),
     });
 
     const { error } = await schemaReserve.validate(req.body, req.params, {
