@@ -6,7 +6,27 @@ class FleetRepository {
   }
 
   async list(payload) {
-    return FleetSchema.find(payload);
+    const { limit = 10, page = 0, ...query } = payload;
+
+    const paginate = {
+      totalDocs: 'total',
+      docs: 'fleets',
+      offset: 'offset',
+      totalPages: 'offsets',
+      nextPage: false,
+      prevPage: false,
+      pagingCounter: false,
+      meta: false,
+      hasPrevPage: false,
+      hasNextPage: false,
+    };
+    const options = {
+      page: Number(page),
+      limit: Number(limit),
+      customLabels: paginate,
+    };
+
+    return FleetSchema.paginate(query, options);
   }
 
   async getById(payload) {

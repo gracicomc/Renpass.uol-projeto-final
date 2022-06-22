@@ -23,6 +23,8 @@
         "class-methods-use-this": "off",
         "no-throw-literal": 0,
         "camelcase": "off",
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "no-shadow":"off",
+        "node/no-unsupported-features/es-syntax": "off"
     }
 }
