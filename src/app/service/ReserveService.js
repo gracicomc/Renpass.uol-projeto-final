@@ -1,15 +1,56 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
 const moment = require('moment');
 const RentalRepository = require('../repository/RentalRepository');
 const ReserveRepository = require('../repository/ReserveRepository');
+const PersonRepository = require('../repository/PersonRepository');
+const FleetRepository = require('../repository/FleetRepository');
+const CantDrive = require('../utils/Errors/CantDrive');
+const finalValueCalc = require('../utils/finalValue');
 
 class ReserveService {
   async create(rentalId, payload) {
     const rental = await RentalRepository.getById(rentalId);
     if (!rental) throw new Error(`This Rental ID doesn't exist`);
     payload.id_rental = rentalId;
-    // const numberWithCommas = payload.final_value;
-    // numberWithCommas.toLocaleString('pt-BR', { minimumFractionDigits: 1 });
+
+    // await validReserveDate(payload.data_start, payload.data_end);
+
+    const { date_start, date_end, id_car } = payload;
+
+    const searchBookedCar = await ReserveRepository.list({
+      date_start,
+      date_end,
+      id_car,
+    });
+    if (searchBookedCar.length > 0)
+      throw new Error(
+        `This Car is already booked. It was booked on ${date_start} - ${date_end}`
+      );
+
+    const validDataStart = moment(date_start, 'DD/MM/YYYY').isSameOrBefore(
+      moment(date_end, 'DD/MM/YYYY'),
+      'days'
+    );
+    const validDataEnd = moment(date_end, 'DD/MM/YYYY').isSameOrAfter(
+      moment(date_start, 'DD/MM/YYYY'),
+      'days'
+    );
+    if (!validDataStart && !validDataEnd) throw new Error('invalid date');
+
+    const { _id } = payload;
+    const fleet = await FleetRepository.list({ id_car });
+    console.log(fleet);
+    const { daily_value } = fleet;
+    console.log(daily_value);
+
+    payload.final_value = finalValueCalc(date_start, date_end, daily_value);
+
+    const { id_user } = payload;
+    const user = await PersonRepository.getById(id_user);
+    if (!user) throw new Error(`This User ID doesn't exist`);
+
+    if (user.canDrive === 'no') throw new CantDrive(user);
 
     const result = await ReserveRepository.create(payload);
     if (!result) throw new Error();
