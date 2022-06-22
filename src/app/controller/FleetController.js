@@ -41,9 +41,9 @@ class FleetController {
     }
   }
 
-  async patchFleet(req, res) {
+  async updateById(req, res) {
     try {
-      const result = await FleetService.patchFleet(req.params.id, req.body);
+      const result = await FleetService.updateById(req.params.id, req.body);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({
@@ -54,9 +54,9 @@ class FleetController {
     }
   }
 
-  async deleteFleet(req, res) {
+  async deleteById(req, res) {
     try {
-      const result = await FleetService.deleteFleet(req.params.id);
+      const result = await FleetService.deleteById(req.params.id);
       return res.status(204).json(result);
     } catch (error) {
       return res.status(400).json({

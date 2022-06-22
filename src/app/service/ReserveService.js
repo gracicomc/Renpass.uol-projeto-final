@@ -4,14 +4,14 @@ const ReserveRepository = require('../repository/ReserveRepository');
 const PersonRepository = require('../repository/PersonRepository');
 const FleetRepository = require('../repository/FleetRepository');
 const CantDrive = require('../utils/Errors/CantDrive');
+const NotFoundId = require('../utils/Errors/NotFoundId');
+const InvalidDate = require('../utils/Errors/InvalidDate');
 
 class ReserveService {
   async create(rentalId, payload) {
     const rental = await RentalRepository.getById(rentalId);
-    if (!rental) throw new Error(`This Rental ID doesn't exist`);
+    if (!rental) throw new NotFoundId(rentalId);
     payload.id_rental = rentalId;
-
-    // await validReserveDate(payload.data_start, payload.data_end);
 
     const { date_start, date_end, id_car } = payload;
 
@@ -33,7 +33,7 @@ class ReserveService {
       moment(date_start, 'DD/MM/YYYY'),
       'days'
     );
-    if (!validDataStart && !validDataEnd) throw new Error('invalid date');
+    if (!validDataStart && !validDataEnd) throw new InvalidDate(date_start);
 
     const getFleet = await FleetRepository.list({ id_car });
     const getDailyValue = getFleet[0].daily_value;
@@ -46,7 +46,7 @@ class ReserveService {
 
     const { id_user } = payload;
     const user = await PersonRepository.getById(id_user);
-    if (!user) throw new Error(`This User ID doesn't exist`);
+    if (!user) throw new NotFoundId(id_user);
 
     if (user.canDrive === 'no') throw new CantDrive(user);
 
@@ -67,14 +67,14 @@ class ReserveService {
     return result;
   }
 
-  async patchReserve(id, payload) {
-    const result = await ReserveRepository.patchReserve(id, payload);
+  async updateById(id, payload) {
+    const result = await ReserveRepository.updateById(id, payload);
     if (!result) throw new Error();
     return result;
   }
 
-  async deleteReserve(payload) {
-    const result = await ReserveRepository.deleteReserve(payload);
+  async deleteById(payload) {
+    const result = await ReserveRepository.deleteById(payload);
     if (!result) throw new Error();
     return result;
   }

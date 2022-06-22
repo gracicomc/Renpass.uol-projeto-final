@@ -4,16 +4,17 @@ const moment = require('moment');
 const FleetRepository = require('../repository/FleetRepository');
 const RentalRepository = require('../repository/RentalRepository');
 const CarRepository = require('../repository/CarRepository');
+const NotFoundId = require('../utils/Errors/NotFoundId');
 
 class FleetService {
   async create(rentalId, payload) {
     const rental = await RentalRepository.getById(rentalId);
-    if (!rental) throw new Error(`This Rental ID doesn't exist`);
+    if (!rental) throw new NotFoundId(rentalId);
     payload.id_rental = rentalId;
 
     const { id_car } = payload;
     const car = await CarRepository.getById(id_car);
-    if (!car) throw new Error(`This Car Id doesn't exist`);
+    if (!car) throw new NotFoundId(id_car);
 
     const result = await FleetRepository.create(payload);
     if (!result) throw new Error();
@@ -28,19 +29,19 @@ class FleetService {
 
   async getById(payload) {
     const result = await FleetRepository.getById(payload);
+    if (!result) throw new NotFoundId(payload);
+    return result;
+  }
+
+  async updateById(rentalId, id, payload) {
+    const result = await FleetRepository.updateById(id, payload);
     if (!result) throw new Error();
     return result;
   }
 
-  async patchFleet(id, payload) {
-    const result = await FleetRepository.patchFleet(id, payload);
-    if (!result) throw new Error();
-    return result;
-  }
-
-  async deleteFleet(payload) {
-    const result = await FleetRepository.deleteFleet(payload);
-    if (!result) throw new Error();
+  async deleteById(payload) {
+    const result = await FleetRepository.deleteById(payload);
+    if (!result) throw new NotFoundId(payload);
     return result;
   }
 }

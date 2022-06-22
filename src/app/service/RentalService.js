@@ -3,6 +3,7 @@
 /* eslint-disable no-await-in-loop */
 const axios = require('axios').default;
 const RentalRepository = require('../repository/RentalRepository');
+const InvalidCNPJ = require('../utils/Errors/InvalidCNPJ');
 const NotFoundId = require('../utils/Errors/NotFoundId');
 const validCNPJ = require('../utils/validCNPJ');
 
@@ -22,10 +23,7 @@ class RentalService {
       payload.address[index].state = uf;
     }
 
-    if (!validCNPJ(payload.cnpj))
-      throw await {
-        message: `This CNPJ doesn't exist. Try a valid CNPJ`,
-      };
+    if (!validCNPJ(payload.cnpj)) throw await new InvalidCNPJ(payload.cnpj);
     const result = await RentalRepository.create(payload);
     return result;
   }
@@ -45,10 +43,7 @@ class RentalService {
 
   async updateById(id, payload) {
     if (payload.cnpj) {
-      if (!validCNPJ(payload.cnpj))
-        throw {
-          message: `This CNPJ doesn't exist. Try a valid CNPJ`,
-        };
+      if (!validCNPJ(payload.cnpj)) throw await new InvalidCNPJ(payload.cnpj);
     }
     const result = await RentalRepository.updateById(id, payload);
     if (!result) throw new NotFoundId(id);

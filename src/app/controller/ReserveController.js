@@ -41,9 +41,9 @@ class ReserveController {
     }
   }
 
-  async patchReserve(req, res) {
+  async updateById(req, res) {
     try {
-      const result = await ReserveService.patchReserve(req.params.id, req.body);
+      const result = await ReserveService.updateById(req.params.id, req.body);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({
@@ -54,9 +54,9 @@ class ReserveController {
     }
   }
 
-  async deleteReserve(req, res) {
+  async deleteById(req, res) {
     try {
-      const result = await ReserveService.deleteReserve(req.params.id);
+      const result = await ReserveService.deleteById(req.params.id);
       return res.status(204).json(result);
     } catch (error) {
       return res.status(400).json({

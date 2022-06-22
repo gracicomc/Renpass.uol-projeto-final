@@ -1,8 +1,9 @@
 const ReserveSchema = require('../schema/ReserveSchema');
+const GenericRepository = require('./GenericRepository');
 
-class ReserveRepository {
-  async create(payload) {
-    return ReserveSchema.create(payload);
+class ReserveRepository extends GenericRepository {
+  constructor() {
+    super(ReserveSchema);
   }
 
   async list(payload) {
@@ -27,20 +28,6 @@ class ReserveRepository {
     };
 
     return ReserveSchema.paginate(query, options);
-  }
-
-  async getById(payload) {
-    return ReserveSchema.findById(payload);
-  }
-
-  async patchReserve(id, payload) {
-    return ReserveSchema.findByIdAndUpdate(id, payload, {
-      new: true,
-    });
-  }
-
-  async deleteReserve(id) {
-    return ReserveSchema.findByIdAndDelete(id);
   }
 }
 module.exports = new ReserveRepository();
