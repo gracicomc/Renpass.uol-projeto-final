@@ -878,7 +878,7 @@ perPage: 5
 
 `POST`
 
-    localhost:3000/api/v1/rental/:rentalId/fleet/ 
+    https://renpassuol.herokuapp.com/api/v1/rental/:rentalId/fleet/ 
     
     
 ```json
@@ -924,7 +924,7 @@ perPage: 5
 
 `GET`
 
-    localhost:3000/api/v1/rental/:rentalId/fleet/
+    https://renpassuol.herokuapp.com/api/v1/rental/:rentalId/fleet/
  
     
 ### Response
@@ -968,7 +968,7 @@ perPage: 5
 
 `GET`
 
-    localhost:3000/api/v1/rental/:rentalId/fleet/:id
+    https://renpassuol.herokuapp.com/api/v1/rental/:rentalId/fleet/:id
     
 ### Response
 
@@ -1001,7 +1001,7 @@ perPage: 5
 
 `PATCH`
 
-    localhost:3000/api/v1/rental/:rentalId/fleet/:id
+    https://renpassuol.herokuapp.com/api/v1/rental/:rentalId/fleet/:id
 
  ```json
 {
@@ -1039,7 +1039,7 @@ perPage: 5
 
 `DELETE`
 
-    localhost:3000/api/v1/rental/:rentalId/fleet/:id
+    https://renpassuol.herokuapp.com/api/v1/rental/:rentalId/fleet/:id
     
 ### Response
 
@@ -1064,7 +1064,7 @@ perPage: 5
 
 `POST`
 
-    localhost:3000/api/v1/rental/:rentalId/reserve/ 
+    https://renpassuol.herokuapp.com/api/v1/rental/:rentalId/reserve/ 
     
     
 ```json
@@ -1111,7 +1111,7 @@ perPage: 5
 
 `GET`
 
-    localhost:3000/api/v1/rental/:rentalId/reserve/
+    https://renpassuol.herokuapp.com/api/v1/rental/:rentalId/reserve/
  
     
 ### Response
@@ -1156,7 +1156,7 @@ perPage: 5
 
 `GET`
 
-    localhost:3000/api/v1/rental/:rentalId/reserve/:id
+    https://renpassuol.herokuapp.com/api/v1/rental/:rentalId/reserve/:id
     
 ### Response
 
@@ -1190,7 +1190,7 @@ perPage: 5
 
 `PATCH`
 
-    localhost:3000/api/v1/rental/:rentalId/reserve/:id
+    https://renpassuol.herokuapp.com/api/v1/rental/:rentalId/reserve/:id
 
  ```json
     {
@@ -1230,7 +1230,7 @@ perPage: 5
 
 `DELETE`
 
-    localhost:3000/api/v1/rental/:rentalId/Reserve/:id
+    https://renpassuol.herokuapp.com/api/v1/rental/:rentalId/Reserve/:id
     
 ### Response
 
