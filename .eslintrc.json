@@ -22,6 +22,7 @@
         "object-shorthand": "off",
         "class-methods-use-this": "off",
         "no-throw-literal": 0,
-        "camelcase": "off"
+        "camelcase": "off",
+        "no-param-reassign": "off"
     }
 }
