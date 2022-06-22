@@ -11,7 +11,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3000/api/v1",
+            "url": "https://renpassuol.herokuapp.com/api/v1",
             "description": "API server"
         }
     ],

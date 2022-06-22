@@ -87,7 +87,7 @@
 ### 📋 Swagger Documentation
 
     You can access the Swagger Doc by using
-    the route http://localhost:3000/api/v1/api-docs/
+    the route https://renpassuol.herokuapp.com/api/v1/api-docs/
     before initialize the server
 
 
@@ -101,7 +101,7 @@
 
 `POST`
 
-    http://localhost:3000/api/v1/authenticate/ 
+    https://renpassuol.herokuapp.com/api/v1/authenticate/ 
     
     
 ```json
@@ -144,7 +144,7 @@
 
 `POST`
 
-    http://localhost:3000/api/v1/car/ 
+    https://renpassuol.herokuapp.com/api/v1/car/ 
     
     
 ```json
@@ -210,7 +210,7 @@
 
 `GET`
 
-    http://localhost:3000/api/v1/car/
+    https://renpassuol.herokuapp.com/api/v1/car/
 
 `You can customize the pagination using query parameters`
 
@@ -270,7 +270,7 @@ perPage: 5
 
 `GET`
 
-    http://localhost:3000/api/v1/car/:id
+    https://renpassuol.herokuapp.com/api/v1/car/:id
     
 ### Response
 
@@ -314,7 +314,7 @@ perPage: 5
 
 `PATCH`
 
-    http://localhost:3000/api/v1/car/:id
+    https://renpassuol.herokuapp.com/api/v1/car/:id
 
  ```json
 {
@@ -364,7 +364,7 @@ perPage: 5
 
 `PATCH`
 
-    http://localhost:3000/api/v1/car/:id/accessories/:accessoriesId
+    https://renpassuol.herokuapp.com/api/v1/car/:id/accessories/:accessoriesId
 
  ```json
 {
@@ -413,7 +413,7 @@ perPage: 5
 
 `DELETE`
 
-    http://localhost:3000/api/v1/car/:id
+    https://renpassuol.herokuapp.com/api/v1/car/:id
     
 ### Response
 
@@ -438,7 +438,7 @@ perPage: 5
 
 `POST`
 
-    http://localhost:3000/api/v1/person/ 
+    https://renpassuol.herokuapp.com/api/v1/person/ 
     
     
 ```json
@@ -487,7 +487,7 @@ perPage: 5
 
 `GET`
 
-    http://localhost:3000/api/v1/person/
+    https://renpassuol.herokuapp.com/api/v1/person/
 
 `You can customize the pagination using query parameters`
 
@@ -539,7 +539,7 @@ perPage: 5
 
 `GET`
 
-    http://localhost:3000/api/v1/person/:id
+    https://renpassuol.herokuapp.com/api/v1/person/:id
     
 ### Response
 
@@ -573,7 +573,7 @@ perPage: 5
 
 `PATCH`
 
-    http://localhost:3000/api/v1/person/:id
+    https://renpassuol.herokuapp.com/api/v1/person/:id
 
  ```json
 {
@@ -612,7 +612,7 @@ perPage: 5
 
 `DELETE`
 
-    http://localhost:3000/api/v1/person/:id
+    https://renpassuol.herokuapp.com/api/v1/person/:id
     
 ### Response
 
@@ -637,7 +637,7 @@ perPage: 5
 
 `POST`
 
-    http://localhost:3000/api/v1/rental/ 
+    https://renpassuol.herokuapp.com/api/v1/rental/ 
     
     
 ```json
@@ -699,7 +699,7 @@ perPage: 5
 
 `GET`
 
-    http://localhost:3000/api/v1/rental/
+    https://renpassuol.herokuapp.com/api/v1/rental/
 
 `You can customize the pagination using query parameters`
 
@@ -760,7 +760,7 @@ perPage: 5
 
 `GET`
 
-    http://localhost:3000/api/v1/rental/:id
+    https://renpassuol.herokuapp.com/api/v1/rental/:id
     
 ### Response
 
@@ -804,7 +804,7 @@ perPage: 5
 
 `PATCH`
 
-    http://localhost:3000/api/v1/rental/:id
+    https://renpassuol.herokuapp.com/api/v1/rental/:id
 
  ```json
 {
@@ -853,7 +853,7 @@ perPage: 5
 
 `DELETE`
 
-    http://localhost:3000/api/v1/rental/:id
+    https://renpassuol.herokuapp.com/api/v1/rental/:id
     
 ### Response
 
