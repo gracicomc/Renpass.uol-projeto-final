@@ -1,12 +1,9 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-param-reassign */
 const moment = require('moment');
 const RentalRepository = require('../repository/RentalRepository');
 const ReserveRepository = require('../repository/ReserveRepository');
 const PersonRepository = require('../repository/PersonRepository');
 const FleetRepository = require('../repository/FleetRepository');
 const CantDrive = require('../utils/Errors/CantDrive');
-const finalValueCalc = require('../utils/finalValue');
 
 class ReserveService {
   async create(rentalId, payload) {
@@ -38,13 +35,14 @@ class ReserveService {
     );
     if (!validDataStart && !validDataEnd) throw new Error('invalid date');
 
-    const { _id } = payload;
-    const fleet = await FleetRepository.list({ id_car });
-    console.log(fleet);
-    const { daily_value } = fleet;
-    console.log(daily_value);
+    const getFleet = await FleetRepository.list({ id_car });
+    const getDailyValue = getFleet[0].daily_value;
+    const bookedDays = moment(date_end, 'DD/MM/YYYY').diff(
+      moment(date_start, 'DD/MM/YYYY'),
+      'days'
+    );
 
-    payload.final_value = finalValueCalc(date_start, date_end, daily_value);
+    payload.final_value = getDailyValue * bookedDays;
 
     const { id_user } = payload;
     const user = await PersonRepository.getById(id_user);
