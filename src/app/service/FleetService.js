@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
+const moment = require('moment');
 const FleetRepository = require('../repository/FleetRepository');
 const RentalRepository = require('../repository/RentalRepository');
 const CarRepository = require('../repository/CarRepository');
