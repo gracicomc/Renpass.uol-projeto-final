@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 const mongoose = require('mongoose');
-// const config = require('../../../config/config');
+const config = require('../../../config/config');
 
 class Database {
   constructor() {
@@ -8,12 +8,7 @@ class Database {
   }
 
   connect() {
-    return mongoose.connect(
-      `mongodb+srv://admin:PDrk684TOHcAW7Wf@renpass.vebld.mongodb.net/?retryWrites=true&w=majority`,
-      {
-        dbName: 'test'
-      }
-    );
+    return mongoose.connect(config.database.mongoUrl);
   }
 
   disconnect() {
