@@ -1,10 +1,7 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-param-reassign */
-const moment = require('moment');
 const FleetRepository = require('../repository/FleetRepository');
 const RentalRepository = require('../repository/RentalRepository');
 const CarRepository = require('../repository/CarRepository');
-const NotFoundId = require('../utils/Errors/NotFoundId');
+const NotFoundId = require('../Errors/NotFoundId');
 
 class FleetService {
   async create(rentalId, payload) {
@@ -45,9 +42,7 @@ class FleetService {
     }
 
     const result = await FleetRepository.updateById(id, payload);
-    console.log(id);
-    // if (!result) throw new NotFoundId(id);
-    console.log(result);
+    if (!result) throw new NotFoundId(id);
     return result;
   }
 
