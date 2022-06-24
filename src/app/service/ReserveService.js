@@ -3,9 +3,9 @@ const RentalRepository = require('../repository/RentalRepository');
 const ReserveRepository = require('../repository/ReserveRepository');
 const PersonRepository = require('../repository/PersonRepository');
 const FleetRepository = require('../repository/FleetRepository');
-const CantDrive = require('../utils/Errors/CantDrive');
-const NotFoundId = require('../utils/Errors/NotFoundId');
-const InvalidDate = require('../utils/Errors/InvalidDate');
+const CantDrive = require('../Errors/CantDrive');
+const NotFoundId = require('../Errors/NotFoundId');
+const InvalidDate = require('../Errors/InvalidDate');
 
 class ReserveService {
   async create(rentalId, payload) {
