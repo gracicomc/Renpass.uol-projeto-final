@@ -2,7 +2,7 @@ class InvalidAge extends Error {
   constructor(age) {
     super(age);
     this.statusCode = 400;
-    this.description = 'ivalid age';
+    this.description = 'Bad Request';
     this.message = 'age is under 18';
   }
 }

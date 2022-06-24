@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const dotenv = require('dotenv');
 
 dotenv.config({
@@ -6,6 +7,7 @@ dotenv.config({
 
 module.exports = {
   database: {
+    mongoUrl: process.env.MONGO_URL,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     username: process.env.DB_USER,

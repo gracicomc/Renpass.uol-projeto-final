@@ -10,7 +10,7 @@ class RentalController {
       return res.status(400).json({
         statusCode: error.statusCode,
         description: error.description,
-        error: error.message,
+        error: error.message
       });
     }
   }
@@ -23,7 +23,7 @@ class RentalController {
       return res.status(400).json({
         statusCode: error.statusCode,
         description: error.description,
-        error: error.message,
+        error: error.message
       });
     }
   }
@@ -36,7 +36,7 @@ class RentalController {
       return res.status(400).json({
         statusCode: error.statusCode,
         description: error.description,
-        error: error.message,
+        error: error.message
       });
     }
   }
@@ -49,7 +49,7 @@ class RentalController {
       return res.status(400).json({
         statusCode: error.statusCode,
         description: error.description,
-        error: error.message,
+        error: error.message
       });
     }
   }
@@ -62,7 +62,7 @@ class RentalController {
       return res.status(400).json({
         statusCode: error.statusCode,
         description: error.description,
-        error: error.message,
+        error: error.message
       });
     }
   }

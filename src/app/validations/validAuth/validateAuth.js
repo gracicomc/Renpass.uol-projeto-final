@@ -16,7 +16,10 @@ module.exports = async (req, res, next) => {
     return next();
   } catch (error) {
     return res.status(400).json({
-      Error: error.message,
+      invalidFields: error.details.map((detail) => ({
+        field: detail.path.join('.'),
+        description: detail.message,
+      })),
     });
   }
 };

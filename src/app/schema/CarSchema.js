@@ -5,42 +5,42 @@ const CarSchema = new mongoose.Schema(
   {
     model: {
       type: String,
-      required: true,
+      required: true
     },
 
     type: {
       type: String,
-      required: true,
+      required: true
     },
 
     brand: {
       type: String,
-      required: true,
+      required: true
     },
 
     color: {
       type: String,
-      required: true,
+      required: true
     },
 
     year: {
       type: String,
-      required: true,
+      required: true
     },
 
     accessories: [
       {
         description: {
           type: String,
-          required: true,
-        },
-      },
+          required: true
+        }
+      }
     ],
 
     passengersQtd: {
       type: Number,
-      required: true,
-    },
+      required: true
+    }
   },
   { versionKey: false }
 );

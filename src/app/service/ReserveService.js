@@ -4,7 +4,7 @@ const ReserveRepository = require('../repository/ReserveRepository');
 const PersonRepository = require('../repository/PersonRepository');
 const FleetRepository = require('../repository/FleetRepository');
 const CantDrive = require('../Errors/CantDrive');
-const NotFoundId = require('../Errors/NotFoundId');
+const NotFoundId = require('../Errors/NotFound');
 const InvalidDate = require('../Errors/InvalidDate');
 
 class ReserveService {

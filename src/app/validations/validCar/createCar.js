@@ -13,13 +13,13 @@ module.exports = async (req, res, next) => {
         .unique()
         .items(
           Joi.object({
-            description: Joi.string().trim().min(1).required(),
+            description: Joi.string().trim().min(1).required()
           })
         ),
-      passengersQtd: Joi.number().min(1).required(),
+      passengersQtd: Joi.number().min(1).required()
     });
     const { error } = schemaCar.validate(req.body, {
-      abortEarly: false,
+      abortEarly: false
     });
 
     if (error) throw error;
@@ -29,8 +29,8 @@ module.exports = async (req, res, next) => {
     return res.status(400).json({
       invalidFields: error.details.map((detail) => ({
         field: detail.path.join('.'),
-        description: detail.message,
-      })),
+        description: detail.message
+      }))
     });
   }
 };

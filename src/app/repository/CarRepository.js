@@ -19,12 +19,12 @@ class CarRepository extends GenericRepository {
       pagingCounter: false,
       meta: false,
       hasPrevPage: false,
-      hasNextPage: false,
+      hasNextPage: false
     };
     const options = {
       page: Number(page),
       limit: Number(limit),
-      customLabels: paginate,
+      customLabels: paginate
     };
 
     return CarSchema.paginate(query, options);
@@ -34,12 +34,12 @@ class CarRepository extends GenericRepository {
     const result = await CarSchema.findOneAndUpdate(
       {
         _id: id,
-        'accessories._id': accessoriesId,
+        'accessories._id': accessoriesId
       },
       {
         $set: {
-          'accessories.$.description': payload.description,
-        },
+          'accessories.$.description': payload.description
+        }
       },
       { new: true }
     );

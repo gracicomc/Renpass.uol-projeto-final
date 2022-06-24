@@ -6,41 +6,41 @@ const PersonSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: true
     },
     cpf: {
       type: String,
       required: true,
-      unique: true,
+      unique: true
     },
     birthDay: {
       type: String,
-      required: true,
+      required: true
     },
     email: {
       type: String,
       unique: true,
       required: true,
       lowercase: true,
-      trim: true,
+      trim: true
     },
     password: {
       type: String,
       // select: false,
-      required: true,
+      required: true
     },
     canDrive: {
       type: String,
       required: true,
-      enum: ['yes', 'no'],
-    },
+      enum: ['yes', 'no']
+    }
   },
   {
-    versionKey: false,
+    versionKey: false
   }
 );
 
-PersonSchema.pre('save', async function (next) {
+PersonSchema.pre('save', async function password(next) {
   const hash = await bcrypt.hash(this.password, 10);
   this.password = hash;
 

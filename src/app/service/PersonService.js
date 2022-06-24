@@ -1,7 +1,7 @@
 const moment = require('moment');
 const PersonRepository = require('../repository/PersonRepository');
 const InvalidAge = require('../Errors/personErrors/InvalidAge');
-const NotFoundId = require('../Errors/NotFoundId');
+const NotFoundId = require('../Errors/NotFound');
 const validCPF = require('../utils/validCPF');
 
 class PersonService {
@@ -14,9 +14,7 @@ class PersonService {
     if (age < 18) throw new InvalidAge(payload.age);
 
     if (!validCPF(payload.cpf))
-      throw {
-        message: `This CPF doesn't exist. Try a valid CPF`,
-      };
+      throw new Error(`This CPF doesn't exist. Try a valid CPF`);
 
     const result = await PersonRepository.create(payload);
     return result;
@@ -40,9 +38,7 @@ class PersonService {
 
     if (payload.cpf) {
       if (!validCPF(payload.cpf))
-        throw {
-          message: `This CPF doesn't exist. Try a valid CPF`,
-        };
+        throw new Error(`This CPF doesn't exist. Try a valid CPF`);
     }
 
     if (!result) throw new NotFoundId(id);

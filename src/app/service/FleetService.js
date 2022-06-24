@@ -1,7 +1,7 @@
 const FleetRepository = require('../repository/FleetRepository');
 const RentalRepository = require('../repository/RentalRepository');
 const CarRepository = require('../repository/CarRepository');
-const NotFoundId = require('../Errors/NotFoundId');
+const NotFoundId = require('../Errors/NotFound');
 
 class FleetService {
   async create(rentalId, payload) {

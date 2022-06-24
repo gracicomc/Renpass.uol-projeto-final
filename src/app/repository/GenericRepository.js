@@ -15,7 +15,7 @@ class GenericRepository {
 
   async updateById(payload, body) {
     return this.schema.findByIdAndUpdate(payload, body, {
-      new: true,
+      new: true
     });
   }
 

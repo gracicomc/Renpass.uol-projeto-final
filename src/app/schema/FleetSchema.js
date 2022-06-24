@@ -6,26 +6,26 @@ const FleetSchema = new mongoose.Schema(
     id_car: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Car',
-      required: true,
+      required: true
     },
     id_rental: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Rental',
+      ref: 'Rental'
     },
     status: {
       type: String,
       enum: ['available', 'unavailable', 'rented'],
-      required: true,
+      required: true
     },
     daily_value: {
       type: Number,
-      required: true,
+      required: true
     },
     plate: {
       type: String,
       unique: true,
-      required: true,
-    },
+      required: true
+    }
   },
   { versionKey: false }
 );

@@ -8,8 +8,8 @@ module.exports = async (req, res, next) => {
         .regex(id)
         .message('Invalid character in id_user field')
         .required(),
-      date_start: Joi.date().required().format('DD/MM/YYYY'),
-      date_end: Joi.date().required().format('DD/MM/YYYY'),
+      date_start: Joi.date().format('DD/MM/YYYY').required(),
+      date_end: Joi.date().format('DD/MM/YYYY').required(),
       id_car: Joi.string()
         .regex(id)
         .message('Invalid character in id_car field')

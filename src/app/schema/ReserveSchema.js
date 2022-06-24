@@ -6,29 +6,29 @@ const ReserveSchema = new mongoose.Schema(
     id_user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Person',
-      required: true,
+      required: true
     },
     date_start: {
       type: String,
-      required: true,
+      required: true
     },
     date_end: {
       type: String,
-      required: true,
+      required: true
     },
     id_car: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Car',
-      required: true,
+      required: true
     },
     id_rental: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Rental',
+      ref: 'Rental'
     },
     final_value: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   { versionKey: false }
 );

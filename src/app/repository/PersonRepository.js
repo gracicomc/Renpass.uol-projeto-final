@@ -19,12 +19,12 @@ class PersonRepository extends GenericRepository {
       pagingCounter: false,
       meta: false,
       hasPrevPage: false,
-      hasNextPage: false,
+      hasNextPage: false
     };
     const options = {
       page: Number(page),
       limit: Number(limit),
-      customLabels: paginate,
+      customLabels: paginate
     };
 
     return PersonSchema.paginate(query, options);

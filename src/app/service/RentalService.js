@@ -3,8 +3,8 @@
 /* eslint-disable no-await-in-loop */
 const axios = require('axios').default;
 const RentalRepository = require('../repository/RentalRepository');
-const InvalidCNPJ = require('../utils/Errors/InvalidCNPJ');
-const NotFoundId = require('../utils/Errors/NotFoundId');
+const InvalidCNPJ = require('../Errors/InvalidCNPJ');
+const NotFoundId = require('../Errors/NotFound');
 const validCNPJ = require('../utils/validCNPJ');
 
 class RentalService {
