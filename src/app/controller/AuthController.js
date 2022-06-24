@@ -8,7 +8,7 @@ class AuthController {
 
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(error.statusCode).json({
+      return res.status(error.statusCode || 400).json({
         statusCode: error.statusCode,
         description: error.description,
         error: error.message
