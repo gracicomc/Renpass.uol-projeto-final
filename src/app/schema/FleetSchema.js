@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
-const uniqueValidator = require('mongoose-unique-validator');
 
 const FleetSchema = new mongoose.Schema(
   {
@@ -32,10 +31,6 @@ const FleetSchema = new mongoose.Schema(
 );
 
 FleetSchema.plugin(mongoosePaginate);
-
-FleetSchema.plugin(uniqueValidator, {
-  message: 'this {PATH} already exist',
-});
 
 const Fleet = mongoose.model('Fleet', FleetSchema);
 module.exports = Fleet;
