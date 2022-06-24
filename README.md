@@ -88,7 +88,7 @@
 
     You can access the Swagger Doc by using
     the route https://renpassuol.herokuapp.com/api/v1/api-docs/
-    before initialize the server
+    after initialize the server
 
 
 <h1 align> 📁 Authenticate Endpoints: </h1>
