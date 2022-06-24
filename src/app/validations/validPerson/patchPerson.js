@@ -4,14 +4,14 @@ const { cpf } = require('../../utils/regex');
 module.exports = async (req, res, next) => {
   try {
     const schemaPerson = Joi.object({
-      name: Joi.string().min(3).max(30).trim(),
+      name: Joi.string().trim().min(3).max(30),
       cpf: Joi.string()
         .regex(cpf)
         .message(
           'Invalid character in CPF field. Try something like: 000.000.000-00'
         ),
       birthDay: Joi.date().format('DD/MM/YYYY'),
-      email: Joi.string().min(10).email().lowercase().trim(),
+      email: Joi.string().trim().min(10).email().lowercase(),
       password: Joi.string().min(6),
       canDrive: Joi.string().valid('yes', 'no'),
     });

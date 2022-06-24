@@ -3,17 +3,17 @@ const Joi = require('joi');
 module.exports = async (req, res, next) => {
   try {
     const schemaCar = Joi.object({
-      model: Joi.string().min(3).trim(),
-      type: Joi.string().min(3).trim(),
-      brand: Joi.string().min(2).trim(),
-      color: Joi.string().min(2).trim(),
+      model: Joi.string().trim().min(3),
+      type: Joi.string().trim().min(3),
+      brand: Joi.string().trim().min(2),
+      color: Joi.string().trim().min(2),
       year: Joi.number().min(1950).max(2022),
       accessories: Joi.array()
         .min(1)
         .unique()
         .items(
           Joi.object({
-            description: Joi.string().min(1).trim(),
+            description: Joi.string().trim().min(1),
           })
         ),
       passengersQtd: Joi.number().min(1),

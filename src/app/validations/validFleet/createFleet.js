@@ -1,4 +1,4 @@
-const Joi = require('joi').extend(require('@joi/date'));
+const Joi = require('joi');
 const { id } = require('../../utils/regex');
 const { plate } = require('../../utils/regex');
 
@@ -13,13 +13,13 @@ module.exports = async (req, res, next) => {
         .regex(id)
         .message('Invalid character in id_rental field'),
       status: Joi.string()
-        .required()
-        .valid('available', 'unavailable', 'rented'),
-      daily_value: Joi.number().required().min(1),
+        .valid('available', 'unavailable', 'rented')
+        .required(),
+      daily_value: Joi.number().min(1).required(),
       plate: Joi.string()
-        .required()
         .regex(plate)
-        .message(`This plate doest'n exist`),
+        .message(`This plate doesn't exist`)
+        .required(),
     });
 
     const { error } = await schemaFleet.validate(req.body, req.params, {

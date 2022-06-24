@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
           'Invalid character in CPF field. Try something like: 000.000.000-00'
         ),
       birthDay: Joi.date().format('DD/MM/YYYY'),
-      email: Joi.string().min(10).email().lowercase().trim(),
+      email: Joi.string().trim().min(10).email().lowercase(),
       password: Joi.string().min(6),
       canDrive: Joi.string().valid('yes', 'no'),
     });

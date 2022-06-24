@@ -1,16 +1,16 @@
-const Joi = require('joi').extend(require('@joi/date'));
+const Joi = require('joi');
 const { cnpj } = require('../../utils/regex');
 
 module.exports = async (req, res, next) => {
   try {
     const schemaRental = Joi.object({
-      name: Joi.string().min(3).max(50).trim(),
+      name: Joi.string().trim().min(3).max(50),
       cnpj: Joi.string()
         .regex(cnpj)
         .message(
           'Invalid character in CNPJ field. Try something like: 00.000.000/0000-00'
         ),
-      activities: Joi.string().max(100).trim(),
+      activities: Joi.string().trim().max(100),
       address: Joi.array().items(
         Joi.object({
           zipCode: Joi.string().trim(),

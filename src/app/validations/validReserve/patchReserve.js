@@ -18,7 +18,7 @@ module.exports = async (req, res, next) => {
       final_value: Joi.number().min(1),
     });
 
-    const { error } = await schemaReserve.validate(req.body, {
+    const { error } = await schemaReserve.validate(req.body, req.params, {
       abortEarly: false,
     });
 
