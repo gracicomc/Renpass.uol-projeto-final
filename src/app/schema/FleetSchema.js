@@ -1,34 +1,31 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
-const FleetSchema = new mongoose.Schema(
-  {
-    id_car: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Car',
-      required: true
-    },
-    id_rental: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Rental'
-    },
-    status: {
-      type: String,
-      enum: ['available', 'unavailable', 'rented'],
-      required: true
-    },
-    daily_value: {
-      type: Number,
-      required: true
-    },
-    plate: {
-      type: String,
-      unique: true,
-      required: true
-    }
+const FleetSchema = new mongoose.Schema({
+  id_car: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Car',
+    required: true
   },
-  { versionKey: false }
-);
+  id_rental: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Rental'
+  },
+  status: {
+    type: String,
+    enum: ['available', 'unavailable', 'rented'],
+    required: true
+  },
+  daily_value: {
+    type: Number,
+    required: true
+  },
+  plate: {
+    type: String,
+    unique: true,
+    required: true
+  }
+});
 
 FleetSchema.plugin(mongoosePaginate);
 

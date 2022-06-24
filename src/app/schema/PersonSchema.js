@@ -2,43 +2,38 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
-const PersonSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true
-    },
-    cpf: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    birthDay: {
-      type: String,
-      required: true
-    },
-    email: {
-      type: String,
-      unique: true,
-      required: true,
-      lowercase: true,
-      trim: true
-    },
-    password: {
-      type: String,
-      // select: false,
-      required: true
-    },
-    canDrive: {
-      type: String,
-      required: true,
-      enum: ['yes', 'no']
-    }
+const PersonSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
   },
-  {
-    versionKey: false
+  cpf: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  birthDay: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+    lowercase: true,
+    trim: true
+  },
+  password: {
+    type: String,
+    // select: false,
+    required: true
+  },
+  canDrive: {
+    type: String,
+    required: true,
+    enum: ['yes', 'no']
   }
-);
+});
 
 PersonSchema.pre('save', async function password(next) {
   const hash = await bcrypt.hash(this.password, 10);
