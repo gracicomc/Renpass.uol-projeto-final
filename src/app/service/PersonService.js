@@ -1,17 +1,16 @@
 const moment = require('moment');
 const PersonRepository = require('../repository/PersonRepository');
-const InvalidAge = require('../utils/Errors/personErrors/InvalidAge');
-const NotFoundId = require('../utils/Errors/NotFoundId');
+const InvalidAge = require('../Errors/personErrors/InvalidAge');
+const NotFoundId = require('../Errors/NotFoundId');
 const validCPF = require('../utils/validCPF');
 
 class PersonService {
   async create(payload) {
-    // moment.suppressDeprecationWarnings = true;
     const ageFormated = moment(payload.birthDay, 'DD/MM/YYYY').format(
       'YYYY-MM-DD'
     );
     const age = moment().diff(ageFormated, 'years');
-    // const validAge = moment().diff(payload.birthDay, 'years');
+
     if (age < 18) throw new InvalidAge(payload.age);
 
     if (!validCPF(payload.cpf))
@@ -20,7 +19,6 @@ class PersonService {
       };
 
     const result = await PersonRepository.create(payload);
-    // result.password = undefined;
     return result;
   }
 
