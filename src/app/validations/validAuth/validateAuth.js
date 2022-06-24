@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
     const auth = Joi.object({
       email: Joi.string().trim().email(email).lowercase().required(),
 
-      password: Joi.string().trim().min(6).required(),
+      password: Joi.string().trim().min(6).required()
     });
 
     const { error } = auth.validate(req.body, { abortEarly: false });
@@ -18,8 +18,8 @@ module.exports = async (req, res, next) => {
     return res.status(400).json({
       invalidFields: error.details.map((detail) => ({
         field: detail.path.join('.'),
-        description: detail.message,
-      })),
+        description: detail.message
+      }))
     });
   }
 };

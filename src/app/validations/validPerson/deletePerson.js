@@ -4,11 +4,11 @@ const { id } = require('../../utils/regex');
 module.exports = async (req, res, next) => {
   try {
     const schemaPerson = Joi.object({
-      id: Joi.string().regex(id),
+      id: Joi.string().regex(id)
     });
 
     const { error } = await schemaPerson.validate(req.params, {
-      abortEarly: false,
+      abortEarly: false
     });
 
     if (error) throw error;
@@ -18,8 +18,8 @@ module.exports = async (req, res, next) => {
     return res.status(404).json({
       invalidFields: error.details.map((detail) => ({
         field: detail.path.join('.'),
-        description: detail.message,
-      })),
+        description: detail.message
+      }))
     });
   }
 };

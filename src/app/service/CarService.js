@@ -19,8 +19,7 @@ class CarService {
   // List an especific car by ID
   async getById(payload) {
     const result = await CarRepository.getById(payload);
-    if (!result)
-      throw new NotFound(`The Car ID '${payload}' is not registered`);
+    if (!result) throw new NotFound(`The Car ID '${payload}' is not registered`);
     return result;
   }
 
@@ -36,23 +35,15 @@ class CarService {
       const car = CarRepository.list({ id });
       if (!car) throw new NotFound(`The Car ID '${id}' is not registered`);
     }
-    const result = await CarRepository.patchAccessories(
-      id,
-      accessoriesId,
-      payload
-    );
-    if (!result)
-      throw new NotFound(
-        `The Accessory ID '${accessoriesId}' is not registered`
-      );
+    const result = await CarRepository.patchAccessories(id, accessoriesId, payload);
+    if (!result) throw new NotFound(`The Accessory ID '${accessoriesId}' is not registered`);
     return result;
   }
 
   // Delete car by ID
   async deleteById(payload) {
     const result = await CarRepository.deleteById(payload);
-    if (!result)
-      throw new NotFound(`The Car ID '${payload}' is not registered`);
+    if (!result) throw new NotFound(`The Car ID '${payload}' is not registered`);
     return result;
   }
 }

@@ -1,6 +1,6 @@
 class Unauthorized extends Error {
-  constructor(unauthorized) {
-    super(unauthorized);
+  constructor(message) {
+    super(message);
     this.statusCode = 401;
     this.description = 'Unauthorized';
   }

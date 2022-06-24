@@ -11,7 +11,7 @@ class AuthController {
       return res.status(error.statusCode).json({
         statusCode: error.statusCode,
         description: error.description,
-        error: error.message,
+        error: error.message
       });
     }
   }

@@ -1,5 +1,3 @@
-/* eslint-disable node/no-unsupported-features/es-syntax */
-/* eslint-disable no-unused-vars */
 class GenericRepository {
   constructor(schema) {
     this.schema = schema;

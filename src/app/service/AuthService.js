@@ -8,10 +8,7 @@ class AuthService {
   async authenticate(email, password) {
     const person = await PersonRepository.authenticate(email);
 
-    if (!person)
-      throw new Unauthorized(
-        `The email '${email}' it's not registered. Try a valid one`
-      );
+    if (!person) throw new Unauthorized(`The email '${email}' it's not registered. Try a valid one`);
 
     if (!(await bcrypt.compare(password, person.password))) {
       throw new Unauthorized('Incorrect password');
@@ -20,13 +17,13 @@ class AuthService {
     person.password = undefined;
 
     const token = jwt.sign({ id: person.id }, authConfig.secret, {
-      expiresIn: 86400,
+      expiresIn: 86400
     });
 
     return {
       email: person.email,
       canDrive: person.canDrive,
-      token,
+      token
     };
   }
 }

@@ -3,17 +3,15 @@
 /* eslint-disable no-await-in-loop */
 const axios = require('axios').default;
 const RentalRepository = require('../repository/RentalRepository');
-const InvalidCNPJ = require('../Errors/InvalidCNPJ');
-const NotFoundId = require('../Errors/NotFound');
+const BadRequest = require('../Errors/BadRequest');
+const NotFound = require('../Errors/NotFound');
 const validCNPJ = require('../utils/validCNPJ');
 
 class RentalService {
   async create(payload) {
     for (let index = 0; index < payload.address.length; index++) {
       const { cep, logradouro, complemento, bairro, localidade, uf } = (
-        await axios.get(
-          `https://viacep.com.br/ws/${payload.address[index].zipCode}/json`
-        )
+        await axios.get(`https://viacep.com.br/ws/${payload.address[index].zipCode}/json`)
       ).data;
       payload.address[index].zipCode = cep;
       payload.address[index].street = logradouro;
@@ -23,7 +21,7 @@ class RentalService {
       payload.address[index].state = uf;
     }
 
-    if (!validCNPJ(payload.cnpj)) throw await new InvalidCNPJ(payload.cnpj);
+    if (!validCNPJ(payload.cnpj)) throw await new BadRequest(`This CNPJ doesn't exist. Try a valid CNPJ`);
     const result = await RentalRepository.create(payload);
     return result;
   }
@@ -36,24 +34,24 @@ class RentalService {
 
   async getById(id, payload) {
     const result = await RentalRepository.getById(id, payload);
-    if (!result) throw new NotFoundId(id);
+    if (!result) throw new NotFound(`The Rental ID '${id}' is not registered`);
 
     return result;
   }
 
   async updateById(id, payload) {
     if (payload.cnpj) {
-      if (!validCNPJ(payload.cnpj)) throw await new InvalidCNPJ(payload.cnpj);
+      if (!validCNPJ(payload.cnpj)) throw await new BadRequest(payload.cnpj);
     }
     const result = await RentalRepository.updateById(id, payload);
-    if (!result) throw new NotFoundId(id);
+    if (!result) throw new NotFound(`The Rental ID '${id}' is not registered`);
 
     return result;
   }
 
   async deleteById(payload) {
     const result = await RentalRepository.deleteById(payload);
-    if (!result) throw new NotFoundId(payload);
+    if (!result) throw new NotFound(payload);
 
     return result;
   }

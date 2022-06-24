@@ -11,7 +11,7 @@ class Database {
     return mongoose.connect(
       `mongodb+srv://admin:PDrk684TOHcAW7Wf@renpass.vebld.mongodb.net/?retryWrites=true&w=majority`,
       {
-        dbName: 'test',
+        dbName: 'test'
       }
     );
   }

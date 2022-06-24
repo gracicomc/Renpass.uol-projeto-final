@@ -1,54 +1,55 @@
 const FleetRepository = require('../repository/FleetRepository');
 const RentalRepository = require('../repository/RentalRepository');
 const CarRepository = require('../repository/CarRepository');
-const NotFoundId = require('../Errors/NotFound');
+const NotFound = require('../Errors/NotFound');
+const BadRequest = require('../Errors/BadRequest');
 
 class FleetService {
   async create(rentalId, payload) {
     const rental = await RentalRepository.getById(rentalId);
-    if (!rental) throw new NotFoundId(rentalId);
+    if (!rental) throw new NotFound(`The Rental ID '${rentalId}' is not registered`);
     payload.id_rental = rentalId;
 
     const { id_car } = payload;
     const car = await CarRepository.getById(id_car);
-    if (!car) throw new NotFoundId(id_car);
+    if (!car) throw new NotFound(id_car);
 
     const result = await FleetRepository.create(payload);
-    if (!result) throw new Error();
+    if (!result) throw new BadRequest();
     return result;
   }
 
   async list(payload) {
     const result = await FleetRepository.list(payload);
-    if (!result) throw new Error();
+    if (!result) throw new BadRequest();
     return result;
   }
 
   async getById(payload) {
     const result = await FleetRepository.getById(payload);
-    if (!result) throw new NotFoundId(payload);
+    if (!result) throw new NotFound(`The Fleet ID '${payload}' is not registered`);
     return result;
   }
 
   async updateById(rentalId, id, payload) {
     payload.id_rental = rentalId;
     const rental = await RentalRepository.getById(rentalId);
-    if (!rental) throw new NotFoundId(rentalId);
+    if (!rental) throw new NotFound(`The Rental ID '${rentalId}' is not registered`);
 
     if (payload.id_car) {
       const { id_car } = payload;
       const car = await CarRepository.getById(id_car);
-      if (!car) throw new NotFoundId(id_car);
+      if (!car) throw new NotFound(`The Car ID '${id_car}' is not registered`);
     }
 
     const result = await FleetRepository.updateById(id, payload);
-    if (!result) throw new NotFoundId(id);
+    if (!result) throw new NotFound(`The Fleet ID '${payload}' is not registered`);
     return result;
   }
 
   async deleteById(payload) {
     const result = await FleetRepository.deleteById(payload);
-    if (!result) throw new NotFoundId(payload);
+    if (!result) throw new NotFound(`The Fleet ID '${payload}' is not registered`);
     return result;
   }
 }

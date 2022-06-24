@@ -1,20 +1,17 @@
 const moment = require('moment');
 const PersonRepository = require('../repository/PersonRepository');
-const InvalidAge = require('../Errors/personErrors/InvalidAge');
-const NotFoundId = require('../Errors/NotFound');
+const BadRequest = require('../Errors/BadRequest');
+const NotFound = require('../Errors/NotFound');
 const validCPF = require('../utils/validCPF');
 
 class PersonService {
   async create(payload) {
-    const ageFormated = moment(payload.birthDay, 'DD/MM/YYYY').format(
-      'YYYY-MM-DD'
-    );
+    const ageFormated = moment(payload.birthDay, 'DD/MM/YYYY').format('YYYY-MM-DD');
     const age = moment().diff(ageFormated, 'years');
 
-    if (age < 18) throw new InvalidAge(payload.age);
+    if (age < 18) throw new BadRequest(`User is under 18 years`);
 
-    if (!validCPF(payload.cpf))
-      throw new Error(`This CPF doesn't exist. Try a valid CPF`);
+    if (!validCPF(payload.cpf)) throw new BadRequest(`This CPF doesn't exist. Try a valid CPF`);
 
     const result = await PersonRepository.create(payload);
     return result;
@@ -28,7 +25,7 @@ class PersonService {
 
   async getById(id, payload) {
     const result = await PersonRepository.getById(id, payload);
-    if (!result) throw new NotFoundId(id);
+    if (!result) throw new NotFound(`The User ID '${id}' is not registered`);
 
     return result;
   }
@@ -37,18 +34,17 @@ class PersonService {
     const result = await PersonRepository.updateById(id, payload);
 
     if (payload.cpf) {
-      if (!validCPF(payload.cpf))
-        throw new Error(`This CPF doesn't exist. Try a valid CPF`);
+      if (!validCPF(payload.cpf)) throw new BadRequest(`This CPF doesn't exist. Try a valid CPF`);
     }
 
-    if (!result) throw new NotFoundId(id);
+    if (!result) throw new NotFound(`The User ID '${id}' is not registered`);
 
     return result;
   }
 
   async deleteById(payload) {
     const result = await PersonRepository.deleteById(payload);
-    if (!result) throw new NotFoundId(payload);
+    if (!result) throw new NotFound(`The User ID '${payload}' is not registered`);
 
     return result;
   }
