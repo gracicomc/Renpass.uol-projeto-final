@@ -64,7 +64,6 @@ class CarController {
 
       return res.status(200).json(result);
     } catch (error) {
-      console.log(error);
       return res.status(400).json({
         statusCode: error.statusCode,
         description: error.description,
