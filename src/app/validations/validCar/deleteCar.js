@@ -1,24 +1,12 @@
 const Joi = require('joi');
+const { id } = require('../../utils/regex');
 
 module.exports = async (req, res, next) => {
   try {
     const schemaCar = Joi.object({
-      model: Joi.string().min(3).trim(),
-      type: Joi.string().min(3).trim(),
-      brand: Joi.string().min(2).trim(),
-      color: Joi.string().min(2).trim(),
-      year: Joi.number().min(1950).max(2022),
-      accessories: Joi.array()
-        .min(1)
-        .unique()
-        .items(
-          Joi.object({
-            description: Joi.string().min(1).trim(),
-          })
-        ),
-      passengersQtd: Joi.number().min(1),
+      id: Joi.string.regex(id),
     });
-    const { error } = schemaCar.validate(req.body, {
+    const { error } = schemaCar.validate(req.params, {
       abortEarly: false,
     });
 

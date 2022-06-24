@@ -1,22 +1,13 @@
-const Joi = require('joi').extend(require('@joi/date'));
-const { cpf } = require('../../utils/regex');
+const Joi = require('joi');
+const { id } = require('../../utils/regex');
 
 module.exports = async (req, res, next) => {
   try {
     const schemaPerson = Joi.object({
-      name: Joi.string().min(3).max(30).trim(),
-      cpf: Joi.string()
-        .regex(cpf)
-        .message(
-          'Invalid character in CPF field. Try something like: 000.000.000-00'
-        ),
-      birthDay: Joi.date().format('DD/MM/YYYY'),
-      email: Joi.string().min(10).email().lowercase().trim(),
-      password: Joi.string().min(6),
-      canDrive: Joi.string().valid('yes', 'no'),
+      id: Joi.string().regex(id),
     });
 
-    const { error } = await schemaPerson.validate(req.body, {
+    const { error } = await schemaPerson.validate(req.params, {
       abortEarly: false,
     });
 
