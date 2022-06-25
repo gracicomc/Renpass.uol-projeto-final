@@ -4,8 +4,7 @@ const { id } = require('../utils/regex');
 module.exports = async (req, res, next) => {
   try {
     const validId = Joi.object({
-      id: Joi.string().regex(id).message('Invalid character in ID parameter.'),
-      accessoriesId: Joi.string().regex(id).message('Invalid character in ID parameter.')
+      id: Joi.string().regex(id).message('Invalid character in ID parameter.').required()
     });
 
     const { error } = await validId.validate(req.params, {
