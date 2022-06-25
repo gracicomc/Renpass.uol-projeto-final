@@ -4,26 +4,34 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 const CarSchema = new mongoose.Schema({
   model: {
     type: String,
+    trim: true,
+    minlength: 3,
     required: true
   },
 
   type: {
     type: String,
+    trim: true,
+    minlength: 3,
     required: true
   },
 
   brand: {
     type: String,
+    trim: true,
+    minlength: 2,
     required: true
   },
 
   color: {
     type: String,
+    trim: true,
+    minlength: 2,
     required: true
   },
 
   year: {
-    type: String,
+    type: Number,
     required: true
   },
 
@@ -31,6 +39,8 @@ const CarSchema = new mongoose.Schema({
     {
       description: {
         type: String,
+        trim: true,
+        minlength: 3,
         required: true
       }
     }
@@ -38,6 +48,7 @@ const CarSchema = new mongoose.Schema({
 
   passengersQtd: {
     type: Number,
+    min: 1,
     required: true
   }
 });
