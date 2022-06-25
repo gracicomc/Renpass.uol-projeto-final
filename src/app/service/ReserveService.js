@@ -9,7 +9,7 @@ const BadRequest = require('../Errors/BadRequest');
 class ReserveService {
   async create(rentalId, payload) {
     const rental = await RentalRepository.getById(rentalId);
-    if (!rental) throw new NotFound(rentalId);
+    if (!rental) throw new NotFound(`This Rental ID '${rentalId}' is not registered`);
     payload.id_rental = rentalId;
 
     const { date_start, date_end, id_car } = payload;
@@ -19,8 +19,9 @@ class ReserveService {
       date_end,
       id_car
     });
-    if (searchBookedCar.length > 0)
+    if (searchBookedCar.length > 0) {
       throw new BadRequest(`This Car is already booked. It was booked on ${date_start} - ${date_end}`);
+    }
 
     const validDataStart = moment(date_start, 'DD/MM/YYYY').isSameOrBefore(moment(date_end, 'DD/MM/YYYY'), 'days');
     const validDataEnd = moment(date_end, 'DD/MM/YYYY').isSameOrAfter(moment(date_start, 'DD/MM/YYYY'), 'days');
@@ -35,7 +36,7 @@ class ReserveService {
 
     const { id_user } = payload;
     const user = await PersonRepository.getById(id_user);
-    if (!user) throw new NotFound(id_user);
+    if (!user) throw new NotFound(`The User ID '${id_user}' is not registered`);
 
     if (user.canDrive === 'no') throw new BadRequest(`The user must have a driver's license`);
 

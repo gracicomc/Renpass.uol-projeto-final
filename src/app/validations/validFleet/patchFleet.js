@@ -1,18 +1,19 @@
 const Joi = require('joi');
 const { id } = require('../../utils/regex');
 const { plate } = require('../../utils/regex');
+const { status } = require('../../utils/enums');
 
 module.exports = async (req, res, next) => {
   try {
     const schemaFleet = Joi.object({
       id_car: Joi.string().regex(id).message('Invalid character in id_car field'),
       id_rental: Joi.string().regex(id).message('Invalid character in id_rental field'),
-      status: Joi.string().valid('available', 'unavailable', 'rented'),
-      daily_value: Joi.number.min(1),
-      plate: Joi.string().regex(plate).message(`This plate doest'n exist`)
+      status: Joi.string().valid(...status),
+      daily_value: Joi.number().min(1),
+      plate: Joi.string().regex(plate).message(`This plate doesn't exist`)
     });
 
-    const { error } = await schemaFleet.validate(req.body, req.params, {
+    const { error } = await schemaFleet.validate(req.body, {
       abortEarly: false
     });
 

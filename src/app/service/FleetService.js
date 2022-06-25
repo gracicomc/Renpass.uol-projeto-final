@@ -12,16 +12,16 @@ class FleetService {
 
     const { id_car } = payload;
     const car = await CarRepository.getById(id_car);
-    if (!car) throw new NotFound(id_car);
+    if (!car) throw new NotFound(`The Car ID ${id_car} is not registered.`);
 
     const result = await FleetRepository.create(payload);
-    if (!result) throw new BadRequest();
+    if (!result) throw new BadRequest(`Unable to create a Fleet`);
     return result;
   }
 
   async list(payload) {
     const result = await FleetRepository.list(payload);
-    if (!result) throw new BadRequest();
+    if (!result) throw new BadRequest(`Unable to list a Fleet`);
     return result;
   }
 

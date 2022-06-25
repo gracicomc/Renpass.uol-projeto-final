@@ -40,9 +40,6 @@ class RentalService {
   }
 
   async updateById(id, payload) {
-    if (payload.cnpj) {
-      if (!validCNPJ(payload.cnpj)) throw await new BadRequest(payload.cnpj);
-    }
     const result = await RentalRepository.updateById(id, payload);
     if (!result) throw new NotFound(`The Rental ID '${id}' is not registered`);
 
@@ -51,7 +48,7 @@ class RentalService {
 
   async deleteById(payload) {
     const result = await RentalRepository.deleteById(payload);
-    if (!result) throw new NotFound(payload);
+    if (!result) throw new NotFound(`The Rental ID '${payload}' is not registered`);
 
     return result;
   }

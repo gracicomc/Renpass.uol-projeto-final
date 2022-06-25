@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
       )
     });
 
-    const { error } = await schemaRental.validate(req.body, {
+    const { error } = await schemaRental.validate(req.params, {
       abortEarly: false
     });
 

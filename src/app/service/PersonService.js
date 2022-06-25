@@ -32,11 +32,6 @@ class PersonService {
 
   async updateById(id, payload) {
     const result = await PersonRepository.updateById(id, payload);
-
-    if (payload.cpf) {
-      if (!validCPF(payload.cpf)) throw new BadRequest(`This CPF doesn't exist. Try a valid CPF`);
-    }
-
     if (!result) throw new NotFound(`The User ID '${id}' is not registered`);
 
     return result;
