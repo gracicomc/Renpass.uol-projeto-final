@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const mongoosePaginate = require('mongoose-paginate-v2');
+const { yesOrNo } = require('../utils/enums');
 
 const PersonSchema = new mongoose.Schema({
   name: {
     type: String,
+    minlength: 3,
+    maxlength: 40,
     required: true
   },
   cpf: {
@@ -18,24 +21,26 @@ const PersonSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    trim: true,
+    minlength: 10,
     unique: true,
-    required: true,
     lowercase: true,
-    trim: true
+    required: true
   },
   password: {
     type: String,
+    minlength: 6,
     // select: false,
     required: true
   },
   canDrive: {
     type: String,
     required: true,
-    enum: ['yes', 'no']
+    enum: yesOrNo
   }
 });
 
-PersonSchema.pre('save', async function password(next) {
+PersonSchema.pre('save', async function encrypt(next) {
   const hash = await bcrypt.hash(this.password, 10);
   this.password = hash;
 
