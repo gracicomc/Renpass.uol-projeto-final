@@ -11,7 +11,7 @@ module.exports = (server, routes, prefix = '/api/v1/car') => {
   routes.post('/', createCar, CarController.create);
   routes.get('/', getCar, CarController.list);
   routes.get('/:id', validId, getCar, CarController.getById);
-  routes.patch('/:id', patchCar, CarController.updateById);
+  routes.patch('/:id', validId, patchCar, CarController.updateById);
   routes.patch('/:id/accessories/:accessoriesId', validId, validAcessoryId, CarController.patchAccessories);
   routes.delete('/:id', validId, CarController.deleteById);
 
