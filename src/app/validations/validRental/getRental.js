@@ -1,4 +1,4 @@
-const Joi = require('joi').extend(require('@joi/date'));
+const Joi = require('joi');
 const { cnpj } = require('../../utils/regex');
 
 module.exports = async (req, res, next) => {
@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
       )
     });
 
-    const { error } = await schemaRental.validate(req.body, {
+    const { error } = await schemaRental.validate(req.query, {
       abortEarly: false
     });
 
