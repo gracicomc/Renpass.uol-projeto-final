@@ -18,7 +18,7 @@ module.exports = async (req, res, next) => {
         ),
       passengersQtd: Joi.number().min(1)
     });
-    const { error } = schemaCar.validate(req.body, {
+    const { error } = schemaCar.validate(req.query, {
       abortEarly: false
     });
 
@@ -26,7 +26,7 @@ module.exports = async (req, res, next) => {
 
     return next();
   } catch (error) {
-    return res.status(400).json({
+    return res.status(error.statusCode || 400).json({
       invalidFields: error.details.map((detail) => ({
         field: detail.path.join('.'),
         description: detail.message
