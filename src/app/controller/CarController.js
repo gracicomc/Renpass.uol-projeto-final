@@ -17,7 +17,9 @@ class CarController {
   async list(req, res) {
     try {
       const result = await CarService.list(req.query);
-
+      if (result.vehicles.length === 0) {
+        return res.status(204).send();
+      }
       return res.status(200).json(result);
     } catch (error) {
       return res.status(error.statusCode || 400).json({

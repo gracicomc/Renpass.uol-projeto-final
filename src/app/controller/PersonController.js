@@ -18,6 +18,9 @@ class PersonController {
   async list(req, res) {
     try {
       const result = await PersonService.list(req.query);
+      if (result.users.length === 0) {
+        return res.status(204).send();
+      }
       return res.status(200).json(result);
     } catch (error) {
       return res.status(error.statusCode || 400).json({

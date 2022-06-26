@@ -1,6 +1,6 @@
-/* eslint-disable no-undef */
 const mongoose = require('mongoose');
-const config = require('../../../config/config');
+
+require('dotenv').config();
 
 class Database {
   constructor() {
@@ -8,7 +8,7 @@ class Database {
   }
 
   connect() {
-    return mongoose.connect(config.database.mongoUrl);
+    return mongoose.connect(process.env.MONGO_URL);
   }
 
   disconnect() {
