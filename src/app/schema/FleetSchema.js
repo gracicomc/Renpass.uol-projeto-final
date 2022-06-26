@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
+const { status } = require('../utils/enums');
 
 const FleetSchema = new mongoose.Schema({
   id_car: {
@@ -13,7 +14,7 @@ const FleetSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['available', 'unavailable', 'rented'],
+    enum: [...status],
     required: true
   },
   daily_value: {

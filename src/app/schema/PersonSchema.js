@@ -36,7 +36,7 @@ const PersonSchema = new mongoose.Schema({
   canDrive: {
     type: String,
     required: true,
-    enum: yesOrNo
+    enum: [...yesOrNo]
   }
 });
 

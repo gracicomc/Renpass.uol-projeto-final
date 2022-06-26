@@ -1,6 +1,8 @@
 const Joi = require('joi').extend(require('@joi/date'));
 const { cpf } = require('../../utils/regex');
 const { yesOrNo } = require('../../utils/enums');
+const validCPF = require('../../utils/validCPF');
+const BadRequest = require('../../Errors/BadRequest');
 
 module.exports = async (req, res, next) => {
   try {
@@ -20,6 +22,7 @@ module.exports = async (req, res, next) => {
       abortEarly: false
     });
 
+    if (!validCPF(req.body.cpf)) throw new BadRequest(`This CPF is invalid. Try a valid one`);
     if (error) throw error;
 
     return next();

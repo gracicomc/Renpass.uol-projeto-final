@@ -2,7 +2,6 @@ const moment = require('moment');
 const PersonRepository = require('../repository/PersonRepository');
 const BadRequest = require('../Errors/BadRequest');
 const NotFound = require('../Errors/NotFound');
-const validCPF = require('../utils/validCPF');
 
 class PersonService {
   async create(payload) {
@@ -10,8 +9,6 @@ class PersonService {
     const age = moment().diff(ageFormated, 'years');
 
     if (age < 18) throw new BadRequest(`User is under 18 years`);
-
-    if (!validCPF(payload.cpf)) throw new BadRequest(`This CPF doesn't exist. Try a valid CPF`);
 
     const result = await PersonRepository.create(payload);
     return result;
