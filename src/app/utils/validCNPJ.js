@@ -1,8 +1,7 @@
 /* eslint-disable eqeqeq */
-/* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 function validCNPJ(cnpj) {
-  cnpj = cnpj.replace(/[^\d]+/g, '');
+  cnpj.replace(/[^\d]+/g, '');
 
   if (cnpj == '') return false;
 
