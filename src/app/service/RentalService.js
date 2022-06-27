@@ -1,11 +1,7 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-param-reassign */
 /* eslint-disable no-await-in-loop */
 const axios = require('axios').default;
 const RentalRepository = require('../repository/RentalRepository');
-const BadRequest = require('../Errors/BadRequest');
 const NotFound = require('../Errors/NotFound');
-const validCNPJ = require('../utils/validCNPJ');
 
 class RentalService {
   async create(payload) {
@@ -20,8 +16,6 @@ class RentalService {
       payload.address[index].city = localidade;
       payload.address[index].state = uf;
     }
-
-    if (!validCNPJ(payload.cnpj)) throw await new BadRequest(`This CNPJ doesn't exist. Try a valid CNPJ`);
     const result = await RentalRepository.create(payload);
     return result;
   }

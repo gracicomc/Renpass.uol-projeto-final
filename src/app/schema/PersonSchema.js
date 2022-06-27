@@ -30,7 +30,6 @@ const PersonSchema = new mongoose.Schema({
   password: {
     type: String,
     minlength: 6,
-    // select: false,
     required: true
   },
   canDrive: {

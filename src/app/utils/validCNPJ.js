@@ -1,8 +1,6 @@
 /* eslint-disable eqeqeq */
-/* eslint-disable no-undef */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
-/* eslint-disable radix */
 function validCNPJ(cnpj) {
   cnpj = cnpj.replace(/[^\d]+/g, '');
 
@@ -27,18 +25,18 @@ function validCNPJ(cnpj) {
     return false;
   }
 
-  size = cnpj.length - 2;
-  numbers = cnpj.substring(0, size);
-  digits = cnpj.substring(size);
-  sum = 0;
-  pos = size - 7;
-  for (i = size; i >= 1; i--) {
+  let size = cnpj.length - 2;
+  let numbers = cnpj.substring(0, size);
+  const digits = cnpj.substring(size);
+  let sum = 0;
+  let pos = size - 7;
+  for (let i = size; i >= 1; i--) {
     sum += numbers.charAt(size - i) * pos--;
     if (pos < 2) {
       pos = 9;
     }
   }
-  result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
+  let result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
   if (result != digits.charAt(0)) {
     return false;
   }
@@ -47,7 +45,7 @@ function validCNPJ(cnpj) {
   numbers = cnpj.substring(0, size);
   sum = 0;
   pos = size - 7;
-  for (i = size; i >= 1; i--) {
+  for (let i = size; i >= 1; i--) {
     sum += numbers.charAt(size - i) * pos--;
     if (pos < 2) {
       pos = 9;

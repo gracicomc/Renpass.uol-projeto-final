@@ -2,15 +2,21 @@ const Joi = require('joi').extend(require('@joi/date'));
 const { cpf } = require('../../utils/regex');
 const { yesOrNo } = require('../../utils/enums');
 const validCPF = require('../../utils/validCPF');
-const BadRequest = require('../../Errors/BadRequest');
 
 module.exports = async (req, res, next) => {
   try {
+    const method = (value, helper) => {
+      if (!validCPF(value)) {
+        return helper.message(`This CPF is not valid. Try a valid one`);
+      }
+      return req.body;
+    };
     const schemaPerson = Joi.object({
       name: Joi.string().trim().min(3).max(40).required(),
       cpf: Joi.string()
         .regex(cpf)
         .message('Invalid character in CPF field. Try something like: 000.000.000-00')
+        .custom(method, 'custom validation')
         .required(),
       birthDay: Joi.date().required().format('DD/MM/YYYY'),
       email: Joi.string().trim().min(10).email().lowercase().required(),
@@ -22,7 +28,6 @@ module.exports = async (req, res, next) => {
       abortEarly: false
     });
 
-    if (!validCPF(req.body.cpf)) throw new BadRequest(`This CPF is invalid. Try a valid one`);
     if (error) throw error;
 
     return next();
