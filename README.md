@@ -24,40 +24,44 @@
 6.14.15
 ```
 ### Dependencies:
-```bash
+```json
     "@joi/date": "^2.1.0",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
-    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.3",
     "mongoose": "^6.3.5",
     "mongoose-paginate-v2": "^1.6.3",
-    "mongoose-unique-validator": "^3.1.0",
     "morgan": "^1.10.0",
     "supertest": "^6.2.3",
-    "swagger-ui-express": "^4.4.0"
+    "swagger-ui-express": "^4.4.0",
+    "dotenv": "^16.0.1"
 ```
 
 ### devDependencies:
-```bash
-    "eslint": "^8.17.0",
+```json
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-plugin": "^1.0.11",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "jest": "^28.1.0",
     "nodemon": "^2.0.16",
-    "prettier": "^2.7.0",
-    "prettier-eslint-cli": "^6.0.1"
+    "prettier": "^2.7.1"
 ```
 
 ### Frameworks:
 ```bash
 "express": "^4.18.1"
 ```
+<br>
+
+## 📋 Swagger Documentation - [SwaggerDoc](https://renpassuol.herokuapp.com/api/v1/api-docs/)
+<br>
+
+## 👾 Heroku - [Deploy](https://renpassuol.herokuapp.com/api/v1/<ROUTER>)
+<br>
 
 <h1 align=> 🖌️ API authors: </h1>
 
@@ -74,21 +78,11 @@
 
     npm run dev
 
-### 3️⃣ - (opitional) Insert values into the database
-
-    You can use the demos.md file to insert values on postman 
-
-### 4️⃣ - Bearer Authentication
+### 3️⃣ - Bearer Authentication
 
     For use all endpoints its necessary to create a person and then
     authenticate it on Authenticate POST endpoint. Use the generated 
     token in Headers and add "Bearer" before paste the token.
-
-### 📋 Swagger Documentation
-
-    You can access the Swagger Doc by using
-    the route https://renpassuol.herokuapp.com/api/v1/api-docs/
-    after initialize the server
 
 
 <h1 align> 📁 Authenticate Endpoints: </h1>
