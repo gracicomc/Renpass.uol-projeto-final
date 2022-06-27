@@ -75,7 +75,12 @@
     npm install
 
 ### 2️⃣ - Run server
+#### production
 
+    npm run start
+    
+ #### or development
+ 
     npm run dev
 
 ### 3️⃣ - Bearer Authentication
